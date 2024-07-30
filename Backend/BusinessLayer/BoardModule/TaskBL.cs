@@ -22,8 +22,8 @@ namespace IntroSE.Kanban.Backend.BusinessLayer.BoardModule
             get { return assigneeEmail; }
             set
             {
-                assigneeEmail = value;
                 TaskDao._AssigneeEmail = assigneeEmail;  // and this goes to the DAO's set
+                assigneeEmail = value;
             }
         }
 
@@ -38,8 +38,8 @@ namespace IntroSE.Kanban.Backend.BusinessLayer.BoardModule
             get { return title;}
             set
             {
-                title = value;
                 TaskDao._Title = title;  // and this goes to the DAO's set
+                title = value;
             }
         }
 
@@ -50,8 +50,8 @@ namespace IntroSE.Kanban.Backend.BusinessLayer.BoardModule
             get { return description;}
             set
             {
-                description = value;
                 TaskDao._Description = description;  // and this goes to the DAO's set
+                description = value;
             }
         }
 
@@ -63,8 +63,8 @@ namespace IntroSE.Kanban.Backend.BusinessLayer.BoardModule
             get { return dueDate;}
             set
             {
-                dueDate = value;
                 TaskDao._DueDate = dueDate;  // and this goes to the DAO's set
+                dueDate = value;
             }
         }
 
