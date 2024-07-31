@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Frontend.Model
 {
-    public class BoardModel : NotifiableModel
+    public class BoardModel : NotifiableModelObject
     {
         private string name;
         public string Name
