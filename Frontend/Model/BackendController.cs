@@ -68,9 +68,8 @@ namespace Frontend.Model
             Console.WriteLine(res0.ToString());
             
             BoardModel board = new BoardModel(this, user, boardName);
-            // List<TaskSL> t0 = JsonSerializer.Deserialize<List<TaskSL>>((JsonElement)res0.ReturnValue);
-            List<TaskSL> t0 = JsonSerializer.Deserialize<List<TaskSL>>(res0.ReturnValue);
 
+            List<TaskSL> t0 = JsonSerializer.Deserialize<List<TaskSL>>((JsonElement)res0.ReturnValue);
             List<string> n0 = new List<string>(), n1 = new List<string>(), n2 = new List<string>();
             n0.AddRange(t0.Select(t => t.Title));
             List<TaskSL> t1 = JsonSerializer.Deserialize<List<TaskSL>>((JsonElement)res1.ReturnValue);
