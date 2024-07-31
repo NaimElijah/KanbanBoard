@@ -7,11 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backend", "Backend\Backend.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackendTests", "BackendTests\BackendTests.csproj", "{A0999BFB-BCF3-46A7-8304-1B2C12082F7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frontend", "Frontend\Frontend.csproj", "{04364535-AE07-437A-9A71-A6DBA9BF9367}"
-	ProjectSection(ProjectDependencies) = postProject
-		{47FB76DC-5F2C-4928-9E6B-A6D7CE70D696} = {47FB76DC-5F2C-4928-9E6B-A6D7CE70D696}
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,10 +21,6 @@ Global
 		{A0999BFB-BCF3-46A7-8304-1B2C12082F7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0999BFB-BCF3-46A7-8304-1B2C12082F7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0999BFB-BCF3-46A7-8304-1B2C12082F7B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{04364535-AE07-437A-9A71-A6DBA9BF9367}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{04364535-AE07-437A-9A71-A6DBA9BF9367}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{04364535-AE07-437A-9A71-A6DBA9BF9367}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{04364535-AE07-437A-9A71-A6DBA9BF9367}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
