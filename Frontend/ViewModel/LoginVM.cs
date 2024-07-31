@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
+using Frontend;
 using Frontend.Model;
 
 namespace IntroSE.Kanban.Frontend.ViewModel
 {
-    internal class LoginVM : Notifiable
+    internal class LoginVM : NotifiableObject
     {
         private BackendController controller;
 
