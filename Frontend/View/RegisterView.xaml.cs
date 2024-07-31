@@ -2,45 +2,47 @@
 using Frontend.Model;
 using Frontend.View;
 using System.Windows.Controls;
-using IntroSE.Kanban.Frontend.ViewModel;
+using Frontend.ViewModel;
 
-namespace IntroSE.Kanban.Frontend.View;
-
-public partial class RegisterView : Window
+namespace Frontend.View
 {
-    private LoginVM vm;
 
-    internal RegisterView(LoginVM vm)
+    public partial class RegisterView : Window
     {
-        InitializeComponent();
-        this.vm = vm;
-        DataContext = vm;
-    }
+        private LoginVM vm;
 
-    private void BackButton_Click(object sender, RoutedEventArgs e)
-    {
-        LoginView loginWindow = new LoginView(vm);
-        loginWindow.Show();
-        Close();
-    }
-
-    private void RegisterButton_Click(object sender, RoutedEventArgs e)
-    {
-        UserModel? user = vm.Register();
-        if (user == null)
+        internal RegisterView(LoginVM vm)
         {
-            MessageBox.Show(vm.ErrorMessage);
-            return;
+            InitializeComponent();
+            this.vm = vm;
+            DataContext = vm;
         }
 
-        MessageBox.Show("Registered successfully");
-        UserView uv = new UserView(user);
-        uv.Show();
-        Close();
-    }
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            LoginView loginWindow = new LoginView(vm);
+            loginWindow.Show();
+            Close();
+        }
 
-    private void PasswordBox_OnPasswordChanged(object sender, RoutedEventArgs e)
-    {
-        vm.Password = PasswordBox.Password;
+        private void RegisterButton_Click(object sender, RoutedEventArgs e)
+        {
+            UserModel? user = vm.Register();
+            if (user == null)
+            {
+                MessageBox.Show(vm.ErrorMessage);
+                return;
+            }
+
+            MessageBox.Show("Registered successfully");
+            UserView uv = new UserView(user);
+            uv.Show();
+            Close();
+        }
+
+        private void PasswordBox_OnPasswordChanged(object sender, RoutedEventArgs e)
+        {
+            vm.Password = PasswordBox.Password;
+        }
     }
 }

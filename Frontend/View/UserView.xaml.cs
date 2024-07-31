@@ -1,19 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Intrinsics.X86;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Frontend.Model;
 using Frontend.ViewModel;
+
 
 
 namespace Frontend.View
@@ -42,6 +32,24 @@ namespace Frontend.View
             vm = new UserVM(board.Controller);
             DataContext =vm;
 
+        }
+
+    private void BoardListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (BoardListView.SelectedItem != null)
+            { 
+                BoardModel board = vm.GetBoard(model,""+BoardListView.SelectedItem.ToString());
+                BoardView boardView = new BoardView(board);
+                boardView.Show();
+                Close();
+            }
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            LoginView loginWindow = new LoginView(model.Controller);
+            loginWindow.Show();
+            Close();
         }
     }
 }

@@ -22,7 +22,7 @@ namespace Frontend.Model
         {
             Service = new GradingService();
             Response? response = JsonSerializer.Deserialize<Response>(Service.LoadData());
-            if (response != null)
+            if (response.ErrorMessage != null)
                 throw new Exception(response.ErrorMessage);
         }
 
@@ -35,6 +35,15 @@ namespace Frontend.Model
 
         
         }
+
+        public Tuple<UserModel?, string> Register(string email, string password) {
+         
+            Response response = JsonSerializer.Deserialize<Response>(Service.Register(email, password));
+            if(response.ErrorMessage != null)
+                return Tuple.Create<UserModel?,string>(null, response.ErrorMessage);
+            return Tuple.Create<UserModel?,string>(new UserModel(this,email,new List<string>()),response.ErrorMessage);
+
+         }
 
         public List<string> GetUserBoards(string email)
         {
@@ -52,11 +61,14 @@ namespace Frontend.Model
 
         public BoardModel GetBoard(UserModel user, string boardName)
         {
-            Response res0 = JsonSerializer.Deserialize<Response>(Service.GetColumn(user.Email, boardName, 0));
-            Response res1 = JsonSerializer.Deserialize<Response>(Service.GetColumn(user.Email, boardName, 1));
-            Response res2 = JsonSerializer.Deserialize<Response>(Service.GetColumn(user.Email, boardName, 2));
+            Response? res0 = JsonSerializer.Deserialize<Response>(Service.GetColumn(user.Email, boardName, 0));
+            Response? res1 = JsonSerializer.Deserialize<Response>(Service.GetColumn(user.Email, boardName, 1));
+            Response? res2 = JsonSerializer.Deserialize<Response>(Service.GetColumn(user.Email, boardName, 2));
 
+            Console.WriteLine(res0.ToString());
+            
             BoardModel board = new BoardModel(this, user, boardName);
+
             List<TaskSL> t0 = JsonSerializer.Deserialize<List<TaskSL>>((JsonElement)res0.ReturnValue);
             List<string> n0 = new List<string>(), n1 = new List<string>(), n2 = new List<string>();
             n0.AddRange(t0.Select(t => t.Title));

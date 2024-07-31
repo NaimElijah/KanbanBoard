@@ -1,9 +1,10 @@
+
 ﻿using System.Windows;
 using System.Windows.Controls;
 using Frontend.Model;
 using Frontend.View;
-using IntroSE.Kanban.Frontend.View;
-using IntroSE.Kanban.Frontend.ViewModel;
+using Frontend.ViewModel;
+
 
 namespace Frontend.View;
 
@@ -16,6 +17,7 @@ public partial class LoginView : Window
         InitializeComponent();
         vm = new LoginVM();
         DataContext = vm;
+
     }
 
     public LoginView(BackendController controller)
