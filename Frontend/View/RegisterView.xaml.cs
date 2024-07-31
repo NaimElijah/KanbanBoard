@@ -19,7 +19,7 @@ public partial class RegisterView : Window
 
     private void BackButton_Click(object sender, RoutedEventArgs e)
     {
-        LoginWindow loginWindow = new LoginWindow(vm);
+        LoginView loginWindow = new LoginView(vm);
         loginWindow.Show();
         Close();
     }
