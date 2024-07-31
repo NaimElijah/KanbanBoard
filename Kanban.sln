@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backend", "Backend\Backend.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackendTests", "BackendTests\BackendTests.csproj", "{A0999BFB-BCF3-46A7-8304-1B2C12082F7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frontend", "Frontend\Frontend.csproj", "{8CE3DE30-3B2B-49E6-856F-9BDB43101472}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Frontend", "Frontend\Frontend.csproj", "{8CE3DE30-3B2B-49E6-856F-9BDB43101472}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

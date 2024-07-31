@@ -6,7 +6,38 @@ using System.Threading.Tasks;
 
 namespace Frontend.Model
 {
-    internal class UserModel
+    public class UserModel : NotifiableModelObject
     {
+        private string email;
+
+        public string Email
+        {
+            get => email;
+            set
+            {
+                email = value;
+                RaisePropertyChanged("Email");
+            }
+        }
+
+        private List<string> boards;
+        public List<string> Boards
+        {
+            get => boards;
+            set
+            {
+                boards = value;
+                RaisePropertyChanged("Boards");
+            }
+        }
+
+        internal BackendController controller;
+
+        public UserModel(BackendController backendController, string email,List<string> boards): base(backendController)
+        {
+            this.controller = backendController;
+            this.boards = boards;
+            this.email = email;
+        }
     }
 }
