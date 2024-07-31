@@ -3,10 +3,42 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Frontend.View"
+        xmlns:local="clr-namespace:IntroSE.Kanban.Frontend.View"
         mc:Ignorable="d"
         Title="LoginView" Height="450" Width="800">
-    <Grid>
+    <Grid Background="#1F1B24" Name="Grid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Login" Grid.Row="0" Margin="0,16" VerticalAlignment="Center" HorizontalAlignment="Center"
+                   Foreground="White" FontSize="32" FontWeight="Bold" />
+
+        <Label Content="Email" Margin="16" Grid.Row="1" VerticalAlignment="Center" Foreground="White" FontSize="24" />
         
+        <TextBox x:Name="EmailTextBox" Grid.Row="2" Margin="16,0" Height="28" BorderBrush="#757575" BorderThickness="1"
+                 Background="#212121" Foreground="White" FontSize="16" SelectionBrush="#757575"
+                 SelectionTextBrush="White" Text="{Binding Path=Email}" />
+        
+
+        <Label Content="Password" Grid.Row="3" Margin="16,16" VerticalAlignment="Center" Foreground="White"
+               FontSize="24" />
+        <PasswordBox x:Name="PasswordBox" Grid.Row="4" Margin="16,0" Height="28" BorderBrush="#757575"
+                     BorderThickness="1" Background="#212121" Foreground="White" FontSize="16" SelectionBrush="#757575"
+                     SelectionTextBrush="White" PasswordChanged="PasswordBox_OnPasswordChanged" />
+
+        <Button Grid.Row="5" Margin="48,40" Height="40" Background="#2196F3" Foreground="White" Content="Login"
+                FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" Width="120" BorderThickness="0"
+                Click="LoginButton_Click" IsDefault="True" />
+
+        <Button Grid.Row="5" Margin="48,40" Height="40" Background="Transparent" Foreground="#2196F3"
+                Content="Register"
+                FontSize="16" FontWeight="Bold" HorizontalAlignment="Right" Width="120" BorderBrush="#2196F3"
+                BorderThickness="1" Click="RegisterButton_Click" />
     </Grid>
 </Window>
