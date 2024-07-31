@@ -2,9 +2,9 @@
 using Frontend.Model;
 using Frontend.View;
 using System.Windows.Controls;
-using IntroSE.Kanban.Frontend.ViewModel;
+using Frontend.ViewModel;
 
-namespace IntroSE.Kanban.Frontend.View;
+namespace Frontend.View;
 
 public partial class RegisterView : Window
 {
@@ -19,7 +19,7 @@ public partial class RegisterView : Window
 
     private void BackButton_Click(object sender, RoutedEventArgs e)
     {
-        LoginWindow loginWindow = new LoginWindow(vm);
+        LoginView loginWindow = new LoginView(vm);
         loginWindow.Show();
         Close();
     }

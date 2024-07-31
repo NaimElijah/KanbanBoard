@@ -1,44 +1,33 @@
 ﻿using Frontend.Model;
+using Frontend.ViewModel;
 using Frontend.View;
-using IntroSE.Kanban.Frontend.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
-namespace IntroSE.Kanban.Frontend.View
+
+namespace Frontend.View
 {
     /// <summary>
     /// Interaction logic for LoginWindow.xaml
     /// </summary>
-    public partial class LoginWindow
+    public partial class LoginView: Window
     {
         private LoginVM vm;
 
-        public LoginWindow()
+       public LoginView()
         {
             InitializeComponent();
-            vm = new LoginVM();
-            DataContext = vm;
+
         }
 
-        public LoginWindow(BackendController controller)
+        public LoginView(BackendController controller)
         {
             InitializeComponent();
             vm = new LoginVM(controller);
             DataContext = vm;
         }
 
-        internal LoginWindow(LoginVM vm)
+        internal LoginView(LoginVM vm)
         {
             InitializeComponent();
             this.vm = vm;

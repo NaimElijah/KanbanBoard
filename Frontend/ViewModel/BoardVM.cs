@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Frontend.ViewModel
 {
-    public class BoardVM
+    public class BoardVM: NotifiableObject
     {
         internal BackendController controller;
 

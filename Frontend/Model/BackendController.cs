@@ -36,6 +36,15 @@ namespace Frontend.Model
         
         }
 
+        public Tuple<UserModel?, string> Register(string email, string password) {
+         
+            Response response = JsonSerializer.Deserialize<Response>(Service.Register(email, password));
+            if(response.ErrorMessage != null)
+                return Tuple.Create<UserModel?,string>(null, response.ErrorMessage);
+            return Tuple.Create<UserModel?,string>(new UserModel(this,email,new List<string>()),response.ErrorMessage);
+
+         }
+
         public List<string> GetUserBoards(string email)
         {
             Response response = JsonSerializer.Deserialize<Response>(Service.GetUserBoards(email));
@@ -50,9 +59,6 @@ namespace Frontend.Model
 
         }
 
-        internal BoardModel GetBoard(UserModel user, string boardName)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

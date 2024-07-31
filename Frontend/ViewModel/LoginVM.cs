@@ -4,7 +4,7 @@ using System.Windows;
 using Frontend;
 using Frontend.Model;
 
-namespace IntroSE.Kanban.Frontend.ViewModel
+namespace Frontend.ViewModel
 {
     internal class LoginVM : NotifiableObject
     {
