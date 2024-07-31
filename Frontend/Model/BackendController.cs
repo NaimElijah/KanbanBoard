@@ -50,9 +50,24 @@ namespace Frontend.Model
 
         }
 
-        internal BoardModel GetBoard(UserModel user, string boardName)
+        public BoardModel GetBoard(UserModel user, string boardName)
         {
-            throw new NotImplementedException();
+            Response res0 = JsonSerializer.Deserialize<Response>(Service.GetColumn(user.Email, boardName, 0));
+            Response res1 = JsonSerializer.Deserialize<Response>(Service.GetColumn(user.Email, boardName, 1));
+            Response res2 = JsonSerializer.Deserialize<Response>(Service.GetColumn(user.Email, boardName, 2));
+
+            BoardModel board = new BoardModel(this, user, boardName);
+            List<TaskSL> t0 = JsonSerializer.Deserialize<List<TaskSL>>((JsonElement)res0.ReturnValue);
+            List<string> n0 = new List<string>(), n1 = new List<string>(), n2 = new List<string>();
+            n0.AddRange(t0.Select(t => t.Title));
+            List<TaskSL> t1 = JsonSerializer.Deserialize<List<TaskSL>>((JsonElement)res1.ReturnValue);
+            n1.AddRange(t1.Select(t => t.Title));
+            List<TaskSL> t2 = JsonSerializer.Deserialize<List<TaskSL>>((JsonElement)res2.ReturnValue);
+            n2.AddRange(t2.Select(t => t.Title));
+            board.BacklogTasks = n0;
+            board.InProgressTasks = n1;
+            board.DoneTasks = n2;
+            return board;
         }
     }
 }
