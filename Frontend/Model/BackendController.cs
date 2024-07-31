@@ -22,7 +22,7 @@ namespace Frontend.Model
         {
             Service = new GradingService();
             Response? response = JsonSerializer.Deserialize<Response>(Service.LoadData());
-            if (response != null)
+            if (response.ErrorMessage != null)
                 throw new Exception(response.ErrorMessage);
         }
 
@@ -59,6 +59,28 @@ namespace Frontend.Model
 
         }
 
-        
+        public BoardModel GetBoard(UserModel user, string boardName)
+        {
+            Response? res0 = JsonSerializer.Deserialize<Response>(Service.GetColumn(user.Email, boardName, 0));
+            Response? res1 = JsonSerializer.Deserialize<Response>(Service.GetColumn(user.Email, boardName, 1));
+            Response? res2 = JsonSerializer.Deserialize<Response>(Service.GetColumn(user.Email, boardName, 2));
+
+            Console.WriteLine(res0.ToString());
+            
+            BoardModel board = new BoardModel(this, user, boardName);
+            // List<TaskSL> t0 = JsonSerializer.Deserialize<List<TaskSL>>((JsonElement)res0.ReturnValue);
+            List<TaskSL> t0 = JsonSerializer.Deserialize<List<TaskSL>>(res0.ReturnValue);
+
+            List<string> n0 = new List<string>(), n1 = new List<string>(), n2 = new List<string>();
+            n0.AddRange(t0.Select(t => t.Title));
+            List<TaskSL> t1 = JsonSerializer.Deserialize<List<TaskSL>>((JsonElement)res1.ReturnValue);
+            n1.AddRange(t1.Select(t => t.Title));
+            List<TaskSL> t2 = JsonSerializer.Deserialize<List<TaskSL>>((JsonElement)res2.ReturnValue);
+            n2.AddRange(t2.Select(t => t.Title));
+            board.BacklogTasks = n0;
+            board.InProgressTasks = n1;
+            board.DoneTasks = n2;
+            return board;
+        }
     }
 }

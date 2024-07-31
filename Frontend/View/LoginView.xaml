@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Frontend.View"
         mc:Ignorable="d"
         Title="LoginView" Height="450" Width="800">
-    <Grid Background="#1F1B24">
+    <Grid Background="#FFB9ABC8">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />

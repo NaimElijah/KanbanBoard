@@ -47,7 +47,7 @@ namespace Frontend.View
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            LoginWindow loginWindow = new LoginWindow(model.Controller);
+            LoginView loginWindow = new LoginView(model.Controller);
             loginWindow.Show();
             Close();
         }
