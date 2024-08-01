@@ -62,13 +62,28 @@ namespace Frontend.ViewModel
             set => RaisePropertyChanged("FieldsAreNotEmpty");
         }
 
-        internal UserModel? Login()
+        /*internal UserModel? Login()
         {
             Tuple<UserModel?, string> t = controller.Login(email, password);
             ErrorMessage = t.Item2;
             return t.Item1;
-        }
+        }*/
 
+        internal UserModel? Login()
+        {
+            try
+            {
+                return controller.Login(Email, Password);
+                //UserModel user = controller.Login(email, password);
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+                return null;
+            }
+            //ErrorMessage = t.Item2;
+            //return t.Item1;
+        }
         internal UserModel? Register()
         {
             Tuple<UserModel?, string> t = controller.Register(email, password);

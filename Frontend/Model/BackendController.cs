@@ -26,7 +26,7 @@ namespace Frontend.Model
                 throw new Exception(response.ErrorMessage);
         }
 
-        public Tuple<UserModel?,string> Login(string email, string password)
+       /*public Tuple<UserModel?,string> Login(string email, string password)
         {  
             Response response = JsonSerializer.Deserialize<Response>(Service.Login(email, password));
             if (response.ErrorMessage!= null)
@@ -34,6 +34,16 @@ namespace Frontend.Model
             return Tuple.Create<UserModel?, string>(new UserModel(this, email, GetUserBoards(email)), response.ErrorMessage);
 
         
+        }*/
+        public UserModel Login(string email, string password)
+        {
+            Response response = JsonSerializer.Deserialize<Response>(Service.Login(email, password));
+            if (response.ErrorOccured)
+            {
+                throw new Exception(response.ErrorMessage);
+            }
+             return new UserModel(this,email,GetUserBoards(email));
+
         }
 
         public Tuple<UserModel?, string> Register(string email, string password) {
@@ -44,6 +54,14 @@ namespace Frontend.Model
             return Tuple.Create<UserModel?,string>(new UserModel(this,email,new List<string>()),response.ErrorMessage);
 
          }
+
+        public Tuple<UserModel?, string> Logout(string email, string password)
+        {
+            Response response = JsonSerializer.Deserialize<Response>(Service.Logout(email));
+            if(response.ErrorMessage != null)
+                return Tuple.Create<UserModel?, string>(null, response.ErrorMessage);
+            return Tuple.Create<UserModel?, string>(new UserModel(this, email, new List<string>()), response.ErrorMessage);
+        }
 
         public List<string> GetUserBoards(string email)
         {
@@ -61,16 +79,12 @@ namespace Frontend.Model
 
         public BoardModel GetBoard(UserModel user, string boardName)
         {
-            Response? res0 = JsonSerializer.Deserialize<Response>(Service.GetColumn(user.Email, boardName, 0));
-            Response? res1 = JsonSerializer.Deserialize<Response>(Service.GetColumn(user.Email, boardName, 1));
-            Response? res2 = JsonSerializer.Deserialize<Response>(Service.GetColumn(user.Email, boardName, 2));
+            Response res0 = JsonSerializer.Deserialize<Response>(Service.GetColumn(user.Email, boardName, 0));
+            Response res1 = JsonSerializer.Deserialize<Response>(Service.GetColumn(user.Email, boardName, 1));
+            Response res2 = JsonSerializer.Deserialize<Response>(Service.GetColumn(user.Email, boardName, 2));
 
-            Console.WriteLine(res0.ToString());
-            
             BoardModel board = new BoardModel(this, user, boardName);
-            // List<TaskSL> t0 = JsonSerializer.Deserialize<List<TaskSL>>((JsonElement)res0.ReturnValue);
-            List<TaskSL> t0 = JsonSerializer.Deserialize<List<TaskSL>>(res0.ReturnValue);
-
+            List<TaskSL> t0 = JsonSerializer.Deserialize<List<TaskSL>>((JsonElement)res0.ReturnValue);
             List<string> n0 = new List<string>(), n1 = new List<string>(), n2 = new List<string>();
             n0.AddRange(t0.Select(t => t.Title));
             List<TaskSL> t1 = JsonSerializer.Deserialize<List<TaskSL>>((JsonElement)res1.ReturnValue);
@@ -82,5 +96,7 @@ namespace Frontend.Model
             board.DoneTasks = n2;
             return board;
         }
+
     }
 }
+

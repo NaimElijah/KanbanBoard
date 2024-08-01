@@ -24,5 +24,8 @@ namespace IntroSE.Kanban.Backend.ServiceLayer
             return JsonSerializer.Serialize(this);
         }
 
+
+        public bool ErrorOccured { get => ErrorMessage != null; }
+
     }
 }

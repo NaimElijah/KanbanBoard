@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Frontend.View"
         mc:Ignorable="d"
-        Title="UserView" Height="450" Width="800">
+        Title="UserView" Height="450" Width="435">
     <Grid>
         <Grid.Background>
             <SolidColorBrush Color="#FF876EA5" Opacity="1"/>
@@ -15,7 +15,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <TextBlock Text="Boards" Grid.Row="0"  Margin="10" FontSize="24" Foreground="WhiteSmoke" />
+        <TextBlock Text="Your mother fucking Boards" Grid.Row="0"  Margin="10" FontSize="24" Foreground="WhiteSmoke"  HorizontalAlignment="Center" />
         <ListView x:Name="BoardListView" Margin="10" Grid.Row="1" Grid.ColumnSpan="5" Background="#FFB1A2A2" Foreground="White" FontSize="20" HorizontalContentAlignment="Center" SelectionChanged ="BoardListView_SelectionChanged" >
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
