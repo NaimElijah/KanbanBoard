@@ -45,8 +45,16 @@ namespace Frontend.View
             }
         }
 
-        private void BackButton_Click(object sender, RoutedEventArgs e)
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
+            vm.LogoutUser(Title);
+            if (vm.ErrorMessage != string.Empty)
+            {
+                MessageBox.Show(vm.ErrorMessage);    
+            }
+                       
+            MessageBox.Show("You Logout successfully");
+
             LoginView loginWindow = new LoginView(model.Controller);
             loginWindow.Show();
             Close();

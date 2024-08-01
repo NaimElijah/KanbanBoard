@@ -31,7 +31,7 @@ namespace Frontend.View
         {
             UserView userWindow = new UserView(model.User);
             userWindow.Show();
-            Close();
+            this.Close();
         }
     }
 }

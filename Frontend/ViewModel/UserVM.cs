@@ -38,6 +38,20 @@ namespace Frontend.ViewModel
             return controller.GetBoard(user, boardName);
         }
 
+        internal void LogoutUser(string email)
+        {
+            try
+            {
+                controller.Logout(email);
+                
+
+            }
+            catch (Exception e)
+            {
+                ErrorMessage = e.Message;
+                
+            }
+        }
 
 
     }

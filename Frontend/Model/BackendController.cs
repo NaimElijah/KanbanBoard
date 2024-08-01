@@ -66,12 +66,21 @@ namespace Frontend.Model
             return new UserModel(this, email, GetUserBoards(email));
         }
 
-        public Tuple<UserModel?, string> Logout(string email, string password)
+        /* public Tuple<UserModel?, string> Logout(string email, string password)
+         {
+             Response response = JsonSerializer.Deserialize<Response>(Service.Logout(email));
+             if(response.ErrorMessage != null)
+                 return Tuple.Create<UserModel?, string>(null, response.ErrorMessage);
+             return Tuple.Create<UserModel?, string>(new UserModel(this, email, new List<string>()), response.ErrorMessage);
+         }*/
+
+        public void Logout(string email)
         {
-            Response response = JsonSerializer.Deserialize<Response>(Service.Logout(email));
-            if(response.ErrorMessage != null)
-                return Tuple.Create<UserModel?, string>(null, response.ErrorMessage);
-            return Tuple.Create<UserModel?, string>(new UserModel(this, email, new List<string>()), response.ErrorMessage);
+            Response? response = JsonSerializer.Deserialize<Response>(Service.Logout(email));
+            if (response.ErrorOccured)
+            {  
+                throw new Exception(response.ErrorMessage);
+            }
         }
 
         public List<string> GetUserBoards(string email)
@@ -96,15 +105,23 @@ namespace Frontend.Model
 
             BoardModel board = new BoardModel(this, user, boardName);
             List<TaskSL> t0 = JsonSerializer.Deserialize<List<TaskSL>>((JsonElement)res0.ReturnValue);
-            List<string> n0 = new List<string>(), n1 = new List<string>(), n2 = new List<string>();
-            n0.AddRange(t0.Select(t => t.Title));
             List<TaskSL> t1 = JsonSerializer.Deserialize<List<TaskSL>>((JsonElement)res1.ReturnValue);
-            n1.AddRange(t1.Select(t => t.Title));
             List<TaskSL> t2 = JsonSerializer.Deserialize<List<TaskSL>>((JsonElement)res2.ReturnValue);
-            n2.AddRange(t2.Select(t => t.Title));
-            board.BacklogTasks = n0;
-            board.InProgressTasks = n1;
-            board.DoneTasks = n2;
+
+            foreach (var task in t0)
+            {
+                board.BacklogTasks.Add(new TaskModel(task));
+            }
+
+            foreach (var task in t1)
+            {
+                board.InProgressTasks.Add(new TaskModel(task));
+            }
+            foreach (var task in t2)
+            {
+                board.DoneTasks.Add(new TaskModel(task));
+            }
+
             return board;
         }
 

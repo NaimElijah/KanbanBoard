@@ -1,6 +1,8 @@
 ﻿using Frontend.Model;
+using IntroSE.Kanban.Backend.ServiceLayer;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,25 +13,25 @@ namespace Frontend.ViewModel
     {
         internal BackendController controller;
 
-        private List<string> backlog;
+        private ObservableCollection<TaskModel> backlog;
 
-        public List<string> Backlog
+        public  ObservableCollection<TaskModel> Backlog
         {
             get => backlog;
             set { backlog = value; }
         }
 
-        private List<string> inProgress;
+        private ObservableCollection<TaskModel> inProgress;
 
-        public List<string> InProgress
+        public ObservableCollection<TaskModel> InProgress
         {
             get => inProgress;
             set { inProgress = value; }
         }
 
-        private List<string> done;
+        private ObservableCollection<TaskModel> done;
 
-        public List<string> Done
+        public ObservableCollection<TaskModel> Done
         {
             get => done;
             set { done = value; }

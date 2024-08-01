@@ -1,6 +1,8 @@
 ﻿using Frontend.Model;
+using IntroSE.Kanban.Backend.ServiceLayer;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,36 +22,45 @@ namespace Frontend.Model
             }
         }
 
-        private List<string> backlogTasks;
-        public List<string> BacklogTasks
+        private ObservableCollection<TaskModel> backlogTasks;
+        public ObservableCollection<TaskModel> BacklogTasks
         {
             get => backlogTasks;
             set
             {
-                backlogTasks = value;
-                RaisePropertyChanged("BacklogTasks");
+                if (backlogTasks != value)
+                {
+                    backlogTasks = value;
+                    RaisePropertyChanged("BacklogTasks");
+                }
             }
         }
 
-        private List<string> inProgressTasks;
-        public List<string> InProgressTasks
+        private ObservableCollection<TaskModel> inProgressTasks;
+        public ObservableCollection<TaskModel> InProgressTasks
         {
             get => inProgressTasks;
             set
             {
-                inProgressTasks = value;
-                RaisePropertyChanged("InProgressTasks");
+                if (inProgressTasks != value)
+                {
+                    inProgressTasks = value;
+                    RaisePropertyChanged("InProgressTasks");
+                }
             }
         }
 
-        private List<string> doneTasks;
-        public List<string> DoneTasks
+        private ObservableCollection<TaskModel> doneTasks;
+        public ObservableCollection<TaskModel> DoneTasks
         {
             get => doneTasks;
             set
             {
-                doneTasks = value;
-                RaisePropertyChanged("DoneTasks");
+                if (doneTasks != value)
+                {
+                    doneTasks = value;
+                    RaisePropertyChanged("DoneTasks");
+                }
             }
         }
 
@@ -63,9 +74,9 @@ namespace Frontend.Model
         {
             this.name = name;
             this.user = user;
-            backlogTasks = new List<string>();
-            inProgressTasks = new List<string>();
-            doneTasks = new List<string>();
+            backlogTasks = new ObservableCollection<TaskModel>();
+            inProgressTasks = new ObservableCollection<TaskModel>();
+            doneTasks = new ObservableCollection<TaskModel>();
         }
     }
 }

@@ -29,9 +29,9 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <Button x:Name="BackButton" Content="Logout" HorizontalContentAlignment="Center" VerticalAlignment="Bottom"
+        <Button  Content="Logout" Name ="Logout"  HorizontalContentAlignment="Center" VerticalAlignment="Bottom"
                 Margin="10" Height="40" Width="120" Foreground="White"
-                FontSize="16" FontWeight="Bold" BorderThickness="0" Click="BackButton_Click" Grid.Row="2"
+                FontSize="16" FontWeight="Bold" BorderThickness="0" Click="LogoutButton_Click" Grid.Row="2"
                 Grid.ColumnSpan="3" >
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
