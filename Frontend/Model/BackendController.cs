@@ -37,7 +37,7 @@ namespace Frontend.Model
         }*/
         public UserModel Login(string email, string password)
         {
-            Response response = JsonSerializer.Deserialize<Response>(Service.Login(email, password));
+            Response? response = JsonSerializer.Deserialize<Response>(Service.Login(email, password));
             if (response.ErrorOccured)
             {
                 throw new Exception(response.ErrorMessage);
@@ -46,14 +46,25 @@ namespace Frontend.Model
 
         }
 
-        public Tuple<UserModel?, string> Register(string email, string password) {
+        /*public Tuple<UserModel?, string> Register(string email, string password) {
          
             Response response = JsonSerializer.Deserialize<Response>(Service.Register(email, password));
             if(response.ErrorMessage != null)
                 return Tuple.Create<UserModel?,string>(null, response.ErrorMessage);
             return Tuple.Create<UserModel?,string>(new UserModel(this,email,new List<string>()),response.ErrorMessage);
 
-         }
+         }*/
+
+        public UserModel Register(string email, string password)
+        {
+
+            Response? response = JsonSerializer.Deserialize<Response>(Service.Register(email, password));
+            if (response.ErrorOccured)
+            {
+                throw new Exception(response.ErrorMessage);
+            }
+            return new UserModel(this, email, GetUserBoards(email));
+        }
 
         public Tuple<UserModel?, string> Logout(string email, string password)
         {

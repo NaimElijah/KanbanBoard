@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Frontend.View"
         mc:Ignorable="d"
-        Title="RegisterView" Height="450" Width="800">
+        Title="RegisterView" Height="450" Width="800" ResizeMode="NoResize">
     <Grid Background="#1F1B24" Name="Grid">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />

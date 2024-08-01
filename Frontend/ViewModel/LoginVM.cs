@@ -73,24 +73,33 @@ namespace Frontend.ViewModel
         {
             try
             {
-                return controller.Login(Email, Password);
-                //UserModel user = controller.Login(email, password);
+                return controller.Login(Email, Password);            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+                return null;
+            }
+        }
+
+       /* internal UserModel? Register()
+        {
+            Tuple<UserModel?, string> t = controller.Register(email, password);
+            ErrorMessage = t.Item2;
+            return t.Item1;
+        }*/
+
+        internal UserModel? Register()
+        {
+            try
+            {
+                return controller.Register(Email, Password);
             }
             catch (Exception ex)
             {
                 ErrorMessage = ex.Message;
                 return null;
             }
-            //ErrorMessage = t.Item2;
-            //return t.Item1;
         }
-        internal UserModel? Register()
-        {
-            Tuple<UserModel?, string> t = controller.Register(email, password);
-            ErrorMessage = t.Item2;
-            return t.Item1;
-        }
-
         internal List<string> GetUserBoards()
         {
             return controller.GetUserBoards(Email);
