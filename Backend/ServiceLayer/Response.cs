@@ -19,6 +19,11 @@ namespace IntroSE.Kanban.Backend.ServiceLayer
             ReturnValue = returnValue;
         }
 
+        public Response()
+        {
+            // default constructor
+        }
+
         public string GetSerializedVersion()
         {
             return JsonSerializer.Serialize(this);

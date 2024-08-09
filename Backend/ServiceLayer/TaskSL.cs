@@ -28,6 +28,11 @@ namespace IntroSE.Kanban.Backend.ServiceLayer
             DueDate = taskbl.DueDate;
         }
 
+        public TaskSL()
+        {
+            // paramaterless constructor for deserialization
+        }
+
 
 
 
