@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Frontend.View"
         xmlns:helpers="clr-namespace:Frontend.View.Helpers"
         mc:Ignorable="d"
-        Title="LoginView" Height="440" Width="400" ResizeMode="NoResize">
+        Title="LoginView" Height="400" Width="400" ResizeMode="NoResize">
     <Grid Background="#FFDFDBD3">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
