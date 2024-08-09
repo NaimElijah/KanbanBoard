@@ -36,6 +36,7 @@ namespace Frontend.ViewModel
             set { done = value; }
         }
 
+
         public BoardVM(BoardModel board)
         {
             controller = board.Controller;

@@ -7,7 +7,7 @@
         xmlns:helpers="clr-namespace:Frontend.View.Helpers"
         mc:Ignorable="d"
         Title="LoginView" Height="440" Width="400" ResizeMode="NoResize">
-    <Grid Background="#FFB9ABC8">
+    <Grid Background="#FFDFDBD3">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -18,13 +18,13 @@
         </Grid.RowDefinitions>
 
 
-        <TextBlock Text="Login" Grid.Row="0" Margin="0,16" VerticalAlignment="Center" HorizontalAlignment="Center"
-                   Foreground="White" FontSize="32" FontWeight="Bold" />
+        <TextBlock Text="Wellcome!" Grid.Row="0" Margin="99,22,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"
+                   Foreground="#FF6B8FB4" FontSize="32" FontWeight="ExtraBlack" />
 
-        <Label Content="Email" Margin="16,16" Grid.Row="1" VerticalAlignment="Center" Foreground="White" FontSize="24" />
-        <Grid Grid.Row="4" Margin="16,0" Height="28">
+        <Label Content="Email" Margin="16,16" Grid.Row="1" VerticalAlignment="Center" Foreground="#FF6695C6" FontSize="24"  FontWeight="ExtraBlack"/>
+        <Grid Grid.Row="4" Margin="16,0" Height="28" >
             <TextBlock x:Name="EmailPlaceholder" 
-                Foreground="Gray" 
+                Foreground="#FF777879" 
                 VerticalAlignment="Top" 
                 HorizontalAlignment="Left" 
                 Margin="6,-86,0,0" 
@@ -34,8 +34,8 @@
                 Panel.ZIndex="1" Text="Enter your email"/>
 
             <TextBox x:Name="EmailTextBox" Margin="0,-89,0,89" Height="28" BorderBrush="#757575" 
-                 BorderThickness="1" Background="#212121" Foreground="White" FontSize="16" 
-                 SelectionBrush="#757575" SelectionTextBrush="White" 
+                 BorderThickness="1" Background="WhiteSmoke" Foreground="#FF557DA3" FontSize="16" 
+                 SelectionBrush="Gray" SelectionTextBrush="#FF557DA3" 
                  Text="{Binding Path=Email}"
                  GotFocus="EmailBox_GotFocus" 
                  LostFocus="EmailBox_LostFocus"
@@ -45,9 +45,8 @@
 
 
 
-        <Label Content="Password" Grid.Row="3" Margin="16,16" VerticalAlignment="Center" Foreground="White"
-               FontSize="24" />
-        <Grid Grid.Row="4" Margin="0,0" Height="28">
+        <Label Content="Password" Grid.Row="3" Margin="16,16" VerticalAlignment="Center" Foreground="#FF6695C6" FontSize="24"  FontWeight="ExtraBlack" />
+        <Grid Grid.Row="3" Margin="0,58,0,16" Height="28" Grid.RowSpan="2">
             <!-- This TextBlock will act as the placeholder text -->
             <TextBlock x:Name="PasswordPlaceholder" 
                    Text="Enter your password" 
@@ -62,8 +61,8 @@
 
 
             <PasswordBox x:Name="PasswordBox" Grid.Row="4" Margin="16,0" Height="28" BorderBrush="#757575"
-                            BorderThickness="1" Background="#212121" Foreground="White" FontSize="16" 
-                            SelectionBrush="#757575" SelectionTextBrush="White" 
+                            BorderThickness="1" Background="WhiteSmoke" Foreground="#FF557DA3" FontSize="16" 
+                            SelectionBrush="#757575" SelectionTextBrush="#FF557DA3" 
                             PasswordChanged="PasswordBox_OnPasswordChanged" 
                             GotFocus="PasswordBox_GotFocus" 
                             LostFocus="PasswordBox_LostFocus"
@@ -72,9 +71,48 @@
         </Grid>
 
         <!-- Keep the existing buttons -->
-        <Button Grid.Row="5" Margin="48,40" Height="40" Background="#2196F3" Foreground="White" 
-                Content="Login" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" Width="120" 
-                BorderThickness="0" Click="LoginButton_Click" IsDefault="True" />
+        <Button Grid.Row="5" 
+                Margin="48,40" 
+                Height="40"  
+                Content="Login" 
+                FontSize="16" 
+                FontWeight="ExtraBlack" 
+                HorizontalAlignment="Left" 
+                Width="120" 
+                BorderThickness="0" 
+                Click="LoginButton_Click"
+                IsDefault="True"
+                Foreground="#FF557DA3"
+                SnapsToDevicePixels="True"
+                BorderBrush="#AEBDCA">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="White" Offset="0.145"/>
+                    <GradientStop Color="WhiteSmoke" Offset="0.391"/>
+                    <GradientStop Color="#FF928F87" Offset="1"/>
+                    <GradientStop Color="#FFFBFBFA" Offset="0.258"/>
+                </LinearGradientBrush>
+            </Button.Background>
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                             CornerRadius="8">
+                        <TextBlock Text="Logout"
+                                   TextWrapping="Wrap"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    FontSize="16"
+                                    TextAlignment="Center"
+                                    Padding="10,5,10,5"
+                                    FontWeight="ExtraBlack" 
+                                   Height="35" 
+                                   Width="82"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
 
         <Button Grid.Row="5" Margin="48,40" Height="40" Background="Transparent" Foreground="#2196F3"
                 Content="Register" FontSize="16" FontWeight="Bold" HorizontalAlignment="Right" Width="120" 

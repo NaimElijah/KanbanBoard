@@ -59,5 +59,10 @@ namespace Frontend.View
             loginWindow.Show();
             Close();
         }
+
+        private void Create_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
