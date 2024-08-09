@@ -15,7 +15,7 @@ namespace Frontend.View
         BoardVM vm;
         BoardModel model;
 
-        public BoardView(BoardModel board)
+        public BoardView( BoardModel board)
         {
             InitializeComponent();
             vm = new BoardVM(board);

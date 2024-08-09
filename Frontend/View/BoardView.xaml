@@ -28,13 +28,13 @@
                 <Label Content="Backlog" Foreground="White" HorizontalAlignment="Center" FontSize="20"
                        FontWeight="Bold" Margin="0,0,0,5" />
 
-				<ListView Name="BacklogList" Background="#212121" Grid.Row="1" ItemsSource="{Binding Path = BacklogTasks}" Foreground="White">
+				<ListView Name="BacklogList" Background="#212121" Grid.Row="1" ItemsSource="{Binding Path = BacklogTasks}" Foreground="White" Focusable="False">
 					<ListView.ItemTemplate>
 						<DataTemplate>
-							<Border BorderBrush="White" BorderThickness="1" Margin="5" HorizontalAlignment="Center"  >
-							<StackPanel Orientation="Vertical" Margin ="0,0,0,5" >
-									<TextBlock Text="{Binding Path=Title, Mode=OneWay}" FontSize = "14" HorizontalAlignment="Center"  TextWrapping="Wrap" FontWeight="Bold" TextDecorations="{x:Static TextDecorations.Underline}" />
-									<TextBlock Text="{Binding Path=Description, Mode= OneWay}" VerticalAlignment="Center" HorizontalAlignment="Center"    TextWrapping="Wrap"/>
+							<Border BorderBrush="White" BorderThickness="1" Margin="5" HorizontalAlignment="Stretch" Padding="4"  >
+                                <StackPanel Orientation="Vertical" Margin ="10" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+									<TextBlock Text="{Binding Path=Title, Mode=OneWay}" FontSize = "13" HorizontalAlignment="Center"  TextWrapping="Wrap" FontWeight="Bold" TextDecorations="{x:Static TextDecorations.Underline}" />
+                                    <TextBlock Text="{Binding Path=Description, Mode= OneWay}"  FontSize ="12"  MaxHeight="300" MaxWidth="450" TextWrapping="Wrap"/>
 								</StackPanel>
 							</Border>
 						</DataTemplate>
