@@ -5,18 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Frontend.View"
         mc:Ignorable="d"
-        Title="UserView" Height="450" Width="435">
-    <Grid>
+        Title="UserView" Height="450" Width="600">
+    <Grid Margin="0,0,0,-36">
         <Grid.Background>
-            <SolidColorBrush Color="#FF876EA5" Opacity="1"/>
+            <SolidColorBrush Color="#FFF5F5F5"  Opacity="1"/>
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <TextBlock Text="Your mother fucking Boards" Grid.Row="0"  Margin="10" FontSize="24" Foreground="WhiteSmoke"  HorizontalAlignment="Center" />
-        <ListView x:Name="BoardListView" Margin="10" Grid.Row="1" Grid.ColumnSpan="5" Background="#FFB1A2A2" Foreground="White" FontSize="20" HorizontalContentAlignment="Center" SelectionChanged ="BoardListView_SelectionChanged" >
+        <TextBlock Text="My Boards" Grid.Row="0"  Margin="10" FontSize="24" Foreground="#FFB26363"  HorizontalAlignment="Center" FontWeight="Bold" FontStyle="Italic" Opacity="0.9" >
+            <TextBlock.Effect>
+                <DropShadowEffect BlurRadius="15"/>
+            </TextBlock.Effect>
+        </TextBlock>
+        <ListView x:Name="BoardListView" Margin="10,10,10,74" Grid.Row="1" Background="#FFB1A2A2" Foreground="White" FontSize="16" HorizontalContentAlignment="Center" SelectionChanged ="BoardListView_SelectionChanged" FontWeight="DemiBold">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="IsSelected" Value="{Binding IsSelected,Mode=TwoWay}"/>
@@ -28,20 +32,49 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-
-        <Button  Content="Logout" Name ="Logout"  HorizontalContentAlignment="Center" VerticalAlignment="Bottom"
-                Margin="10" Height="40" Width="120" Foreground="White"
-                FontSize="16" FontWeight="Bold" BorderThickness="0" Click="LogoutButton_Click" Grid.Row="2"
-                Grid.ColumnSpan="3" >
+        <Button Name="Logout"
+        HorizontalAlignment="Left"
+        VerticalAlignment="Center"
+        Width="68"  
+        Margin="498,0,0,0"
+        Height="25"
+        FontWeight="Bold"
+        BorderThickness="1"
+        Padding="5"
+        Click="LogoutButton_Click"
+        FontStyle="Oblique"
+        Foreground="#FF5B3E3E"
+        SnapsToDevicePixels="True"
+        ClipToBounds="True">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="Black" Offset="1"/>
                     <GradientStop Color="White"/>
                     <GradientStop Color="#FFFFE0E0"/>
                     <GradientStop Color="#FF776868" Offset="1"/>
-                    <GradientStop Color="#FF443F3F" Offset="0.963"/>
                 </LinearGradientBrush>
             </Button.Background>
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="8">
+                        <TextBlock Text="Logout"
+                           TextWrapping="Wrap"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontSize="13"
+                           TextAlignment="Center"
+                           Padding="10,5,10,5"
+                           />
+
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
         </Button>
+
+        <Button Content="Button" HorizontalAlignment="Left" Height="39" Margin="84,362,0,0" Grid.Row="1" VerticalAlignment="Top" Width="102"/>
+        <Button Content="Button" HorizontalAlignment="Left" Height="39" Margin="412,362,0,0" Grid.Row="1" VerticalAlignment="Top" Width="102"/>
+
     </Grid>
 </Window>
