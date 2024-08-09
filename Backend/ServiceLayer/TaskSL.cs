@@ -16,8 +16,6 @@ namespace IntroSE.Kanban.Backend.ServiceLayer
         public string Description { get; set; }
         internal string AssigneeEmail { get; set; }
 
-        public TaskSL() { }
-
         internal TaskSL(TaskBL taskbl)
         {
             Id = taskbl.Id;

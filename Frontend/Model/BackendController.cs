@@ -104,14 +104,10 @@ namespace Frontend.Model
             Response res2 = JsonSerializer.Deserialize<Response>(Service.GetColumn(user.Email, boardName, 2));
 
             BoardModel board = new BoardModel(this, user, boardName);
-<<<<<<< HEAD
-            List<TaskSL> t0 = JsonSerializer.Deserialize<List<TaskSL>>((JsonElement)res0.ReturnValue);
-=======
 
             List<TaskSL> t0 = JsonSerializer.Deserialize<List<TaskSL>>((JsonElement)res0.ReturnValue);
             List<string> n0 = new List<string>(), n1 = new List<string>(), n2 = new List<string>();
             n0.AddRange(t0.Select(t => t.Title));
->>>>>>> 809b23e (fixed bug fiinally)
             List<TaskSL> t1 = JsonSerializer.Deserialize<List<TaskSL>>((JsonElement)res1.ReturnValue);
             List<TaskSL> t2 = JsonSerializer.Deserialize<List<TaskSL>>((JsonElement)res2.ReturnValue);
 

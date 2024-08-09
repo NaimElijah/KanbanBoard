@@ -19,19 +19,55 @@
         <TextBlock Text="Register" Grid.Row="0" Margin="0,16" VerticalAlignment="Center" HorizontalAlignment="Center"
                    Foreground="White" FontSize="32" FontWeight="Bold" />
 
-        <Label Grid.Row="1" Content="Email" Margin="16" VerticalAlignment="Center" Foreground="White" FontSize="24" />
-        <TextBox x:Name="EmailTextBox" Grid.Row="2" Margin="16,0" Height="28" BorderBrush="#757575" BorderThickness="1"
-                 Background="#212121"
-                 Foreground="White" FontSize="16" SelectionBrush="#757575" SelectionTextBrush="White"
-                 Text="{Binding Path=Email}" />
+        <Label Content="Email" Margin="16,16" Grid.Row="1" VerticalAlignment="Center" Foreground="White" FontSize="24" />
+<Grid Grid.Row="4" Margin="16,0" Height="28">
+    <TextBlock x:Name="EmailPlaceholder" 
+        Foreground="Gray" 
+        VerticalAlignment="Top" 
+        HorizontalAlignment="Left" 
+        Margin="6,-86,0,0" 
+        FontSize="16" 
+        IsHitTestVisible="False" 
+        Visibility="Visible"
+        Panel.ZIndex="1" Text="Enter your email"/>
 
-        <Label Content="Password" Grid.Row="3" Margin="16,16" VerticalAlignment="Center" Foreground="White"
-               FontSize="24" />
-        <PasswordBox x:Name="PasswordBox" Grid.Row="4" Margin="16,0" Height="28" BorderBrush="#757575"
-                     BorderThickness="1"
-                     Background="#212121" Foreground="White" FontSize="16" SelectionBrush="#757575"
-                     SelectionTextBrush="White" PasswordChanged="PasswordBox_OnPasswordChanged" />
+    <TextBox x:Name="EmailTextBox" Margin="0,-89,0,89" Height="28" BorderBrush="#757575" 
+         BorderThickness="1" Background="#212121" Foreground="White" FontSize="16" 
+         SelectionBrush="#757575" SelectionTextBrush="White" 
+         Text="{Binding Path=Email}"
+         GotFocus="EmailBox_GotFocus" 
+         LostFocus="EmailBox_LostFocus"
+         Visibility="Visible"
+         Panel.ZIndex="0"/>
+</Grid>
 
+
+
+<Label Content="Password" Grid.Row="3" Margin="16,16" VerticalAlignment="Center" Foreground="White"
+       FontSize="24" />
+<Grid Grid.Row="4" Margin="0,0" Height="28">
+    <!-- This TextBlock will act as the placeholder text -->
+    <TextBlock x:Name="PasswordPlaceholder" 
+           Text="Enter your password" 
+           Foreground="Gray" 
+           VerticalAlignment="Center" 
+           HorizontalAlignment="Left" 
+           Margin="22,0,0,0" 
+           FontSize="16" 
+           IsHitTestVisible="False" 
+           Visibility="Visible"
+           Panel.ZIndex="1"/>
+
+
+    <PasswordBox x:Name="PasswordBox" Grid.Row="4" Margin="16,0" Height="28" BorderBrush="#757575"
+                    BorderThickness="1" Background="#212121" Foreground="White" FontSize="16" 
+                    SelectionBrush="#757575" SelectionTextBrush="White" 
+                    PasswordChanged="PasswordBox_OnPasswordChanged" 
+                    GotFocus="PasswordBox_GotFocus" 
+                    LostFocus="PasswordBox_LostFocus"
+                    Panel.ZIndex="0"/>
+
+</Grid>
         <Button Grid.Row="5" Margin="48,40" Height="40" Background="#2196F3" Foreground="White" Content="Back"
                 FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" Width="120" BorderThickness="0"
                 Click="BackButton_Click" />

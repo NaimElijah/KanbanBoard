@@ -58,5 +58,44 @@ public partial class LoginView : Window
     private void PasswordBox_OnPasswordChanged(object sender, RoutedEventArgs e)
     {
         vm.Password = PasswordBox.Password;
+        PasswordPlaceholder.Visibility = string.IsNullOrEmpty(PasswordBox.Password) ? Visibility.Visible : Visibility.Hidden;
+    }
+
+    private void PasswordBox_GotFocus(object sender, RoutedEventArgs e)
+    {
+        if (string.IsNullOrEmpty(PasswordBox.Password))
+        {
+            PasswordPlaceholder.Visibility = Visibility.Hidden;
+        }
+    }
+
+    private void PasswordBox_LostFocus(object sender, RoutedEventArgs e)
+    {
+        if (string.IsNullOrEmpty(PasswordBox.Password))
+        {
+            PasswordPlaceholder.Visibility = Visibility.Visible;
+        }
+    }
+
+    private void EmailBox_OnPasswordChanged(object sender, RoutedEventArgs e)
+    {
+        vm.Email = EmailTextBox.Text;
+        PasswordPlaceholder.Visibility = string.IsNullOrEmpty(PasswordBox.Password) ? Visibility.Visible : Visibility.Hidden;
+    }
+
+    private void EmailBox_GotFocus(object sender, RoutedEventArgs e)
+    {
+        if (string.IsNullOrEmpty(EmailTextBox.Text))
+        {
+            EmailPlaceholder.Visibility = Visibility.Hidden;
+        }
+    }
+
+    private void EmailBox_LostFocus(object sender, RoutedEventArgs e)
+    {
+        if (string.IsNullOrEmpty(EmailTextBox.Text))
+        {
+            EmailPlaceholder.Visibility = Visibility.Visible;
+        }
     }
 }
