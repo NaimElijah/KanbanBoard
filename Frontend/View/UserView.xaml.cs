@@ -31,14 +31,13 @@ namespace Frontend.View
             InitializeComponent();
             vm = new UserVM(board.Controller);
             DataContext =vm;
-
         }
 
-    private void BoardListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void BoardListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (BoardListView.SelectedItem != null)
             { 
-                BoardModel board = vm.GetBoard(model,""+BoardListView.SelectedItem.ToString());
+                BoardModel board = vm.GetBoard(model, "" + BoardListView.SelectedItem.ToString().Split(":")[1]);
                 BoardView boardView = new BoardView(board);
                 boardView.Show();
                 Close();

@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace IntroSE.Kanban.Backend.ServiceLayer
 {
-    internal class BoardSL
+    public class BoardSL
     {
-        internal string BoardName { get; set; }
-        internal long BoardId { get; set; }
-        internal string BoardOwnerEmail { get; set; }
+        public string BoardName { get; set; }
+        public long BoardId { get; set; }
+        public string BoardOwnerEmail { get; set; }
         internal List<ColumnSL> Columns { get; set; }
         internal List<string> Members { get; set; }
         internal long CounterForTaskIdInBoard { get; set; }
@@ -32,5 +32,6 @@ namespace IntroSE.Kanban.Backend.ServiceLayer
 
         }
 
+        public BoardSL() { }
     }
 }

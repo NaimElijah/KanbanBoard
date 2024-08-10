@@ -1,6 +1,7 @@
 ﻿using IntroSE.Kanban.Backend.ServiceLayer;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
@@ -42,7 +43,7 @@ namespace Frontend.Model
             {
                 throw new Exception(response.ErrorMessage);
             }
-             return new UserModel(this,email,GetUserBoards(email));
+             return new UserModel(this,email, GetUserBoardsInfo(email));
 
         }
 
@@ -63,7 +64,7 @@ namespace Frontend.Model
             {
                 throw new Exception(response.ErrorMessage);
             }
-            return new UserModel(this, email, GetUserBoards(email));
+            return new UserModel(this, email, GetUserBoardsInfo(email));
         }
 
         /* public Tuple<UserModel?, string> Logout(string email, string password)
@@ -93,9 +94,21 @@ namespace Frontend.Model
                 boardNames.Add(JsonSerializer.Deserialize<Response>(Service.GetBoardName(i)).ReturnValue.ToString());
             }
             return boardNames;
+        }
 
+        public List<string> GetUserBoardsInfo(string email)
+        {
+            Response response = JsonSerializer.Deserialize<Response>(Service.GetUserBoardsFull(email));
+            List<BoardSL> boardSLs = JsonSerializer.Deserialize<List<BoardSL>>((JsonElement)response.ReturnValue);
+            List<string> resBoards = new List<string>();
+            foreach (var board in boardSLs)
+            {
+                resBoards.Add($"{board.BoardId}:{board.BoardName}:{board.BoardOwnerEmail}");
+            }
+            return resBoards;
 
         }
+
 
         public BoardModel GetBoard(UserModel user, string boardName)
         {

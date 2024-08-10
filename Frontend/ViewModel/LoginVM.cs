@@ -102,7 +102,7 @@ namespace Frontend.ViewModel
         }
         internal List<string> GetUserBoards()
         {
-            return controller.GetUserBoards(Email);
+            return controller.GetUserBoardsInfo(Email);
         }
     }
 }
