@@ -42,5 +42,10 @@ namespace Frontend.Model
             this.boards = boards;
             this.email = email;
         }
+
+        internal BoardModel GetBoard( string boardName)
+        {
+            return boards.FirstOrDefault(x => x.BoardName == boardName);
+        }
     }
 }

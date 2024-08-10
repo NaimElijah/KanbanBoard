@@ -462,11 +462,7 @@ namespace IntroSE.Kanban.Backend.ServiceLayer
             return ServFact.Bs.GetBoardName(boardId);
         }
 
-        public string GetBoardOwner(string email , string boardName)
-        {
-            return ServFact.Bs.GetUserOwnerlBoards(boardId);
-        }
-
+     
 
 
 
@@ -529,7 +525,17 @@ namespace IntroSE.Kanban.Backend.ServiceLayer
             return ServFact.DeleteAllData();
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+        public string GetBoardOwner(int boardId)
+        {
+            return ServFact.Bs.GetUserOwnerBoards(boardId);
+        }
+
+        public string GetBoardMembers(int boardId)
+        {
+            return ServFact.Bs.GetUserMembersBoards(boardId);
+        }
 
 
 

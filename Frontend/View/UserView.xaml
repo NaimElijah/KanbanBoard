@@ -29,7 +29,13 @@
             </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding}"/>
+                    <TextBlock Text="{Binding Path= Name, Mode=TwoWay}" TextWrapping="Wrap"
+                                         HorizontalAlignment="Center"
+   VerticalAlignment="Center"
+   FontSize="15"
+   TextAlignment="Center"
+   Padding="10,5,10,5"
+  FontWeight="ExtraBlack"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

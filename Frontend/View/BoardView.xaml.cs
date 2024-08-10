@@ -22,7 +22,7 @@ namespace Frontend.View
             vm = new BoardVM(board);
             DataContext = vm;
             model = board;
-            Title = board.Name;
+            Title = board.BoardName;
             BacklogList.ItemsSource = vm.Backlog;
             InProgressList.ItemsSource = vm.InProgress;
             DoneList.ItemsSource = vm.Done;
@@ -30,7 +30,7 @@ namespace Frontend.View
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            UserView userWindow = new UserView(model.User);
+            UserView userWindow = new UserView(model);
             userWindow.Show();
             this.Close();
         }

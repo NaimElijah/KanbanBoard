@@ -85,30 +85,37 @@ namespace Frontend.Model
             }
         }
 
-        public ObservableCollection<BoardModel> GetUserBoards(string email)
+        public ObservableCollection<BoardModel> GetUserBoards(string usserEmail)
         {
-            Response response = JsonSerializer.Deserialize<Response>(Service.GetUserBoards(email));
+            Response response = JsonSerializer.Deserialize<Response>(Service.GetUserBoards(usserEmail));
             List<int> userBoardsId = JsonSerializer.Deserialize<List<int>>((JsonElement)response.ReturnValue);
             ObservableCollection<BoardModel> boards = new ObservableCollection<BoardModel>();
           
             foreach(int i in userBoardsId)
             {
-                string name =(JsonSerializer.Deserialize<Response>(Service.GetBoardName(i)).ReturnValue.ToString());
-                BoardModel boardModel = GetBoard(email, name, owner);
+                string name =JsonSerializer.Deserialize<Response>(Service.GetBoardName(i)).ReturnValue.ToString();
+
+                string owner = JsonSerializer.Deserialize<Response>(Service.GetBoardOwner(i)).ReturnValue.ToString();
+                
+                Response r0 = JsonSerializer.Deserialize<Response>(Service.GetBoardMembers(i));
+
+                List<string> members = JsonSerializer.Deserialize<List<string>>((JsonElement)r0.ReturnValue);
+
+                BoardModel boardModel = GetBoard(usserEmail, name ,owner , members);
             }
             return boards;
 
 
         }
 
-        public BoardModel GetBoard(string userEmail, string boardName , string ownerEmail)
+        public BoardModel GetBoard(string userEmail, string boardName ,string emailOwner , List<string> members)
         {
             Response res0 = JsonSerializer.Deserialize<Response>(Service.GetColumn(userEmail, boardName, 0));
             Response res1 = JsonSerializer.Deserialize<Response>(Service.GetColumn(userEmail, boardName, 1));
             Response res2 = JsonSerializer.Deserialize<Response>(Service.GetColumn(userEmail, boardName, 2));
-            string owner = (JsonSerializer.Deserialize<Response>(Service.GetBoardOwner(email, name)).ReturnValue.ToString());
+            
 
-            BoardModel board = new BoardModel(this, user, boardName);
+            BoardModel board = new BoardModel(this, userEmail, boardName ,emailOwner , members);
             List<TaskSL> t0 = JsonSerializer.Deserialize<List<TaskSL>>((JsonElement)res0.ReturnValue);
             List<TaskModel> n0 = new List<TaskModel>(), n1 = new List<TaskModel>(), n2 = new List<TaskModel>();
             List<TaskSL> t1 = JsonSerializer.Deserialize<List<TaskSL>>((JsonElement)res1.ReturnValue);
