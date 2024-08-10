@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Frontend.View"
         mc:Ignorable="d"
-        Title="BoardView" Height="440" Width="800">
-    <Grid Background="#1F1B24">
+        Title="BoardView" Height="400" Width="800"
+        MinHeight="300" MinWidth="435">
+    <Grid Background="#FFF5F5F5">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
@@ -25,22 +26,22 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <Label Content="Backlog" Foreground="White" HorizontalAlignment="Center" FontSize="20"
+                <Label Content="Backlog" Foreground="#FF6B8FB4" HorizontalAlignment="Center" FontSize="20"
                        FontWeight="Bold" Margin="0,0,0,5" />
 
-				<ListView Name="BacklogList" Background="#212121" Grid.Row="1" ItemsSource="{Binding Path=BacklogTasks}" Foreground="White" Focusable="False"
+                <ListView Name="BacklogList" Background="#FFE0DDD6" Grid.Row="1" ItemsSource="{Binding Path=BacklogTasks}" Foreground="White" Focusable="False"
           HorizontalContentAlignment="Stretch">
 					<!-- Ensure items stretch horizontally -->
 					<ListView.ItemTemplate>
 						<DataTemplate>
-							<Border BorderBrush="White" BorderThickness="1" Margin="5" HorizontalAlignment="Stretch" Padding="4">
+                            <Border BorderBrush="#FF6B8FB4" BorderThickness="1" Margin="5" HorizontalAlignment="Stretch" Padding="4">
 								<StackPanel Orientation="Vertical" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Center">
 									<!-- Task Title -->
-									<TextBlock Text="{Binding Path=Title, Mode=OneWay}" FontSize="13" HorizontalAlignment="Center"
-											   TextWrapping="Wrap" FontWeight="Bold" TextDecorations="{x:Static TextDecorations.Underline}" />
+									<TextBlock Text="{Binding Path=Title, Mode=OneWay}" FontSize="16" HorizontalAlignment="Center"
+											   TextWrapping="Wrap" FontWeight="Bold" TextDecorations="{x:Static TextDecorations.Underline}" Foreground="#FF6B8FB4" />
 									<!-- Task Description -->
-									<TextBlock Text="{Binding Path=Description, Mode=OneWay}" FontSize="12" MaxHeight="300" MaxWidth="450" HorizontalAlignment="Center"
-											   TextWrapping="Wrap" Margin="0,5,0,0" />
+									<TextBlock Text="{Binding Path=Description, Mode=OneWay}" FontSize="14" MaxHeight="300" MaxWidth="450" HorizontalAlignment="Center"
+											   TextWrapping="Wrap" Margin="0,5,0,0" Foreground="#FF6B8FB4" />
 								</StackPanel>
 							</Border>
 						</DataTemplate>
@@ -54,21 +55,21 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <Label Content="In Progress" Foreground="White" HorizontalAlignment="Center" FontSize="20"
+                <Label Content="In Progress" Foreground="#FF6B8FB4" HorizontalAlignment="Center" FontSize="20"
                        FontWeight="Bold" Margin="0,0,0,5" />
 
-                <ListView Name="InProgressList" Background="#212121" Grid.Row="1" ItemsSource="{Binding}" Foreground="White" HorizontalContentAlignment="Stretch">
+                <ListView Name="InProgressList" Background="#FFE0DDD6" Grid.Row="1" ItemsSource="{Binding}" Foreground="White" HorizontalContentAlignment="Stretch">
 					<!-- Ensure items stretch horizontally -->
 					<ListView.ItemTemplate>
 						<DataTemplate>
-							<Border BorderBrush="White" BorderThickness="1" Margin="5" HorizontalAlignment="Stretch" Padding="4">
+                            <Border BorderBrush="#FF6B8FB4" BorderThickness="1" Margin="5" HorizontalAlignment="Stretch" Padding="4">
 								<StackPanel Orientation="Vertical" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Center">
 									<!-- Task Title -->
-									<TextBlock Text="{Binding Path=Title, Mode=OneWay}" FontSize="13" HorizontalAlignment="Center"
-											   TextWrapping="Wrap" FontWeight="Bold" TextDecorations="{x:Static TextDecorations.Underline}" />
+									<TextBlock Text="{Binding Path=Title, Mode=OneWay}" FontSize="16" HorizontalAlignment="Center"
+											   TextWrapping="Wrap" FontWeight="Bold" TextDecorations="{x:Static TextDecorations.Underline}" Foreground="#FF6B8FB4" />
 									<!-- Task Description -->
-									<TextBlock Text="{Binding Path=Description, Mode=OneWay}" FontSize="12" MaxHeight="300" MaxWidth="450" HorizontalAlignment="Center"
-											   TextWrapping="Wrap" Margin="0,5,0,0" />
+									<TextBlock Text="{Binding Path=Description, Mode=OneWay}" FontSize="14" MaxHeight="300" MaxWidth="450" HorizontalAlignment="Center"
+											   TextWrapping="Wrap" Margin="0,5,0,0" Foreground="#FF6B8FB4"  />
 								</StackPanel>
 							</Border>
 						</DataTemplate>
@@ -82,21 +83,21 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <Label Content="Done" Foreground="White" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold"
-                       Margin="0,0,0,5" />
+                <Label Content="Done" Foreground="#FF6B8FB4" HorizontalAlignment="Center" FontSize="20"
+                       FontWeight="Bold" Margin="0,0,0,5" />
 
-                <ListView Name="DoneList" Background="#212121" Grid.Row="1" ItemsSource="{Binding}" Foreground="White" HorizontalContentAlignment="Stretch">
+                <ListView Name="DoneList" Background="#FFE0DDD6" Grid.Row="1" ItemsSource="{Binding}" Foreground="White" HorizontalContentAlignment="Stretch">
 					<!-- Ensure items stretch horizontally -->
 					<ListView.ItemTemplate>
 						<DataTemplate>
-							<Border BorderBrush="White" BorderThickness="1" Margin="5" HorizontalAlignment="Stretch" Padding="4">
+                            <Border BorderBrush="#FF6B8FB4" BorderThickness="1" Margin="5" HorizontalAlignment="Stretch" Padding="4">
 								<StackPanel Orientation="Vertical" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Center">
 									<!-- Task Title -->
-									<TextBlock Text="{Binding Path=Title, Mode=OneWay}" FontSize="13" HorizontalAlignment="Center"
-											   TextWrapping="Wrap" FontWeight="Bold" TextDecorations="{x:Static TextDecorations.Underline}" />
+									<TextBlock Text="{Binding Path=Title, Mode=OneWay}" FontSize="16" HorizontalAlignment="Center"
+											   TextWrapping="Wrap" FontWeight="Bold" TextDecorations="{x:Static TextDecorations.Underline}" Foreground="#FF6B8FB4" />
 									<!-- Task Description -->
-									<TextBlock Text="{Binding Path=Description, Mode=OneWay}" FontSize="12" MaxHeight="300" MaxWidth="450" HorizontalAlignment="Center"
-											   TextWrapping="Wrap" Margin="0,5,0,0" />
+									<TextBlock Text="{Binding Path=Description, Mode=OneWay}" FontSize="14" MaxHeight="300" MaxWidth="450" HorizontalAlignment="Center"
+											   TextWrapping="Wrap" Margin="0,5,0,0" Foreground="#FF6B8FB4" />
 								</StackPanel>
 							</Border>
 						</DataTemplate>
@@ -106,7 +107,33 @@
         </Grid>
 
         <Button x:Name="BackButton" Content="Back" HorizontalAlignment="Center" VerticalAlignment="Top"
-                Margin="0,5,0,10" Height="40" Width="120" Background="#2196F3" Foreground="White"
-                FontSize="16" FontWeight="Bold" BorderThickness="0" Click="BackButton_Click" Grid.Row="1" />
+                Margin="0,5,0,10" Height="40" Width="120" Foreground="#FF576C81" 
+                FontSize="16" FontWeight="Bold" BorderThickness="0" Click="BackButton_Click" Grid.Row="1" >
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="White" Offset="0.145"/>
+                    <GradientStop Color="WhiteSmoke" Offset="0.391"/>
+                    <GradientStop Color="#FF928F87" Offset="1"/>
+                    <GradientStop Color="#FFFBFBFA" Offset="0.258"/>
+                </LinearGradientBrush>
+            </Button.Background>
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="8">
+                        <TextBlock Text="Back"
+                   TextWrapping="Wrap"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontSize="15"
+                   TextAlignment="Center"
+                   Padding="0"
+                   FontWeight="ExtraBlack" />
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
     </Grid>
 </Window>

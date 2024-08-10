@@ -8,7 +8,20 @@
 	  <PlatformTarget>x64</PlatformTarget>
 	  <UseWPF>true</UseWPF>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <ApplicationIcon>Resources\information.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\email.png" />
+    <None Remove="Resources\information.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\information.ico" />
+    <Resource Include="Resources\information.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
 
   <ItemGroup>
     <Page Include="App.xaml" />

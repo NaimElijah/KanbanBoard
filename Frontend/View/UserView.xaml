@@ -132,17 +132,17 @@
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}"
-                BorderBrush="{TemplateBinding BorderBrush}"
-                BorderThickness="{TemplateBinding BorderThickness}"
-                CornerRadius="8">
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="8">
                         <TextBlock Text="Another button"
-                       TextWrapping="Wrap"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       FontSize="15"
-                       TextAlignment="Center"
-                       Padding="0"
-                       FontWeight="ExtraBlack" />
+                           TextWrapping="Wrap"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontSize="15"
+                           TextAlignment="Center"
+                           Padding="0"
+                           FontWeight="ExtraBlack" />
                     </Border>
                 </ControlTemplate>
             </Button.Template>

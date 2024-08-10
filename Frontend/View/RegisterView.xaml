@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Frontend.View"
         mc:Ignorable="d"
-        Title="RegisterView" Height="440" Width="400" ResizeMode="NoResize">
+        Title="RegisterView" Height="400" Width="400" ResizeMode="NoResize">
     <Grid Background="#FFDFDBD3" Name="Grid">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -21,21 +21,29 @@
 
 
         <Label Content="Email" Margin="16,16" Grid.Row="1" VerticalAlignment="Center" Foreground="#FF729ECB" FontSize="24"  FontWeight="ExtraBlack"/>
-        <Grid Grid.Row="4" Margin="16,0" Height="28" >
+        <Grid Grid.Row="2" Margin="16,0" Height="28" >
+            <Image Source="C:\Users\adamsimkin\source\repos\kanban-2024-m3-2024-a\Frontend\Resources\email.png" Panel.ZIndex="2" Width="24" Height="24" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,3,0,0" Opacity="0.6">
+                <Image.Effect>
+                    <DropShadowEffect ShadowDepth="0" Color="Gray" Opacity="0.3" />
+                </Image.Effect>
+            </Image>
             <TextBlock x:Name="EmailPlaceholder" 
-                Foreground="#FF777879" 
-                VerticalAlignment="Top" 
-                HorizontalAlignment="Left" 
-                Margin="6,-86,0,0" 
-                FontSize="16" 
-                IsHitTestVisible="False" 
-                Visibility="Visible"
-                Panel.ZIndex="1" Text="Enter your email"/>
+    Foreground="#FF777879" 
+    VerticalAlignment="Top" 
+    HorizontalAlignment="Left" 
+    Margin="40,3,0,0" 
+    FontSize="16" 
+    IsHitTestVisible="False" 
+    Visibility="Visible"
+    Panel.ZIndex="1" 
+    Text="Enter your email"/>
 
-            <TextBox x:Name="EmailTextBox" Margin="0,-89,0,89" Height="28" BorderBrush="#757575" 
+
+            <TextBox x:Name="EmailTextBox" Margin="35,2,0,0" Height="28" BorderBrush="#757575" 
                  BorderThickness="1" Background="WhiteSmoke" Foreground="#FF557DA3" FontSize="16" 
                  SelectionBrush="Gray" SelectionTextBrush="#FF557DA3" 
                  Text="{Binding Path=Email}"
+                 Padding="5,2,0,0"
                  GotFocus="EmailBox_GotFocus" 
                  LostFocus="EmailBox_LostFocus"
                  Visibility="Visible"
@@ -45,27 +53,33 @@
 
 
         <Label Content="Password" Grid.Row="3" Margin="16,16" VerticalAlignment="Center" Foreground="#FF729ECB" FontSize="24"  FontWeight="ExtraBlack" />
-        <Grid Grid.Row="3" Margin="0,58,0,16" Height="28" Grid.RowSpan="2">
+        <Grid Grid.Row="4" Margin="16, 0" Height="28">
+            <Image Source="C:\Users\adamsimkin\source\repos\kanban-2024-m3-2024-a\Frontend\Resources\password.png" Panel.ZIndex="2" Width="24" Height="24" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" Opacity="0.6">
+                <Image.Effect>
+                    <DropShadowEffect ShadowDepth="0" Color="Gray" Opacity="0.3" />
+                </Image.Effect>
+            </Image>
             <!-- This TextBlock will act as the placeholder text -->
             <TextBlock x:Name="PasswordPlaceholder" 
-                   Text="Enter your password" 
-                   Foreground="Gray" 
-                   VerticalAlignment="Center" 
-                   HorizontalAlignment="Left" 
-                   Margin="22,0,0,0" 
-                   FontSize="16" 
-                   IsHitTestVisible="False" 
-                   Visibility="Visible"
-                   Panel.ZIndex="1"/>
+       Text="Enter your password" 
+       Foreground="Gray" 
+       VerticalAlignment="Center" 
+       HorizontalAlignment="Left" 
+       Margin="40,0,0,0" 
+       FontSize="16" 
+       IsHitTestVisible="False" 
+       Visibility="Visible"
+       Panel.ZIndex="1"/>
 
 
-            <PasswordBox x:Name="PasswordBox" Grid.Row="4" Margin="16,0" Height="28" BorderBrush="#757575"
-                            BorderThickness="1" Background="WhiteSmoke" Foreground="#FF557DA3" FontSize="16" 
-                            SelectionBrush="#757575" SelectionTextBrush="#FF557DA3" 
-                            PasswordChanged="PasswordBox_OnPasswordChanged" 
-                            GotFocus="PasswordBox_GotFocus" 
-                            LostFocus="PasswordBox_LostFocus"
-                            Panel.ZIndex="0"/>
+            <PasswordBox x:Name="PasswordBox" Margin="35,0,0,0" Height="28" BorderBrush="#757575"
+                BorderThickness="1" Background="WhiteSmoke" Foreground="#FF557DA3" FontSize="16" 
+                SelectionBrush="#757575" SelectionTextBrush="#FF557DA3" 
+                PasswordChanged="PasswordBox_OnPasswordChanged"
+                Padding="5,2,0,0"
+                GotFocus="PasswordBox_GotFocus" 
+                LostFocus="PasswordBox_LostFocus"
+                Panel.ZIndex="0"/>
 
         </Grid>
        
@@ -73,7 +87,7 @@
         <Button Grid.Row="5" 
                 Margin="48,40" 
                 Height="40"  
-                Content="Login" 
+                Content="Back" 
                 FontSize="16" 
                 FontWeight="ExtraBlack" 
                 HorizontalAlignment="Left" 
@@ -150,7 +164,7 @@
                               Padding="10,5,10,5"
                               FontWeight="ExtraBlack" 
                              Height="36" 
-                             Width="82" Margin="0,4,0,4" RenderTransformOrigin="0.961,0.654"/>
+                             Width="100" Margin="0,4,0,4" RenderTransformOrigin="0.961,0.654"/>
                     </Border>
                 </ControlTemplate>
             </Button.Template>
