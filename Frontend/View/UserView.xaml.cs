@@ -60,7 +60,7 @@ namespace Frontend.View
             Close();
         }
 
-        private void Create_Click(object sender, RoutedEventArgs e)
+        private void Create_Board(object sender, RoutedEventArgs e)
         {
 
         }

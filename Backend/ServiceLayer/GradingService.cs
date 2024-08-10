@@ -379,7 +379,10 @@ namespace IntroSE.Kanban.Backend.ServiceLayer
         }
 
 
-
+        public string GetUserBoardsFull(string email)
+        {
+            return ServFact.Bs.GetUserFullBoards(email);
+        }
 
 
 

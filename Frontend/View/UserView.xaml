@@ -90,7 +90,7 @@
                 BorderThickness="1" 
                 BorderBrush="#FF576C81"
                 Width="102" 
-                IsDefault="True">
+                IsDefault="True" Click="Create_Board">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="White" Offset="0.145"/>

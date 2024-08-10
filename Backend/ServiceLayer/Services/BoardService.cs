@@ -155,7 +155,32 @@ namespace IntroSE.Kanban.Backend.ServiceLayer.Services
 
         }
 
-        
+        public string GetUserFullBoards(string email)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(email))
+                {
+                    Logger.GetLog().Error("GetUserBoards: Tried but one or more of the credentials given is null or empty");
+                    throw new ArgumentNullException();
+                }
+
+                List<BoardBL> bls = Bf.GetUserBoards(email.ToLower());
+                List<BoardSL> res = new List<BoardSL>();
+                foreach (BoardBL boardbl in bls)
+                {
+                    res.Add(new BoardSL(boardbl));
+                }
+                return new Response(null, res.ToList()).GetSerializedVersion();
+            }
+            catch (Exception e)
+            {
+                return BoardsExceptionHandler(e).GetSerializedVersion();
+            }
+
+        }
+
+
 
 
 

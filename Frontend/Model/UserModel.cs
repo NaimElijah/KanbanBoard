@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,8 @@ namespace Frontend.Model
             }
         }
 
+        //    private ObservableCollection<BoardModel> boards;
+        // public ObservableCollection<BoardModel> Boards
         private List<string> boards;
         public List<string> Boards
         {
@@ -33,7 +36,7 @@ namespace Frontend.Model
 
         internal BackendController controller;
 
-        public UserModel(BackendController backendController, string email,List<string> boards): base(backendController)
+        public UserModel(BackendController backendController, string email, List<string> boards): base(backendController)
         {
             this.controller = backendController;
             this.boards = boards;
