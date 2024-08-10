@@ -28,7 +28,7 @@ namespace Frontend.Model
             set
             {
                 owner = value;
-                RaisePropertyChanged(Owner);
+                RaisePropertyChanged("Owner");
             }
         }
 

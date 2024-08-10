@@ -21,23 +21,22 @@
                 <DropShadowEffect BlurRadius="4" Color="#FFE2E0E0" Direction="315" ShadowDepth="5"  />
             </TextBlock.Effect>
         </TextBlock>
-        <ListView x:Name="BoardListView" Margin="10,10,10,10" Grid.Row="1" Foreground="White" FontSize="16" HorizontalContentAlignment="Center" SelectionChanged ="BoardListView_SelectionChanged" FontWeight="DemiBold" BorderThickness="2" Background="#FFE0DDD6">
+        <ListView Name="BoardListView" ItemsSource="{Binding Path= UserBoards}" Margin="10,10,10,10" Grid.Row="1" Foreground="White" FontSize="16" HorizontalContentAlignment="Center" SelectionChanged ="BoardListView_SelectionChanged" FontWeight="DemiBold" BorderThickness="2" Background="#FFE0DDD6">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="IsSelected" Value="{Binding IsSelected,Mode=TwoWay}"/>
                 </Style>
             </ListView.ItemContainerStyle>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Path= Name, Mode=TwoWay}" TextWrapping="Wrap"
-                                         HorizontalAlignment="Center"
-   VerticalAlignment="Center"
-   FontSize="15"
-   TextAlignment="Center"
-   Padding="10,5,10,5"
-  FontWeight="ExtraBlack"/>
-                </DataTemplate>
-            </ListView.ItemTemplate>
+          <ListView.ItemTemplate>
+    <DataTemplate>
+        <Border Background="#5D4037" CornerRadius="3" Margin="10" Padding="15" BorderBrush="#FF6B8FB4" BorderThickness="1">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="{Binding Path= BoardName}" FontSize="16" FontWeight="Bold" Foreground="#F48FB1" HorizontalAlignment="Center"/>
+                            <TextBlock Text="{Binding Path= Owner}" FontSize="12" FontWeight="Normal" Foreground="#F48FB1" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Border>
+    </DataTemplate>
+</ListView.ItemTemplate>
         </ListView>
         <Button Name="Logout"
         HorizontalAlignment="Left"

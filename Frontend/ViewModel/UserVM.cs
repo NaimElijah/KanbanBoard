@@ -1,6 +1,7 @@
 ﻿using Frontend.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,8 +10,12 @@ namespace Frontend.ViewModel
 {
     internal class UserVM : NotifiableObject
     {
+
         private BackendController controller;
         private string errorMessage = "";
+
+        private ObservableCollection<BoardModel> userBoards;
+       public  ObservableCollection<BoardModel> UserBoards { get => userBoards; set => userBoards = value; }
         
         public string ErrorMessage {
             get =>  errorMessage;
@@ -20,12 +25,14 @@ namespace Frontend.ViewModel
             }
         }
 
+
         public UserVM()
         {  controller = new BackendController(); }
 
         public UserVM(UserModel user)
         {
             controller = user.Controller;
+            UserBoards = user.Boards;
         }
 
         public UserVM(BackendController controller)

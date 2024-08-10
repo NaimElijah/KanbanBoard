@@ -36,6 +36,11 @@ namespace Frontend.ViewModel
             set { done = value; }
         }
 
+        private string boardName;
+        public string BoardName { get => boardName; set => boardName = value; }
+
+        private string owner;
+        public string Owner { get => owner; set => owner = value; }
 
         public BoardVM(BoardModel board)
         {
@@ -43,6 +48,8 @@ namespace Frontend.ViewModel
             backlog = board.BacklogTasks;
             inProgress = board.InProgressTasks;
             done = board.DoneTasks;
+            boardName = board.BoardName;
+            owner = board.Owner;
         }
     }
 }
