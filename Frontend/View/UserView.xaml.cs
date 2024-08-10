@@ -61,7 +61,18 @@ namespace Frontend.View
 
         private void Create_Board(object sender, RoutedEventArgs e)
         {
-
+            InputDialog newBoardName = new InputDialog("Creating a new board", "Please enter the name of the new board");
+            if (newBoardName.ShowDialog() == true)
+            {
+                string userInput = newBoardName.UserInput;
+                MessageBox.Show($"The board '{userInput}' was created!");
+            }
+            else
+            {
+                MessageBox.Show("Creation canceled.");
+                return;
+            }
         }
+
     }
 }

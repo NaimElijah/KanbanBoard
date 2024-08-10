@@ -1,4 +1,5 @@
-﻿using IntroSE.Kanban.Backend.ServiceLayer;
+﻿using Frontend.ViewModel;
+using IntroSE.Kanban.Backend.ServiceLayer;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -79,7 +80,7 @@ namespace Frontend.Model
         {
             Response? response = JsonSerializer.Deserialize<Response>(Service.Logout(email));
             if (response.ErrorOccured)
-            {  
+            {
                 throw new Exception(response.ErrorMessage);
             }
         }
@@ -141,6 +142,10 @@ namespace Frontend.Model
             return board;
         }
 
+        internal void CreateBoard(BackendController controller, UserModel user, string boardName)
+        {
+            BoardModel board = new BoardModel(this, user, boardName);
+        }
     }
 }
 
