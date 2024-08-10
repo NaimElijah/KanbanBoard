@@ -2,8 +2,8 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="httc:\users\adamsimkin\source\repos\kanban-2024-m3-2024-a\frontend\view\loginview.xaml.cs
-c:\users\adamsimkin\source\repos\kanban-2024-m3-2024-a\frontend\view\loginview.xaml
-p://schemas.microsoft.com/expression/blend/2008"
+                 c:\users\adamsimkin\source\repos\kanban-2024-m3-2024-a\frontend\view\loginview.xaml
+                 p://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Frontend.View"
         xmlns:helpers="clr-namespace:Frontend.View.Helpers"
@@ -25,7 +25,7 @@ p://schemas.microsoft.com/expression/blend/2008"
 
         <Label Content="Email" Margin="16,16" Grid.Row="1" VerticalAlignment="Center" Foreground="#FF6695C6" FontSize="24"  FontWeight="ExtraBlack"/>
         <Grid Grid.Row="2" Margin="16,0" Height="28" >
-            <Image Source="C:\Users\adamsimkin\source\repos\kanban-2024-m3-2024-a\Frontend\Resources\email.png" Panel.ZIndex="2" Width="24" Height="24" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,3,0,0" Opacity="0.6">
+            <Image Source="pack://application:,,,/Resources/email.png" Panel.ZIndex="2" Width="24" Height="24" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,3,0,0" Opacity="0.6">
                 <Image.Effect>
                     <DropShadowEffect ShadowDepth="0" Color="Gray" Opacity="0.3" />
                 </Image.Effect>
@@ -58,7 +58,7 @@ p://schemas.microsoft.com/expression/blend/2008"
 
         <Label Content="Password" Grid.Row="3" Margin="16,16" VerticalAlignment="Center" Foreground="#FF6695C6" FontSize="24"  FontWeight="ExtraBlack" />
         <Grid Grid.Row="4" Margin="16, 0" Height="28">
-            <Image Source="C:\Users\adamsimkin\source\repos\kanban-2024-m3-2024-a\Frontend\Resources\password.png" Panel.ZIndex="2" Width="24" Height="24" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" Opacity="0.6">
+            <Image Source="pack://application:,,,/Resources/password.png" Panel.ZIndex="2" Width="24" Height="24" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" Opacity="0.6">
                 <Image.Effect>
                     <DropShadowEffect ShadowDepth="0" Color="Gray" Opacity="0.3" />
                 </Image.Effect>

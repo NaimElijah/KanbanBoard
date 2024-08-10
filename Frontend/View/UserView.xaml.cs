@@ -46,7 +46,7 @@ namespace Frontend.View
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
-            vm.LogoutUser(Title);
+            vm.LogoutUser(model.Email);
             if (vm.ErrorMessage != string.Empty)
             {
                 MessageBox.Show(vm.ErrorMessage);    

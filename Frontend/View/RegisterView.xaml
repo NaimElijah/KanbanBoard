@@ -22,7 +22,7 @@
 
         <Label Content="Email" Margin="16,16" Grid.Row="1" VerticalAlignment="Center" Foreground="#FF729ECB" FontSize="24"  FontWeight="ExtraBlack"/>
         <Grid Grid.Row="2" Margin="16,0" Height="28" >
-            <Image Source="C:\Users\adamsimkin\source\repos\kanban-2024-m3-2024-a\Frontend\Resources\email.png" Panel.ZIndex="2" Width="24" Height="24" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,3,0,0" Opacity="0.6">
+            <Image Source="pack://application:,,,/Resources/email.png" Panel.ZIndex="2" Width="24" Height="24" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,3,0,0" Opacity="0.6">
                 <Image.Effect>
                     <DropShadowEffect ShadowDepth="0" Color="Gray" Opacity="0.3" />
                 </Image.Effect>
@@ -54,7 +54,7 @@
 
         <Label Content="Password" Grid.Row="3" Margin="16,16" VerticalAlignment="Center" Foreground="#FF729ECB" FontSize="24"  FontWeight="ExtraBlack" />
         <Grid Grid.Row="4" Margin="16, 0" Height="28">
-            <Image Source="C:\Users\adamsimkin\source\repos\kanban-2024-m3-2024-a\Frontend\Resources\password.png" Panel.ZIndex="2" Width="24" Height="24" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" Opacity="0.6">
+            <Image Source="pack://application:,,,/Resources/password.png" Panel.ZIndex="2" Width="24" Height="24" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" Opacity="0.6">
                 <Image.Effect>
                     <DropShadowEffect ShadowDepth="0" Color="Gray" Opacity="0.3" />
                 </Image.Effect>

@@ -51,6 +51,8 @@ public partial class LoginView : Window
 
     private void RegisterButton_Click(object sender, RoutedEventArgs e)
     {
+        vm.Email = "";
+        vm.Password = "";
         RegisterView registerView = new RegisterView(vm);
         registerView.Show();
         Close();

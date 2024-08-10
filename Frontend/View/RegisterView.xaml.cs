@@ -21,6 +21,8 @@ namespace Frontend.View
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
+            vm.Email = "";
+            vm.Password = "";
             LoginView loginWindow = new LoginView(vm);
             loginWindow.Show();
             Close();
