@@ -38,7 +38,7 @@ namespace Frontend.View
         {
             if (BoardListView.SelectedItem != null)
             { 
-                BoardModel board = vm.GetBoard(model,""+BoardListView.SelectedItem.ToString());
+                BoardModel board = vm.GetBoard(model.Email,""+BoardListView.SelectedItem.ToString());
                 BoardView boardView = new BoardView(board);
                 boardView.Show();
                 Close();

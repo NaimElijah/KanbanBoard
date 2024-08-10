@@ -21,6 +21,27 @@ namespace Frontend.Model
                 RaisePropertyChanged("Name");
             }
         }
+        private string owner; 
+        public string Owner
+        {
+            get => owner;
+            set
+            {
+                owner = value;
+                RaisePropertyChanged(Owner);
+            }
+        }
+
+        private List<string> members;
+        public List<string> Members
+        {
+            get => members;
+            set
+            {
+                members = value;
+                RaisePropertyChanged("members");
+            }
+        }
 
         private ObservableCollection<TaskModel> backlogTasks;
         public ObservableCollection<TaskModel> BacklogTasks
@@ -70,13 +91,16 @@ namespace Frontend.Model
             get => user;
         }
 
-        public BoardModel(BackendController controller, UserModel user, string name) : base(controller)
+        public BoardModel(BackendController controller, UserModel user, string name ,string ownnerNmae , List<string> boardMembers) : base(controller)
         {
-            this.name = name;
+            Name = name;
             this.user = user;
+            Owner = ownnerNmae;
+            Members = boardMembers;
             backlogTasks = new ObservableCollection<TaskModel>();
             inProgressTasks = new ObservableCollection<TaskModel>();
             doneTasks = new ObservableCollection<TaskModel>();
         }
+      
     }
 }

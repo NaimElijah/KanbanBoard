@@ -19,7 +19,7 @@ namespace IntroSE.Kanban.Backend.ServiceLayer
          
         }
 
-        public TaskModel(TaskSL task)
+        internal TaskModel(TaskSL task)
         {
             this.title = task.Title;
             this.description = task.Description;

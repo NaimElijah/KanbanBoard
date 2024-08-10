@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace IntroSE.Kanban.Backend.ServiceLayer
 {
-    internal class BoardSL
+    public class BoardSL
     {
         internal string BoardName { get; set; }
         internal long BoardId { get; set; }
@@ -30,6 +30,10 @@ namespace IntroSE.Kanban.Backend.ServiceLayer
             Members = boardbl.Members;
             BoardOwnerEmail = boardbl.BoardOwnerEmail;
 
+        }
+        public BoardSL()
+        {
+            // paramaterless constructor for deserialization
         }
 
     }

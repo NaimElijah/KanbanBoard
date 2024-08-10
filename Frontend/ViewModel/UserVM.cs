@@ -33,10 +33,10 @@ namespace Frontend.ViewModel
             this.controller = controller;
         }
 
-        internal BoardModel GetBoard(UserModel user ,string boardName)
+       /* internal BoardModel GetBoard(string userEmail ,string boardName)
         {
-            return controller.GetBoard(user, boardName);
-        }
+            return controller.GetBoard(userEmail, boardName);
+        }*/
 
         internal void LogoutUser(string email)
         {

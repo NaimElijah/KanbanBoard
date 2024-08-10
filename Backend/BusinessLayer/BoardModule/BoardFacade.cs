@@ -1101,7 +1101,18 @@ namespace IntroSE.Kanban.Backend.BusinessLayer.BoardModule
         }
 
 
-    
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+        internal string GetBoardOwner(string email , string boardName)
+        {
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(boardName))
+            {
+                Logger.GetLog().Error("DeleteBoard: Tried to delete a board but the email or board name is null or empty");
+                throw new ArgumentNullException();
+            }
+                Logger.GetLog().Info($"GetBoardOwner: returning board owner of board with  name {boardName} connect to email {email}");
+            return ExistingBoards[email][boardName].BoardOwnerEmail;
+        }
     }
 }

@@ -155,30 +155,6 @@ namespace IntroSE.Kanban.Backend.ServiceLayer.Services
 
         }
 
-        public string GetUserFullBoards(string email)
-        {
-            try
-            {
-                if (string.IsNullOrEmpty(email))
-                {
-                    Logger.GetLog().Error("GetUserBoards: Tried but one or more of the credentials given is null or empty");
-                    throw new ArgumentNullException();
-                }
-
-                List<BoardBL> bls = Bf.GetUserBoards(email.ToLower());
-                List<BoardSL> res = new List<BoardSL>();
-                foreach (BoardBL boardbl in bls)
-                {
-                    res.Add(new BoardSL(boardbl));
-                }
-                return new Response(null, res.ToList()).GetSerializedVersion();
-            }
-            catch (Exception e)
-            {
-                return BoardsExceptionHandler(e).GetSerializedVersion();
-            }
-
-        }
 
 
 
@@ -293,6 +269,7 @@ namespace IntroSE.Kanban.Backend.ServiceLayer.Services
         {
             try
             {
+
                 return new Response(null, Bf.GetBoardName(boardId)).GetSerializedVersion();
             }
             catch (Exception e)
@@ -300,8 +277,6 @@ namespace IntroSE.Kanban.Backend.ServiceLayer.Services
                 return BoardsExceptionHandler(e).GetSerializedVersion();
             }
         }
-
-
 
 
 
@@ -475,6 +450,54 @@ namespace IntroSE.Kanban.Backend.ServiceLayer.Services
 
 
 
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ///
+        public string GetUserOwnerBoards(string email, string boardName)
+        {
+            {
+                try
+                {
+
+                    if (string.IsNullOrEmpty(email))
+                    {
+                        Logger.GetLog().Error("LeaveBoard: Tried but one or more of the credentials given is null or empty");
+                        throw new ArgumentNullException();
+                    }
+
+                    return new Response(null, Bf.GetBoardOwner(email,boardName)).GetSerializedVersion();
+                }
+                catch (Exception e)
+                {
+                    return BoardsExceptionHandler(e).GetSerializedVersion();
+                }
+            }
+
+        }
+
+        public string GetUserMemberslBoards(string email)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(email))
+                {
+                    Logger.GetLog().Error("GetUserBoards: Tried but one or more of the credentials given is null or empty");
+                    throw new ArgumentNullException();
+                }
+
+                List<BoardBL> bls = Bf.GetUserBoards(email.ToLower());
+                List<List<string>> res = new List<List<string>>();
+                foreach (BoardBL boardbl in bls)
+                {
+                    res.Add(new BoardSL(boardbl).Members);
+                }
+                return new Response(null, res.ToList()).GetSerializedVersion();
+            }
+            catch (Exception e)
+            {
+                return BoardsExceptionHandler(e).GetSerializedVersion();
+            }
+
+        }
 
 
 
