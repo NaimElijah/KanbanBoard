@@ -16,13 +16,14 @@ namespace Frontend.View
         BoardVM vm;
         BoardModel model;
 
-        public BoardView( BoardModel board)
+        public BoardView(BoardModel board)
         {
             InitializeComponent();
             vm = new BoardVM(board);
             DataContext = vm;
             model = board;
-            Title = board.Name;
+            int totalTaskNum = board.BacklogTasks.Count + board.InProgressTasks.Count + board.DoneTasks.Count;
+            Title = $"This is '{board.User.Email}'s board named: '{board.Name}'. Number of tasks: {totalTaskNum}";
             BacklogList.ItemsSource = vm.Backlog;
             InProgressList.ItemsSource = vm.InProgress;
             DoneList.ItemsSource = vm.Done;

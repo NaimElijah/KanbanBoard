@@ -18,7 +18,7 @@
         </Grid.RowDefinitions>
 
 
-        <TextBlock Text="Wellcome!" Grid.Row="0" Margin="99,22,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"
+        <TextBlock Text="Welcome!" Grid.Row="0" Margin="99,22,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"
                    Foreground="#FF6B8FB4" FontSize="32" FontWeight="ExtraBlack" />
 
         <Label Content="Email" Margin="16,16" Grid.Row="1" VerticalAlignment="Center" Foreground="#FF6695C6" FontSize="24"  FontWeight="ExtraBlack"/>

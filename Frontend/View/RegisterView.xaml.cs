@@ -15,6 +15,7 @@ namespace Frontend.View
         {
             InitializeComponent();
             this.vm = vm;
+            Title = "Register menu";
             DataContext = vm;
         }
 

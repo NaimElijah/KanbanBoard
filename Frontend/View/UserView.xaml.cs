@@ -21,7 +21,7 @@ namespace Frontend.View
             InitializeComponent();
             vm = new UserVM(user);
             DataContext =vm;
-            Title = user.Email;
+            Title = $"Welcome '{user.Email.Split("@")[0]}'!";
             BoardListView.ItemsSource = user.Boards;
             model = user;
         }

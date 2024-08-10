@@ -16,6 +16,7 @@ public partial class LoginView : Window
     {
         InitializeComponent();
         vm = new LoginVM();
+        Title = "Login menu";
         DataContext = vm;
 
     }
