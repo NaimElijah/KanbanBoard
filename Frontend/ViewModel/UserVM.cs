@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Frontend.ViewModel
 {
-    internal class UserVM : NotifiableObject
+    public class UserVM : NotifiableObject
     {
 
         private BackendController controller;
@@ -32,7 +32,7 @@ namespace Frontend.ViewModel
         public UserVM(UserModel user)
         {
             controller = user.Controller;
-            UserBoards = user.Boards;
+            UserBoards = user.Boards ?? new ObservableCollection<BoardModel>();
         }
 
         public UserVM(BackendController controller)

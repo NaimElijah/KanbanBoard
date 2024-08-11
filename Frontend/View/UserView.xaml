@@ -33,30 +33,34 @@
                 <DropShadowEffect BlurRadius="4" Color="#FFE2E0E0" Direction="315" ShadowDepth="5"  />
             </TextBlock.Effect>
         </TextBlock>
-        <ListView Name="BoardListView" ItemsSource="{Binding Path= UserBoards}" Margin="10,10,10,10" Grid.Row="1" Foreground="White" FontSize="16" HorizontalContentAlignment="Center" SelectionChanged ="BoardListView_SelectionChanged" FontWeight="DemiBold" BorderThickness="2" Background="#FFE0DDD6">
+        <ListView Name="BoardListView" ItemsSource="{Binding UserBoards}" Margin="10,10,10,10" Grid.Row="1" Foreground="White" FontSize="16" HorizontalContentAlignment="Center" SelectionChanged ="BoardListView_SelectionChanged" FontWeight="DemiBold" BorderThickness="2" Background="#FFE0DDD6">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="IsSelected" Value="{Binding IsSelected,Mode=TwoWay}"/>
                 </Style>
             </ListView.ItemContainerStyle>
-            <!-- Ensure items stretch horizontally -->
+            
+            
+             <!--Ensure items stretch horizontally 
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border BorderBrush="#FF6B8FB4" BorderThickness="1" Margin="5" HorizontalAlignment="Stretch" Padding="4">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
-                            <!-- Board Name -->
+                             Board Name 
                             <TextBlock Text="{Binding Path=., Converter={StaticResource NameConverter}}" FontWeight="Bold" FontSize="20" VerticalAlignment="Center" Foreground="#FF6B8FB4"/>
 
-                            <!-- Space between Name and Owner -->
+                             Space between Name and Owner 
                             <TextBlock Text=" " Width="20" />
 
-                            <!-- Board Owner -->
+                             Board Owner 
                             <TextBlock Text="{Binding Path=., Converter={StaticResource OwnerConverter}}" FontWeight="Normal" FontSize="14" VerticalAlignment="Center" Foreground="#FF6B8FB4"/>
                         </StackPanel>
                     </Border>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-<!--
+            </ListView.ItemTemplate>-->
+
+            
+            
           <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border Background="#5D4037" CornerRadius="3" Margin="10" Padding="15" BorderBrush="#FF6B8FB4" BorderThickness="1">
@@ -67,7 +71,9 @@
                     </Border>
                 </DataTemplate>
             </ListView.ItemTemplate>
->>>>>>> Add_Create_And_Delte_Board -->
+
+            
+            
         </ListView>
         <!-- Right Aligned Button -->
         <Button Name="Logout" Grid.Row="0" Grid.Column="2" Margin="0, 10, 20, 0" HorizontalAlignment="Right" VerticalAlignment="Center"

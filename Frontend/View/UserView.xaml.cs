@@ -14,8 +14,12 @@ namespace Frontend.View
     /// </summary>
     public partial class UserView : Window
     {
-        UserVM vm;
-        UserModel model;
+        public UserVM vm;
+        public UserModel model;
+
+        public UserVM VM { get => vm; }
+
+        public ObservableCollection<BoardModel> BoardModels { get => vm.UserBoards; }
 
         public UserView(UserModel user)
         {

@@ -2,11 +2,7 @@
 using IntroSE.Kanban.Backend.ServiceLayer;
 using System;
 using System.Collections.Generic;
-<<<<<<< HEAD
-using System.IO;
-=======
 using System.Collections.ObjectModel;
->>>>>>> Add_Create_And_Delte_Board
 using System.Linq;
 using System.Text;
 using System.Text.Json;
@@ -49,7 +45,7 @@ namespace Frontend.Model
             {
                 throw new Exception(response.ErrorMessage);
             }
-             return new UserModel(this,email, GetUserBoardsInfo(email));
+             return new UserModel(this,email, GetUserBoards(email));
 
         }
 
@@ -70,7 +66,7 @@ namespace Frontend.Model
             {
                 throw new Exception(response.ErrorMessage);
             }
-            return new UserModel(this, email, GetUserBoardsInfo(email));
+            return new UserModel(this, email, GetUserBoards(email));
         }
 
         /* public Tuple<UserModel?, string> Logout(string email, string password)
@@ -114,7 +110,7 @@ namespace Frontend.Model
 
         public List<string> GetUserBoardsInfo(string email)
         {
-            Response response = JsonSerializer.Deserialize<Response>(Service.GetUserBoardsFull(email));
+            Response response = JsonSerializer.Deserialize<Response>(Service.GetUserBoards(email));
             List<BoardSL> boardSLs = JsonSerializer.Deserialize<List<BoardSL>>((JsonElement)response.ReturnValue);
             List<string> resBoards = new List<string>();
             foreach (var board in boardSLs)
@@ -155,11 +151,6 @@ namespace Frontend.Model
             
 
             return board;
-        }
-
-        internal void CreateBoard(BackendController controller, UserModel user, string boardName)
-        {
-            BoardModel board = new BoardModel(this, user, boardName);
         }
     }
 }

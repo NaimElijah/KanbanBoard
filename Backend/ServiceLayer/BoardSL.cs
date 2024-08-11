@@ -35,7 +35,5 @@ namespace IntroSE.Kanban.Backend.ServiceLayer
         {
             // paramaterless constructor for deserialization
         }
-
-        public BoardSL() { }
     }
 }
