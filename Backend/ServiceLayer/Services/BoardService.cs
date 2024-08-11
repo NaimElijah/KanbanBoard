@@ -155,30 +155,6 @@ namespace IntroSE.Kanban.Backend.ServiceLayer.Services
 
         }
 
-        public string GetUserFullBoards(string email)
-        {
-            try
-            {
-                if (string.IsNullOrEmpty(email))
-                {
-                    Logger.GetLog().Error("GetUserBoards: Tried but one or more of the credentials given is null or empty");
-                    throw new ArgumentNullException();
-                }
-
-                List<BoardBL> bls = Bf.GetUserBoards(email.ToLower());
-                List<BoardSL> res = new List<BoardSL>();
-                foreach (BoardBL boardbl in bls)
-                {
-                    res.Add(new BoardSL(boardbl));
-                }
-                return new Response(null, res.ToList()).GetSerializedVersion();
-            }
-            catch (Exception e)
-            {
-                return BoardsExceptionHandler(e).GetSerializedVersion();
-            }
-
-        }
 
 
 
@@ -293,6 +269,7 @@ namespace IntroSE.Kanban.Backend.ServiceLayer.Services
         {
             try
             {
+
                 return new Response(null, Bf.GetBoardName(boardId)).GetSerializedVersion();
             }
             catch (Exception e)
@@ -300,8 +277,6 @@ namespace IntroSE.Kanban.Backend.ServiceLayer.Services
                 return BoardsExceptionHandler(e).GetSerializedVersion();
             }
         }
-
-
 
 
 
@@ -475,6 +450,34 @@ namespace IntroSE.Kanban.Backend.ServiceLayer.Services
 
 
 
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ///
+        public string GetUserOwnerBoards(int boardId)
+        {
+                try
+                {
+
+                    return new Response(null, Bf.GetBoardOwner(boardId)).GetSerializedVersion();
+                }
+                catch (Exception e)
+                {
+                    return BoardsExceptionHandler(e).GetSerializedVersion();
+                }
+        }
+
+        public string GetUserMembersBoards(int boardId)
+        {
+            try
+            {
+
+                return new Response(null, Bf.GetBoardMembers(boardId)).GetSerializedVersion();
+            }
+            catch (Exception e)
+            {
+                return BoardsExceptionHandler(e).GetSerializedVersion();
+            }
+
+        }
 
 
 

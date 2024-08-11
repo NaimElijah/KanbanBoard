@@ -379,10 +379,7 @@ namespace IntroSE.Kanban.Backend.ServiceLayer
         }
 
 
-        public string GetUserBoardsFull(string email)
-        {
-            return ServFact.Bs.GetUserFullBoards(email);
-        }
+      
 
 
 
@@ -465,7 +462,7 @@ namespace IntroSE.Kanban.Backend.ServiceLayer
             return ServFact.Bs.GetBoardName(boardId);
         }
 
-
+     
 
 
 
@@ -528,7 +525,17 @@ namespace IntroSE.Kanban.Backend.ServiceLayer
             return ServFact.DeleteAllData();
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+        public string GetBoardOwner(int boardId)
+        {
+            return ServFact.Bs.GetUserOwnerBoards(boardId);
+        }
+
+        public string GetBoardMembers(int boardId)
+        {
+            return ServFact.Bs.GetUserMembersBoards(boardId);
+        }
 
 
 

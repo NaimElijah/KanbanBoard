@@ -100,9 +100,5 @@ namespace Frontend.ViewModel
                 return null;
             }
         }
-        internal List<string> GetUserBoards()
-        {
-            return controller.GetUserBoardsInfo(Email);
-        }
     }
 }

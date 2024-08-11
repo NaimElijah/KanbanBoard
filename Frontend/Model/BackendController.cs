@@ -2,11 +2,16 @@
 using IntroSE.Kanban.Backend.ServiceLayer;
 using System;
 using System.Collections.Generic;
+<<<<<<< HEAD
 using System.IO;
+=======
+using System.Collections.ObjectModel;
+>>>>>>> Add_Create_And_Delte_Board
 using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Frontend.Model
 {
@@ -85,16 +90,26 @@ namespace Frontend.Model
             }
         }
 
-        public List<string> GetUserBoards(string email)
+        public ObservableCollection<BoardModel> GetUserBoards(string usserEmail)
         {
-            Response response = JsonSerializer.Deserialize<Response>(Service.GetUserBoards(email));
+            Response response = JsonSerializer.Deserialize<Response>(Service.GetUserBoards(usserEmail));
             List<int> userBoardsId = JsonSerializer.Deserialize<List<int>>((JsonElement)response.ReturnValue);
-            List<string> boardNames = new List<string>();
-            foreach(int i in userBoardsId)
+            ObservableCollection<BoardModel> boards = new ObservableCollection<BoardModel>();
+
+            foreach (int i in userBoardsId)
             {
-                boardNames.Add(JsonSerializer.Deserialize<Response>(Service.GetBoardName(i)).ReturnValue.ToString());
+                string name = JsonSerializer.Deserialize<Response>(Service.GetBoardName(i)).ReturnValue.ToString();
+
+                string owner = JsonSerializer.Deserialize<Response>(Service.GetBoardOwner(i)).ReturnValue.ToString();
+
+                Response r0 = JsonSerializer.Deserialize<Response>(Service.GetBoardMembers(i));
+
+                List<string> members = JsonSerializer.Deserialize<List<string>>((JsonElement)r0.ReturnValue);
+
+                BoardModel boardModel = GetBoard(usserEmail, name, owner, members);
             }
-            return boardNames;
+
+            return boards;
         }
 
         public List<string> GetUserBoardsInfo(string email)
@@ -111,17 +126,16 @@ namespace Frontend.Model
         }
 
 
-        public BoardModel GetBoard(UserModel user, string boardName)
+        public BoardModel GetBoard(string userEmail, string boardName ,string emailOwner , List<string> members)
         {
-            Response res0 = JsonSerializer.Deserialize<Response>(Service.GetColumn(user.Email, boardName, 0));
-            Response res1 = JsonSerializer.Deserialize<Response>(Service.GetColumn(user.Email, boardName, 1));
-            Response res2 = JsonSerializer.Deserialize<Response>(Service.GetColumn(user.Email, boardName, 2));
+            Response res0 = JsonSerializer.Deserialize<Response>(Service.GetColumn(userEmail, boardName, 0));
+            Response res1 = JsonSerializer.Deserialize<Response>(Service.GetColumn(userEmail, boardName, 1));
+            Response res2 = JsonSerializer.Deserialize<Response>(Service.GetColumn(userEmail, boardName, 2));
+            
 
-            BoardModel board = new BoardModel(this, user, boardName);
-
+            BoardModel board = new BoardModel(this, userEmail, boardName ,emailOwner , members);
             List<TaskSL> t0 = JsonSerializer.Deserialize<List<TaskSL>>((JsonElement)res0.ReturnValue);
-            List<string> n0 = new List<string>(), n1 = new List<string>(), n2 = new List<string>();
-            n0.AddRange(t0.Select(t => t.Title));
+            List<TaskModel> n0 = new List<TaskModel>(), n1 = new List<TaskModel>(), n2 = new List<TaskModel>();
             List<TaskSL> t1 = JsonSerializer.Deserialize<List<TaskSL>>((JsonElement)res1.ReturnValue);
             List<TaskSL> t2 = JsonSerializer.Deserialize<List<TaskSL>>((JsonElement)res2.ReturnValue);
 
@@ -138,6 +152,7 @@ namespace Frontend.Model
             {
                 board.DoneTasks.Add(new TaskModel(task));
             }
+            
 
             return board;
         }

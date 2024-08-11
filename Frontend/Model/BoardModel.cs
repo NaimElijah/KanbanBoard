@@ -11,14 +11,35 @@ namespace Frontend.Model
 {
     public class BoardModel : NotifiableModelObject
     {
-        private string name;
-        public string Name
+        private string boardName;
+        public string BoardName
         {
-            get => name;
+            get => boardName;
             set
             {
-                name = value;
+                boardName = value;
                 RaisePropertyChanged("Name");
+            }
+        }
+        private string owner; 
+        public string Owner
+        {
+            get => owner;
+            set
+            {
+                owner = value;
+                RaisePropertyChanged("Owner");
+            }
+        }
+
+        private List<string> members;
+        public List<string> Members
+        {
+            get => members;
+            set
+            {
+                members = value;
+                RaisePropertyChanged("members");
             }
         }
 
@@ -64,19 +85,36 @@ namespace Frontend.Model
             }
         }
 
-        private UserModel user;
-        public UserModel User
-        {
-            get => user;
-        }
+         
 
-        public BoardModel(BackendController controller, UserModel user, string name) : base(controller)
+           private string userModelEmail;
+           public string UserModelEmail
+           {
+               get => userModelEmail;
+           }
+
+/*        public BoardModel(BackendController controller, UserModel user, string name, string ownnerNmae, List<string> boardMembers) : base(controller)
         {
-            this.name = name;
-            this.user = user;
+            BoardName = name;
+            this.userModelEmail = user;
+            Owner = ownnerNmae;
+            Members = boardMembers;
+            backlogTasks = new ObservableCollection<TaskModel>();
+            inProgressTasks = new ObservableCollection<TaskModel>();
+            doneTasks = new ObservableCollection<TaskModel>();
+        }*/
+
+        public BoardModel(BackendController controller, string userEmail, string name, string ownnerNmae, List<string> boardMembers) : base(controller)
+        {
+            BoardName = name;
+            this.userModelEmail = userEmail;
+            Owner = ownnerNmae;
+            Members = boardMembers;
             backlogTasks = new ObservableCollection<TaskModel>();
             inProgressTasks = new ObservableCollection<TaskModel>();
             doneTasks = new ObservableCollection<TaskModel>();
         }
+
+   
     }
 }

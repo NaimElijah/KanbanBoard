@@ -1101,7 +1101,25 @@ namespace IntroSE.Kanban.Backend.BusinessLayer.BoardModule
         }
 
 
-    
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+        internal string GetBoardOwner(int boardId)
+        {
+            CheckBoardIdValidity(boardId);
+
+            Logger.GetLog().Info($"GetBoardName: returning board name of board with id {boardId}");
+            return BoardIdToBoardBL[boardId].BoardOwnerEmail;
+        }
+
+
+
+        internal List<string> GetBoardMembers(int boardId)
+        {
+            CheckBoardIdValidity(boardId);
+
+            Logger.GetLog().Info($"GetBoardName: returning board name of board with id {boardId}");
+            return BoardIdToBoardBL[boardId].Members;
+        }
     }
 }

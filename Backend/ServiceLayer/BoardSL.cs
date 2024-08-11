@@ -31,6 +31,10 @@ namespace IntroSE.Kanban.Backend.ServiceLayer
             BoardOwnerEmail = boardbl.BoardOwnerEmail;
 
         }
+        public BoardSL()
+        {
+            // paramaterless constructor for deserialization
+        }
 
         public BoardSL() { }
     }

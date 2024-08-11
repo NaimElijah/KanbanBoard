@@ -1,4 +1,5 @@
 ﻿
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using Frontend.Model;
@@ -20,9 +21,15 @@ namespace Frontend.View
         {
             InitializeComponent();
             vm = new UserVM(user);
-            DataContext =vm;
-            Title = $"Welcome '{user.Email.Split("@")[0]}'!";
-            BoardListView.ItemsSource = user.Boards;
+            
+            //DataContext =vm;
+            //Title = $"Welcome '{user.Email.Split("@")[0]}'!";
+            //BoardListView.ItemsSource = user.Boards;
+
+            DataContext = vm;
+            Title = user.Email;
+            BoardListView.ItemsSource = vm.UserBoards;
+
             model = user;
         }
 
@@ -37,7 +44,11 @@ namespace Frontend.View
         {
             if (BoardListView.SelectedItem != null)
             { 
-                BoardModel board = vm.GetBoard(model, "" + BoardListView.SelectedItem.ToString().Split(":")[1]);
+                //BoardModel board = vm.GetBoard(model, "" + BoardListView.SelectedItem.ToString().Split(":")[1]);
+
+                //BoardModel board = vm.GetBoard(model.Email,""+BoardListView.SelectedItem.ToString());
+                BoardModel board = vm.GetBoard(model, "" + BoardListView.SelectedItem.ToString());
+
                 BoardView boardView = new BoardView(board);
                 boardView.Show();
                 Close();

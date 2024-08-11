@@ -22,8 +22,12 @@ namespace Frontend.View
             vm = new BoardVM(board);
             DataContext = vm;
             model = board;
-            int totalTaskNum = board.BacklogTasks.Count + board.InProgressTasks.Count + board.DoneTasks.Count;
-            Title = $"This is '{board.User.Email}'s board named: '{board.Name}'. Number of tasks: {totalTaskNum}";
+
+            //int totalTaskNum = board.BacklogTasks.Count + board.InProgressTasks.Count + board.DoneTasks.Count;
+            //Title = $"This is '{board.User.Email}'s board named: '{board.Name}'. Number of tasks: {totalTaskNum}";
+
+            Title = board.BoardName;
+
             BacklogList.ItemsSource = vm.Backlog;
             InProgressList.ItemsSource = vm.InProgress;
             DoneList.ItemsSource = vm.Done;
@@ -31,7 +35,7 @@ namespace Frontend.View
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            UserView userWindow = new UserView(model.User);
+            UserView userWindow = new UserView(model);
             userWindow.Show();
             this.Close();
         }

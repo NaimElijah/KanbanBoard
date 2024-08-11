@@ -23,8 +23,8 @@ namespace Frontend.Model
 
         //    private ObservableCollection<BoardModel> boards;
         // public ObservableCollection<BoardModel> Boards
-        private List<string> boards;
-        public List<string> Boards
+        private ObservableCollection<BoardModel> boards;
+        public ObservableCollection<BoardModel> Boards
         {
             get => boards;
             set
@@ -36,11 +36,16 @@ namespace Frontend.Model
 
         internal BackendController controller;
 
-        public UserModel(BackendController backendController, string email, List<string> boards): base(backendController)
+        public UserModel(BackendController backendController, string email, ObservableCollection<BoardModel> boards): base(backendController)
         {
             this.controller = backendController;
             this.boards = boards;
             this.email = email;
+        }
+
+        internal BoardModel GetBoard( string boardName)
+        {
+            return boards.FirstOrDefault(x => x.BoardName == boardName);
         }
     }
 }
