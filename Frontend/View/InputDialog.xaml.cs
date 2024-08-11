@@ -28,7 +28,7 @@ namespace Frontend.View
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             this.DialogResult = false;
-            MessageBox.Show("Creation canceled.");
+            MessageBox.Show("Operation canceled.");
             ClosedByUser = true;
             this.Close();
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,8 +42,30 @@ namespace Frontend.Model
             controller = backendController;
             this.boards = boards;
             this.email = email;
+            Boards.CollectionChanged += HandleChange;
         }
 
+
+        private void HandleChange(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            //read more here: https://stackoverflow.com/questions/4279185/what-is-the-use-of-observablecollection-in-net/4279274#4279274
+            if (e.Action == NotifyCollectionChangedAction.Remove)
+            {
+                foreach (BoardModel board in e.OldItems)
+                {
+
+                    Controller.DeleteBoard(Email, board.BoardName);
+                }
+
+            }
+            else if (e.Action == NotifyCollectionChangedAction.Add)
+            {
+                foreach (BoardModel board in e.NewItems)
+                {
+                    Controller.CreateNewBoard(Email, board.BoardName);
+                }
+            }
+        }
 
         internal BoardModel GetBoard(string boardName)
         {

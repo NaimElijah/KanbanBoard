@@ -33,7 +33,7 @@
                 <DropShadowEffect BlurRadius="4" Color="#FFE2E0E0" Direction="315" ShadowDepth="5"  />
             </TextBlock.Effect>
         </TextBlock>
-        <ListView Name="BoardListView" ItemsSource="{Binding Path=UserBoards}" Margin="10,10,10,10" Grid.Row="1" Foreground="White" FontSize="16" HorizontalContentAlignment="Center" SelectionChanged ="BoardListView_SelectionChanged" FontWeight="DemiBold" BorderThickness="2" Background="#FFE0DDD6">
+        <ListView x:Name="BoardListView" ItemsSource="{Binding Path=UserBoards}" Margin="10,10,10,10" Grid.Row="1" Foreground="White" FontSize="16" HorizontalContentAlignment="Center" SelectionChanged ="BoardListView_SelectionChanged" FontWeight="DemiBold" BorderThickness="2" Background="#FFE0DDD6">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="IsSelected" Value="{Binding IsSelected,Mode=TwoWay}"/>

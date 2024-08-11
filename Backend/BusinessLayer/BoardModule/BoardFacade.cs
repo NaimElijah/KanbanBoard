@@ -1062,7 +1062,7 @@ namespace IntroSE.Kanban.Backend.BusinessLayer.BoardModule
 
             }  // Loaded ExisitingBoards Dictionary
 
-            BoardIdCounter = ExistingBoards.Count + 1; 
+            BoardIdCounter = BoardIdToBoardBL.Count; 
 
             // Loading Done.
 

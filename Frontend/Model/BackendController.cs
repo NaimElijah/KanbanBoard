@@ -86,9 +86,9 @@ namespace Frontend.Model
             }
         }
 
-        public ObservableCollection<BoardModel> GetUserBoards(string usserEmail)
+        public ObservableCollection<BoardModel> GetUserBoards(string userEmail)
         {
-            Response response = JsonSerializer.Deserialize<Response>(Service.GetUserBoards(usserEmail));
+            Response response = JsonSerializer.Deserialize<Response>(Service.GetUserBoards(userEmail));
             List<int> userBoardsId = JsonSerializer.Deserialize<List<int>>((JsonElement)response.ReturnValue);
             ObservableCollection<BoardModel> boards = new ObservableCollection<BoardModel>();
 
@@ -102,7 +102,7 @@ namespace Frontend.Model
 
                 List<string> members = JsonSerializer.Deserialize<List<string>>((JsonElement)r0.ReturnValue);
 
-                BoardModel boardModel = GetBoard(usserEmail, name, owner, members);
+                BoardModel boardModel = GetBoard(userEmail, name, owner, members);
                 
                 boards.Add(boardModel);  // omg doron. omg.
             }

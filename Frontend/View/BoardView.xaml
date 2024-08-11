@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Frontend.View"
         mc:Ignorable="d"
         Title="BoardView" Height="400" Width="800"
-        MinHeight="300" MinWidth="435">
+        ResizeMode="NoResize">
     <Grid Background="#FFF5F5F5">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -31,22 +31,22 @@
 
                 <ListView Name="BacklogList" Background="#FFE0DDD6" Grid.Row="1" ItemsSource="{Binding Path=BacklogTasks}" Foreground="White" Focusable="False"
           HorizontalContentAlignment="Stretch">
-					<!-- Ensure items stretch horizontally -->
-					<ListView.ItemTemplate>
-						<DataTemplate>
+                    <!-- Ensure items stretch horizontally -->
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
                             <Border BorderBrush="#FF6B8FB4" BorderThickness="3" Margin="5" HorizontalAlignment="Stretch" Padding="1">
                                 <StackPanel Background="#FF6B8FB4" Orientation="Vertical" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Center">
-									<!-- Task Title -->
-									<TextBlock Text="{Binding Path=Title, Mode=OneWay}" FontSize="16" HorizontalAlignment="Center"
+                                    <!-- Task Title -->
+                                    <TextBlock Text="{Binding Path=Title, Mode=OneWay}" FontSize="16" HorizontalAlignment="Center"
 											   TextWrapping="Wrap" FontWeight="Bold" TextDecorations="{x:Static TextDecorations.Underline}" Foreground="#03346E" />
-									<!-- Task Description -->
-									<TextBlock Text="{Binding Path=Description, Mode=OneWay}" FontSize="14" MaxHeight="300" MaxWidth="450" HorizontalAlignment="Center"
+                                    <!-- Task Description -->
+                                    <TextBlock Text="{Binding Path=Description, Mode=OneWay}" FontSize="14" MaxHeight="300" MaxWidth="450" HorizontalAlignment="Center"
 											   TextWrapping="Wrap" Padding="5" Margin="0,0,0,0" Foreground="#03346E" />
-								</StackPanel>
-							</Border>
-						</DataTemplate>
-					</ListView.ItemTemplate>
-				</ListView>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </Grid>
 
             <Grid Grid.Column="1" Margin="10">
@@ -59,9 +59,9 @@
                        FontWeight="Bold" Margin="0,0,0,5" />
 
                 <ListView Name="InProgressList" Background="#FFE0DDD6" Grid.Row="1" ItemsSource="{Binding}" Foreground="White" HorizontalContentAlignment="Stretch">
-					<!-- Ensure items stretch horizontally -->
-					<ListView.ItemTemplate>
-						<DataTemplate>
+                    <!-- Ensure items stretch horizontally -->
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
                             <Border BorderBrush="#FF6B8FB4" BorderThickness="3" Margin="5" HorizontalAlignment="Stretch" Padding="1">
                                 <StackPanel Background="#FF6B8FB4" Orientation="Vertical" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Center">
                                     <!-- Task Title -->
@@ -73,7 +73,7 @@
                                 </StackPanel>
                             </Border>
                         </DataTemplate>
-					</ListView.ItemTemplate>
+                    </ListView.ItemTemplate>
                 </ListView>
             </Grid>
 
@@ -87,9 +87,9 @@
                        FontWeight="Bold" Margin="0,0,0,5" />
 
                 <ListView Name="DoneList" Background="#FFE0DDD6" Grid.Row="1" ItemsSource="{Binding}" Foreground="White" HorizontalContentAlignment="Stretch">
-					<!-- Ensure items stretch horizontally -->
-					<ListView.ItemTemplate>
-						<DataTemplate>
+                    <!-- Ensure items stretch horizontally -->
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
                             <Border BorderBrush="#FF6B8FB4" BorderThickness="3" Margin="5" HorizontalAlignment="Stretch" Padding="1">
                                 <StackPanel Background="#FF6B8FB4" Orientation="Vertical" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Center">
                                     <!-- Task Title -->
@@ -101,11 +101,10 @@
                                 </StackPanel>
                             </Border>
                         </DataTemplate>
-					</ListView.ItemTemplate>
+                    </ListView.ItemTemplate>
                 </ListView>
             </Grid>
         </Grid>
-
         <Button x:Name="BackButton" Content="Back" HorizontalAlignment="Center" VerticalAlignment="Top"
                 Margin="0,5,0,10" Height="40" Width="120" Foreground="#FF576C81" 
                 FontSize="16" FontWeight="Bold" BorderThickness="0" Click="BackButton_Click" Grid.Row="1" >
@@ -135,5 +134,21 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
+        <ListBox x:Name="MembersListBox" 
+                 ItemsSource="{Binding}" 
+                 Margin="10,307,0,0" 
+                 Width="266" 
+                 Height="47" 
+                 HorizontalAlignment="Left" 
+                 VerticalAlignment="Top"
+                 Background="#FFE0DDD6"
+                 BorderThickness="1"
+                 BorderBrush="#FF6B8FB4" Grid.RowSpan="2">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}" FontSize="12" Foreground="#FF557DA3" Focusable="False" HorizontalAlignment="Center" TextAlignment="Center"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Window>

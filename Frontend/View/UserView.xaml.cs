@@ -87,9 +87,8 @@ namespace Frontend.View
                 return;
             }
             
-            string res = vm.Controller.CreateNewBoard(model.Email, userInput);
-            if (res != "null") MessageBox.Show($"The board '{userInput}' was created!");
-            else MessageBox.Show(res);
+            vm.UserBoards.Add(new BoardModel(model.Controller, model.Email, userInput, model.Email, new List<string> { model.Email }));
+            MessageBox.Show($"The board '{userInput}' was created!");
         }
 
         private void Delete_Board(object sender, RoutedEventArgs e)
@@ -103,10 +102,9 @@ namespace Frontend.View
                 MessageBox.Show("No input was given");
                 return;
             }
-
-            string res = vm.Controller.DeleteBoard(model.Email, userInput);
-            if (res != "null") MessageBox.Show($"The board '{userInput}' was Deleted!");
-            else MessageBox.Show(res);
+            BoardModel boardToDelete = vm.Controller.GetUserBoards(model.Email).First(x => x.BoardName == userInput);
+            vm.UserBoards.Remove(vm.UserBoards.Where(x => x.BoardName == userInput).Single());
+            MessageBox.Show($"The board '{userInput}' was Deleted!");
         }
     }
 }

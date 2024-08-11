@@ -12,7 +12,9 @@ namespace Frontend.ViewModel
     {
 
         private BackendController controller;
+
         public BackendController Controller {  get { return controller; } }
+
         private string errorMessage = "";
 
         private ObservableCollection<BoardModel> userBoards;
