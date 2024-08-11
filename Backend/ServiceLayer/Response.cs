@@ -19,10 +19,18 @@ namespace IntroSE.Kanban.Backend.ServiceLayer
             ReturnValue = returnValue;
         }
 
+        public Response()
+        {
+            // default constructor
+        }
+
         public string GetSerializedVersion()
         {
             return JsonSerializer.Serialize(this);
         }
+
+
+        public bool ErrorOccured { get => ErrorMessage != null; }
 
     }
 }
