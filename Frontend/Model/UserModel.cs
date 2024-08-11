@@ -38,12 +38,13 @@ namespace Frontend.Model
 
         public UserModel(BackendController backendController, string email, ObservableCollection<BoardModel> boards): base(backendController)
         {
-            this.controller = backendController;
+            controller = backendController;
             this.boards = boards;
             this.email = email;
         }
 
-        internal BoardModel GetBoard( string boardName)
+
+        internal BoardModel GetBoard(string boardName)
         {
             return boards.FirstOrDefault(x => x.BoardName == boardName);
         }

@@ -18,7 +18,6 @@ public partial class LoginView : Window
         vm = new LoginVM();
         Title = "Login menu";
         DataContext = vm;
-
     }
 
     public LoginView(BackendController controller)

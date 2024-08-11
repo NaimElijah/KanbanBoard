@@ -30,7 +30,8 @@ namespace IntroSE.Kanban.Backend.BusinessLayer.BoardModule
             }
         }
 
-        internal List<ColumnBL> Columns { get; set; }
+        private List<ColumnBL> columns;
+        internal List<ColumnBL> Columns { get { return columns; } set { columns = value; } }
         internal List<string> Members { get; set; }
 
         private long counterfortaskIdInboard;

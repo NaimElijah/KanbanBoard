@@ -12,10 +12,11 @@ namespace Frontend.ViewModel
     {
 
         private BackendController controller;
+        public BackendController Controller {  get { return controller; } }
         private string errorMessage = "";
 
         private ObservableCollection<BoardModel> userBoards;
-       public  ObservableCollection<BoardModel> UserBoards { get => userBoards; set => userBoards = value; }
+        public  ObservableCollection<BoardModel> UserBoards { get => userBoards; set => userBoards = value; }
         
         public string ErrorMessage {
             get =>  errorMessage;
@@ -25,25 +26,17 @@ namespace Frontend.ViewModel
             }
         }
 
-
-        public UserVM()
-        {  controller = new BackendController(); }
-
         public UserVM(UserModel user)
         {
             controller = user.Controller;
             UserBoards = user.Boards ?? new ObservableCollection<BoardModel>();
         }
 
-        public UserVM(BackendController controller)
+        public UserVM(BoardModel board)
         {
-            this.controller = controller;
+            controller = board.Controller;
+            UserBoards = board.Controller.GetUserBoards(board.UserModelEmail) ?? new ObservableCollection<BoardModel>();
         }
-
-        /* internal BoardModel GetBoard(string userEmail ,string boardName)
-         {
-             return controller.GetBoard(userEmail, boardName);
-         }*/
 
         internal BoardModel GetBoard(UserModel user, string boardName)
         {

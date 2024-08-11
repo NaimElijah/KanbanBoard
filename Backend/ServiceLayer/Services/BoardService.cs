@@ -57,7 +57,6 @@ namespace IntroSE.Kanban.Backend.ServiceLayer.Services
             {
                 return BoardsExceptionHandler(e).GetSerializedVersion();
             }
-
         }
 
 

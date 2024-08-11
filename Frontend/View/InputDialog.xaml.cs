@@ -8,6 +8,7 @@ namespace Frontend.View
     /// </summary>
     public partial class InputDialog : Window
     {
+        public bool ClosedByUser = false;
         public string UserInput { get; private set; }
 
         public InputDialog(string title, string message)
@@ -27,6 +28,8 @@ namespace Frontend.View
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             this.DialogResult = false;
+            MessageBox.Show("Creation canceled.");
+            ClosedByUser = true;
             this.Close();
         }
     }

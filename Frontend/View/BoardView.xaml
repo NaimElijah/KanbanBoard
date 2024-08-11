@@ -34,14 +34,14 @@
 					<!-- Ensure items stretch horizontally -->
 					<ListView.ItemTemplate>
 						<DataTemplate>
-                            <Border BorderBrush="#FF6B8FB4" BorderThickness="1" Margin="5" HorizontalAlignment="Stretch" Padding="4">
-								<StackPanel Orientation="Vertical" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                            <Border BorderBrush="#FF6B8FB4" BorderThickness="3" Margin="5" HorizontalAlignment="Stretch" Padding="1">
+                                <StackPanel Background="#FF6B8FB4" Orientation="Vertical" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Center">
 									<!-- Task Title -->
 									<TextBlock Text="{Binding Path=Title, Mode=OneWay}" FontSize="16" HorizontalAlignment="Center"
-											   TextWrapping="Wrap" FontWeight="Bold" TextDecorations="{x:Static TextDecorations.Underline}" Foreground="#FF6B8FB4" />
+											   TextWrapping="Wrap" FontWeight="Bold" TextDecorations="{x:Static TextDecorations.Underline}" Foreground="#03346E" />
 									<!-- Task Description -->
 									<TextBlock Text="{Binding Path=Description, Mode=OneWay}" FontSize="14" MaxHeight="300" MaxWidth="450" HorizontalAlignment="Center"
-											   TextWrapping="Wrap" Margin="0,5,0,0" Foreground="#FF6B8FB4" />
+											   TextWrapping="Wrap" Padding="5" Margin="0,0,0,0" Foreground="#03346E" />
 								</StackPanel>
 							</Border>
 						</DataTemplate>
@@ -62,17 +62,17 @@
 					<!-- Ensure items stretch horizontally -->
 					<ListView.ItemTemplate>
 						<DataTemplate>
-                            <Border BorderBrush="#FF6B8FB4" BorderThickness="1" Margin="5" HorizontalAlignment="Stretch" Padding="4">
-								<StackPanel Orientation="Vertical" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Center">
-									<!-- Task Title -->
-									<TextBlock Text="{Binding Path=Title, Mode=OneWay}" FontSize="16" HorizontalAlignment="Center"
-											   TextWrapping="Wrap" FontWeight="Bold" TextDecorations="{x:Static TextDecorations.Underline}" Foreground="#FF6B8FB4" />
-									<!-- Task Description -->
-									<TextBlock Text="{Binding Path=Description, Mode=OneWay}" FontSize="14" MaxHeight="300" MaxWidth="450" HorizontalAlignment="Center"
-											   TextWrapping="Wrap" Margin="0,5,0,0" Foreground="#FF6B8FB4"  />
-								</StackPanel>
-							</Border>
-						</DataTemplate>
+                            <Border BorderBrush="#FF6B8FB4" BorderThickness="3" Margin="5" HorizontalAlignment="Stretch" Padding="1">
+                                <StackPanel Background="#FF6B8FB4" Orientation="Vertical" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                                    <!-- Task Title -->
+                                    <TextBlock Text="{Binding Path=Title, Mode=OneWay}" FontSize="16" HorizontalAlignment="Center"
+										   TextWrapping="Wrap" FontWeight="Bold" TextDecorations="{x:Static TextDecorations.Underline}" Foreground="#03346E" />
+                                    <!-- Task Description -->
+                                    <TextBlock Text="{Binding Path=Description, Mode=OneWay}" FontSize="14" MaxHeight="300" MaxWidth="450" HorizontalAlignment="Center"
+										   TextWrapping="Wrap" Padding="5" Margin="0,0,0,0" Foreground="#03346E" />
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
 					</ListView.ItemTemplate>
                 </ListView>
             </Grid>
@@ -90,17 +90,17 @@
 					<!-- Ensure items stretch horizontally -->
 					<ListView.ItemTemplate>
 						<DataTemplate>
-                            <Border BorderBrush="#FF6B8FB4" BorderThickness="1" Margin="5" HorizontalAlignment="Stretch" Padding="4">
-								<StackPanel Orientation="Vertical" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Center">
-									<!-- Task Title -->
-									<TextBlock Text="{Binding Path=Title, Mode=OneWay}" FontSize="16" HorizontalAlignment="Center"
-											   TextWrapping="Wrap" FontWeight="Bold" TextDecorations="{x:Static TextDecorations.Underline}" Foreground="#FF6B8FB4" />
-									<!-- Task Description -->
-									<TextBlock Text="{Binding Path=Description, Mode=OneWay}" FontSize="14" MaxHeight="300" MaxWidth="450" HorizontalAlignment="Center"
-											   TextWrapping="Wrap" Margin="0,5,0,0" Foreground="#FF6B8FB4" />
-								</StackPanel>
-							</Border>
-						</DataTemplate>
+                            <Border BorderBrush="#FF6B8FB4" BorderThickness="3" Margin="5" HorizontalAlignment="Stretch" Padding="1">
+                                <StackPanel Background="#FF6B8FB4" Orientation="Vertical" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                                    <!-- Task Title -->
+                                    <TextBlock Text="{Binding Path=Title, Mode=OneWay}" FontSize="16" HorizontalAlignment="Center"
+										   TextWrapping="Wrap" FontWeight="Bold" TextDecorations="{x:Static TextDecorations.Underline}" Foreground="#03346E" />
+                                    <!-- Task Description -->
+                                    <TextBlock Text="{Binding Path=Description, Mode=OneWay}" FontSize="14" MaxHeight="300" MaxWidth="450" HorizontalAlignment="Center"
+										   TextWrapping="Wrap" Padding="5" Margin="0,0,0,0" Foreground="#03346E" />
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
 					</ListView.ItemTemplate>
                 </ListView>
             </Grid>

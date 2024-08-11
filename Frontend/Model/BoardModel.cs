@@ -43,6 +43,24 @@ namespace Frontend.Model
             }
         }
 
+        private string memberString;
+        public string MemberString
+        {
+            get
+            {
+                string res = "Member List:\n";
+                foreach (var member in Members)
+                {
+                    res += $"{member.ToString()}\n";
+                }
+                //if (res.Length >= 20)
+                //{
+                //    return res.Substring(0,18) + "...";
+                //}
+                return res.Substring(0, res.Length - 1);
+            }
+        }
+
         private ObservableCollection<TaskModel> backlogTasks;
         public ObservableCollection<TaskModel> BacklogTasks
         {
@@ -93,28 +111,31 @@ namespace Frontend.Model
                get => userModelEmail;
            }
 
-/*        public BoardModel(BackendController controller, UserModel user, string name, string ownnerNmae, List<string> boardMembers) : base(controller)
+/*        public BoardModel(BackendController controller, UserModel user, string name, string ownerName, List<string> boardMembers) : base(controller)
         {
             BoardName = name;
             this.userModelEmail = user;
-            Owner = ownnerNmae;
+            Owner = ownerName;
             Members = boardMembers;
             backlogTasks = new ObservableCollection<TaskModel>();
             inProgressTasks = new ObservableCollection<TaskModel>();
             doneTasks = new ObservableCollection<TaskModel>();
         }*/
 
-        public BoardModel(BackendController controller, string userEmail, string name, string ownnerNmae, List<string> boardMembers) : base(controller)
+        public BoardModel(BackendController controller, string userEmail, string name, string ownerName, List<string> boardMembers) : base(controller)
         {
             BoardName = name;
             this.userModelEmail = userEmail;
-            Owner = ownnerNmae;
+            Owner = ownerName;
             Members = boardMembers;
             backlogTasks = new ObservableCollection<TaskModel>();
             inProgressTasks = new ObservableCollection<TaskModel>();
             doneTasks = new ObservableCollection<TaskModel>();
         }
 
-   
+        public override string ToString()
+        {
+            return boardName;
+        }
     }
 }

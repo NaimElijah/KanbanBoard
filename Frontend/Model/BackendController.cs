@@ -103,6 +103,8 @@ namespace Frontend.Model
                 List<string> members = JsonSerializer.Deserialize<List<string>>((JsonElement)r0.ReturnValue);
 
                 BoardModel boardModel = GetBoard(usserEmail, name, owner, members);
+                
+                boards.Add(boardModel);  // omg doron. omg.
             }
 
             return boards;
@@ -115,7 +117,7 @@ namespace Frontend.Model
             List<string> resBoards = new List<string>();
             foreach (var board in boardSLs)
             {
-                resBoards.Add($"{board.BoardId}:{board.BoardName}:{board.BoardOwnerEmail}");
+                resBoards.Add($"{board.BoardId}:{board.BoardName}:{board.BoardOwnerEmail}:{board.Members.ToList()}");
             }
             return resBoards;
 
@@ -151,6 +153,12 @@ namespace Frontend.Model
             
 
             return board;
+        }
+
+        internal string CreateNewBoard(string email, string userInput)
+        {
+            Response res = JsonSerializer.Deserialize<Response>(Service.CreateBoard(email, userInput));
+            return JsonSerializer.Deserialize<string>(res.ErrorMessage == null ? "null" : res.ErrorMessage);
         }
     }
 }

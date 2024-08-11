@@ -1,9 +1,11 @@
 ﻿
 using System.Collections.ObjectModel;
+using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using Frontend.Model;
 using Frontend.ViewModel;
+using IntroSE.Kanban.Backend.ServiceLayer;
 
 
 
@@ -16,11 +18,7 @@ namespace Frontend.View
     {
         public UserVM vm;
         public UserModel model;
-
-        public UserVM VM { get => vm; }
-
-        public ObservableCollection<BoardModel> BoardModels { get => vm.UserBoards; }
-
+     
         public UserView(UserModel user)
         {
             InitializeComponent();
@@ -40,7 +38,10 @@ namespace Frontend.View
         public UserView(BoardModel board)
         {
             InitializeComponent();
-            vm = new UserVM(board.Controller);
+            vm = new UserVM(board);
+            model = new UserModel(board.Controller, board.UserModelEmail, board.Controller.GetUserBoards(board.UserModelEmail));
+            Title = board.UserModelEmail;
+            BoardListView.ItemsSource = vm.UserBoards;
             DataContext =vm;
         }
 
@@ -51,7 +52,7 @@ namespace Frontend.View
                 //BoardModel board = vm.GetBoard(model, "" + BoardListView.SelectedItem.ToString().Split(":")[1]);
 
                 //BoardModel board = vm.GetBoard(model.Email,""+BoardListView.SelectedItem.ToString());
-                BoardModel board = vm.GetBoard(model, "" + BoardListView.SelectedItem.ToString());
+                BoardModel board = vm.GetBoard(model, "" + BoardListView.SelectedItem);
 
                 BoardView boardView = new BoardView(board);
                 boardView.Show();
@@ -77,17 +78,35 @@ namespace Frontend.View
         private void Create_Board(object sender, RoutedEventArgs e)
         {
             InputDialog newBoardName = new InputDialog("Creating a new board", "Please enter the name of the new board");
-            if (newBoardName.ShowDialog() == true)
+            newBoardName.ShowDialog();
+            if (newBoardName.ClosedByUser) return;
+            string userInput = newBoardName.UserInput;
+            if (userInput == null || userInput == "")
             {
-                string userInput = newBoardName.UserInput;
-                MessageBox.Show($"The board '{userInput}' was created!");
-            }
-            else
-            {
-                MessageBox.Show("Creation canceled.");
+                MessageBox.Show("No input was given");
                 return;
             }
+            
+            string res = vm.Controller.CreateNewBoard(model.Email, userInput);
+            if (res != "null") MessageBox.Show($"The board '{userInput}' was created!");
+            else MessageBox.Show(res);
         }
 
+        private void Delete_Board(object sender, RoutedEventArgs e)
+        {
+            InputDialog newBoardName = new InputDialog("Deleting a new board", "Please enter the name of the board you want to delete");
+            newBoardName.ShowDialog();
+            if (newBoardName.ClosedByUser) return;
+            string userInput = newBoardName.UserInput;
+            if (userInput == null || userInput == "")
+            {
+                MessageBox.Show("No input was given");
+                return;
+            }
+
+            string res = vm.Controller.CreateNewBoard(model.Email, userInput);
+            if (res != "null") MessageBox.Show($"The board '{userInput}' was Deleted!");
+            else MessageBox.Show(res);
+        }
     }
 }

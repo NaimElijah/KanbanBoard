@@ -14,7 +14,7 @@ namespace IntroSE.Kanban.Backend.ServiceLayer
         public long BoardId { get; set; }
         public string BoardOwnerEmail { get; set; }
         internal List<ColumnSL> Columns { get; set; }
-        internal List<string> Members { get; set; }
+        public List<string> Members { get; set; }
         internal long CounterForTaskIdInBoard { get; set; }
 
         internal BoardSL(BoardBL boardbl)
