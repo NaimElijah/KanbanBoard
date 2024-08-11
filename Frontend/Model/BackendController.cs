@@ -160,6 +160,12 @@ namespace Frontend.Model
             Response res = JsonSerializer.Deserialize<Response>(Service.CreateBoard(email, userInput));
             return JsonSerializer.Deserialize<string>(res.ErrorMessage == null ? "null" : res.ErrorMessage);
         }
+
+        internal string DeleteBoard(string email, string userInput)
+        {
+            Response res = JsonSerializer.Deserialize<Response>(Service.DeleteBoard(email, userInput));
+            return JsonSerializer.Deserialize<string>(res.ErrorMessage == null ? "null" : res.ErrorMessage);
+        }
     }
 }
 

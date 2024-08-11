@@ -104,7 +104,7 @@ namespace Frontend.View
                 return;
             }
 
-            string res = vm.Controller.CreateNewBoard(model.Email, userInput);
+            string res = vm.Controller.DeleteBoard(model.Email, userInput);
             if (res != "null") MessageBox.Show($"The board '{userInput}' was Deleted!");
             else MessageBox.Show(res);
         }
