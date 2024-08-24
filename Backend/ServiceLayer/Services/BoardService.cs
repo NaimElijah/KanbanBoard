@@ -57,7 +57,6 @@ namespace IntroSE.Kanban.Backend.ServiceLayer.Services
             {
                 return BoardsExceptionHandler(e).GetSerializedVersion();
             }
-
         }
 
 
@@ -155,7 +154,8 @@ namespace IntroSE.Kanban.Backend.ServiceLayer.Services
 
         }
 
-        
+
+
 
 
 
@@ -268,6 +268,7 @@ namespace IntroSE.Kanban.Backend.ServiceLayer.Services
         {
             try
             {
+
                 return new Response(null, Bf.GetBoardName(boardId)).GetSerializedVersion();
             }
             catch (Exception e)
@@ -275,8 +276,6 @@ namespace IntroSE.Kanban.Backend.ServiceLayer.Services
                 return BoardsExceptionHandler(e).GetSerializedVersion();
             }
         }
-
-
 
 
 
@@ -450,6 +449,34 @@ namespace IntroSE.Kanban.Backend.ServiceLayer.Services
 
 
 
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ///
+        public string GetUserOwnerBoards(int boardId)
+        {
+                try
+                {
+
+                    return new Response(null, Bf.GetBoardOwner(boardId)).GetSerializedVersion();
+                }
+                catch (Exception e)
+                {
+                    return BoardsExceptionHandler(e).GetSerializedVersion();
+                }
+        }
+
+        public string GetUserMembersBoards(int boardId)
+        {
+            try
+            {
+
+                return new Response(null, Bf.GetBoardMembers(boardId)).GetSerializedVersion();
+            }
+            catch (Exception e)
+            {
+                return BoardsExceptionHandler(e).GetSerializedVersion();
+            }
+
+        }
 
 
 

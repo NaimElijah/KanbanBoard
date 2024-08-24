@@ -5,10 +5,44 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UseWPF>true</UseWPF>
+	  <PlatformTarget>x64</PlatformTarget>
+	  <UseWPF>true</UseWPF>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <ApplicationIcon>Resources\information.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\email.png" />
+    <None Remove="Resources\envelope.png" />
+    <None Remove="Resources\information.png" />
+    <None Remove="Resources\padlock.png" />
+    <None Remove="Resources\password.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\envelope.png" />
+    <Resource Include="Resources\information.ico" />
+    <Resource Include="Resources\information.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\padlock.png" />
+    <Resource Include="Resources\password.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Include="App.xaml" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<!-- <None Update="runtimes\win-x86\native\SQLite.Interop.dll"> 
+		    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>     these lines are commented because we don't use a x86, but it's handy to keep for reference.
+	    </None> -->
+		<None Update="runtimes\win-x64\native\SQLite.Interop.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
     <ProjectReference Include="..\Backend\Backend.csproj" />
 
   </ItemGroup>

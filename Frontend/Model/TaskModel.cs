@@ -1,14 +1,28 @@
-﻿namespace IntroSE.Kanban.Backend.ServiceLayer
-{
-    internal class TaskModel
-    {
-        public string Title { get; set; }
-        public string Description { get; set; }
+﻿using Frontend.Model;
 
-        public TaskModel(TaskSL task)
+namespace IntroSE.Kanban.Backend.ServiceLayer
+{
+    public class TaskModel
+    {
+
+        private string title;
+        public string Title
         {
-            this.Title = task.Title;
-            this.Description = task.Description;
+            get => title;
+           
+        }
+
+        private string description;
+        public string Description
+        {
+            get => description;
+         
+        }
+
+        internal TaskModel(TaskSL task)
+        {
+            this.title = task.Title;
+            this.description = task.Description;
         }
     }
 }

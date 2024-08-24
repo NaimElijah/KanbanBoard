@@ -1,16 +1,24 @@
 ﻿using Frontend.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Frontend.ViewModel
 {
-    internal class UserVM : NotifiableObject
+    public class UserVM : NotifiableObject
     {
+
         private BackendController controller;
+
+        public BackendController Controller {  get { return controller; } }
+
         private string errorMessage = "";
+
+        private ObservableCollection<BoardModel> userBoards;
+        public  ObservableCollection<BoardModel> UserBoards { get => userBoards; set => userBoards = value; }
         
         public string ErrorMessage {
             get =>  errorMessage;
@@ -20,24 +28,38 @@ namespace Frontend.ViewModel
             }
         }
 
-        public UserVM()
-        {  controller = new BackendController(); }
-
         public UserVM(UserModel user)
         {
             controller = user.Controller;
+            UserBoards = user.Boards ?? new ObservableCollection<BoardModel>();
         }
 
-        public UserVM(BackendController controller)
+        public UserVM(BoardModel board)
         {
-            this.controller = controller;
+            controller = board.Controller;
+            UserBoards = board.Controller.GetUserBoards(board.UserModelEmail) ?? new ObservableCollection<BoardModel>();
         }
 
-        internal BoardModel GetBoard(UserModel user ,string boardName)
+        internal BoardModel GetBoard(UserModel user, string boardName)
         {
-            return controller.GetBoard(user, boardName);
+
+            return user.GetBoard(boardName);
         }
 
+        internal void LogoutUser(string email)
+        {
+            try
+            {
+                controller.Logout(email);
+                
+
+            }
+            catch (Exception e)
+            {
+                ErrorMessage = e.Message;
+                
+            }
+        }
 
 
     }

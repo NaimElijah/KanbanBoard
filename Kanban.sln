@@ -7,8 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backend", "Backend\Backend.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackendTests", "BackendTests\BackendTests.csproj", "{A0999BFB-BCF3-46A7-8304-1B2C12082F7B}"
 EndProject
+<<<<<<< HEAD
+=======
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Frontend", "Frontend\Frontend.csproj", "{8CE3DE30-3B2B-49E6-856F-9BDB43101472}"
 EndProject
+>>>>>>> mergingAD
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +26,13 @@ Global
 		{A0999BFB-BCF3-46A7-8304-1B2C12082F7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0999BFB-BCF3-46A7-8304-1B2C12082F7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0999BFB-BCF3-46A7-8304-1B2C12082F7B}.Release|Any CPU.Build.0 = Release|Any CPU
+<<<<<<< HEAD
+=======
 		{8CE3DE30-3B2B-49E6-856F-9BDB43101472}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8CE3DE30-3B2B-49E6-856F-9BDB43101472}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8CE3DE30-3B2B-49E6-856F-9BDB43101472}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8CE3DE30-3B2B-49E6-856F-9BDB43101472}.Release|Any CPU.Build.0 = Release|Any CPU
+>>>>>>> mergingAD
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

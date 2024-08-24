@@ -19,8 +19,8 @@ namespace IntroSE.Kanban.Backend.BusinessLayer.BoardModule
             get { return tasksLimit; }
             set
             {
-                tasksLimit = value;
                 ColumnDao.TasksLimit = tasksLimit;  // and this goes to the DAO's set
+                tasksLimit = value;
             }
         }
 

@@ -1,6 +1,8 @@
 ﻿using Frontend.Model;
+using IntroSE.Kanban.Backend.ServiceLayer;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,63 +11,131 @@ namespace Frontend.Model
 {
     public class BoardModel : NotifiableModelObject
     {
-        private string name;
-        public string Name
+        private string boardName;
+        public string BoardName
         {
-            get => name;
+            get => boardName;
             set
             {
-                name = value;
+                boardName = value;
                 RaisePropertyChanged("Name");
             }
         }
+        private string owner; 
+        public string Owner
+        {
+            get => owner;
+            set
+            {
+                owner = value;
+                RaisePropertyChanged("Owner");
+            }
+        }
 
-        private List<string> backlogTasks;
-        public List<string> BacklogTasks
+        private List<string> members;
+        public List<string> Members
+        {
+            get => members;
+            set
+            {
+                members = value;
+                RaisePropertyChanged("members");
+            }
+        }
+
+        private string memberString;
+        public string MemberString
+        {
+            get
+            {
+                string res = "Member List:\n";
+                foreach (var member in Members)
+                {
+                    res += $"{member.ToString()}\n";
+                }
+                //if (res.Length >= 20)
+                //{
+                //    return res.Substring(0,18) + "...";
+                //}
+                return res.Substring(0, res.Length - 1);
+            }
+        }
+
+        private ObservableCollection<TaskModel> backlogTasks;
+        public ObservableCollection<TaskModel> BacklogTasks
         {
             get => backlogTasks;
             set
             {
-                backlogTasks = value;
-                RaisePropertyChanged("BacklogTasks");
+                if (backlogTasks != value)
+                {
+                    backlogTasks = value;
+                    RaisePropertyChanged("BacklogTasks");
+                }
             }
         }
 
-        private List<string> inProgressTasks;
-        public List<string> InProgressTasks
+        private ObservableCollection<TaskModel> inProgressTasks;
+        public ObservableCollection<TaskModel> InProgressTasks
         {
             get => inProgressTasks;
             set
             {
-                inProgressTasks = value;
-                RaisePropertyChanged("InProgressTasks");
+                if (inProgressTasks != value)
+                {
+                    inProgressTasks = value;
+                    RaisePropertyChanged("InProgressTasks");
+                }
             }
         }
 
-        private List<string> doneTasks;
-        public List<string> DoneTasks
+        private ObservableCollection<TaskModel> doneTasks;
+        public ObservableCollection<TaskModel> DoneTasks
         {
             get => doneTasks;
             set
             {
-                doneTasks = value;
-                RaisePropertyChanged("DoneTasks");
+                if (doneTasks != value)
+                {
+                    doneTasks = value;
+                    RaisePropertyChanged("DoneTasks");
+                }
             }
         }
 
-        private UserModel user;
-        public UserModel User
+         
+
+           private string userModelEmail;
+           public string UserModelEmail
+           {
+               get => userModelEmail;
+           }
+
+/*        public BoardModel(BackendController controller, UserModel user, string name, string ownerName, List<string> boardMembers) : base(controller)
         {
-            get => user;
+            BoardName = name;
+            this.userModelEmail = user;
+            Owner = ownerName;
+            Members = boardMembers;
+            backlogTasks = new ObservableCollection<TaskModel>();
+            inProgressTasks = new ObservableCollection<TaskModel>();
+            doneTasks = new ObservableCollection<TaskModel>();
+        }*/
+
+        public BoardModel(BackendController controller, string userEmail, string name, string ownerName, List<string> boardMembers) : base(controller)
+        {
+            BoardName = name;
+            this.userModelEmail = userEmail;
+            Owner = ownerName;
+            Members = boardMembers;
+            backlogTasks = new ObservableCollection<TaskModel>();
+            inProgressTasks = new ObservableCollection<TaskModel>();
+            doneTasks = new ObservableCollection<TaskModel>();
         }
 
-        public BoardModel(BackendController controller, UserModel user, string name) : base(controller)
+        public override string ToString()
         {
-            this.name = name;
-            this.user = user;
-            backlogTasks = new List<string>();
-            inProgressTasks = new List<string>();
-            doneTasks = new List<string>();
+            return boardName;
         }
     }
 }

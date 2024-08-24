@@ -5,43 +5,166 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Frontend.View"
         mc:Ignorable="d"
-        Title="UserView" Height="450" Width="800">
-    <Grid>
+        Title="UserView" Height="450" Width="600"
+        MinHeight="300" MinWidth="450">
+
+    <!-- Window.Resources should go directly under the Window tag -->
+    <Window.Resources>
+        <!-- Example of a StringSplitConverter (assuming you have this converter defined) -->
+        <local:StringSplitConverter x:Key="IdConverter" PartIndex="0" />
+        <local:StringSplitConverter x:Key="NameConverter" PartIndex="1" />
+        <local:StringSplitConverter x:Key="OwnerConverter" PartIndex="2" />
+
+        <!-- Any other resources like styles, brushes, etc. can be added here -->
+    </Window.Resources>
+
+    <Grid Margin="0,0,0,-36">
         <Grid.Background>
-            <SolidColorBrush Color="#FF876EA5" Opacity="1"/>
+            <SolidColorBrush Color="#FFF5F5F5"  Opacity="1"/>
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" MinHeight="90" />
         </Grid.RowDefinitions>
-        <TextBlock Text="Boards" Grid.Row="0"  Margin="10" FontSize="24" Foreground="WhiteSmoke" />
-        <ListView x:Name="BoardListView" Margin="10" Grid.Row="1" Grid.ColumnSpan="5" Background="#FFB1A2A2" Foreground="White" FontSize="20" HorizontalContentAlignment="Center" SelectionChanged ="BoardListView_SelectionChanged" >
+
+        <TextBlock Text="My Boards" Grid.Row="0"  Margin="0,10,0,0" FontSize="28" Foreground="#FF6B8FB4"   HorizontalAlignment="Center" FontWeight="ExtraBlack" FontStyle="Italic" Opacity="0.99" Width="153" >
+            <TextBlock.Effect>
+                <DropShadowEffect BlurRadius="4" Color="#FFE2E0E0" Direction="315" ShadowDepth="5"  />
+            </TextBlock.Effect>
+        </TextBlock>
+        <ListView x:Name="BoardListView" ItemsSource="{Binding Path=UserBoards}" Margin="10,10,10,10" Grid.Row="1" Foreground="White" FontSize="16" HorizontalContentAlignment="Center" SelectionChanged ="BoardListView_SelectionChanged" FontWeight="DemiBold" BorderThickness="2" Background="#FFE0DDD6">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="IsSelected" Value="{Binding IsSelected,Mode=TwoWay}"/>
                 </Style>
             </ListView.ItemContainerStyle>
+
+
+            <!--Ensure items stretch horizontally
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding}"/>
+                    <Border BorderBrush="#FF6B8FB4" BorderThickness="1" Margin="5" HorizontalAlignment="Stretch" Padding="4">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding Path=., Converter={StaticResource NameConverter}}" FontWeight="Bold" FontSize="20" VerticalAlignment="Center" Foreground="#FF6B8FB4"/>
+
+                            <TextBlock Text=" " Width="20" />
+
+                            <TextBlock Text="{Binding Path=., Converter={StaticResource OwnerConverter}}" FontWeight="Normal" FontSize="14" VerticalAlignment="Center" Foreground="#FF6B8FB4"/>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>-->
+
+
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border Background="#5D4037" CornerRadius="3" Margin="5" Padding="15" BorderBrush="#FF6B8FB4" BorderThickness="1">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding Path= BoardName}" FontSize="16" FontWeight="Bold" Foreground="#F48FB1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Text="     " FontSize="16" FontWeight="Bold" Foreground="#F48FB1" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Text="{Binding Path= Owner}" FontSize="12" FontWeight="Normal" Foreground="#F48FB1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Text="     " FontSize="16" FontWeight="Bold" Foreground="#F48FB1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Text="{Binding Path= MemberString}" TextWrapping="WrapWithOverflow" FontSize="12"  VerticalAlignment="Center" FontWeight="Normal" Foreground="#F48FB1" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
                 </DataTemplate>
             </ListView.ItemTemplate>
-        </ListView>
 
-        <Button x:Name="BackButton" Content="Logout" HorizontalContentAlignment="Center" VerticalAlignment="Bottom"
-                Margin="10" Height="40" Width="120" Foreground="White"
-                FontSize="16" FontWeight="Bold" BorderThickness="0" Click="BackButton_Click" Grid.Row="2"
-                Grid.ColumnSpan="3" >
+
+
+        </ListView>
+        <!-- Right Aligned Button -->
+        <Button Name="Logout" Grid.Row="0" Grid.Column="2" Margin="0, 10, 20, 0" HorizontalAlignment="Right" VerticalAlignment="Center"
+                Height="39" Foreground="#FF557DA3" BorderThickness="1" BorderBrush="#AEBDCA"
+                Width="100" Click="LogoutButton_Click">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="Black" Offset="1"/>
-                    <GradientStop Color="White"/>
-                    <GradientStop Color="#FFFFE0E0"/>
-                    <GradientStop Color="#FF776868" Offset="1"/>
-                    <GradientStop Color="#FF443F3F" Offset="0.963"/>
+                    <GradientStop Color="White" Offset="0.145"/>
+                    <GradientStop Color="WhiteSmoke" Offset="0.391"/>
+                    <GradientStop Color="#FF928F87" Offset="1"/>
+                    <GradientStop Color="#FFFBFBFA" Offset="0.258"/>
                 </LinearGradientBrush>
             </Button.Background>
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="8">
+                        <TextBlock Text="Logout"
+                                   TextWrapping="Wrap"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="15"
+                                   TextAlignment="Center"
+                                   Padding="10,5,10,5"
+                                   FontWeight="ExtraBlack" />
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
         </Button>
+
+        <Button Name="Create" Grid.Row="2" Grid.Column="0" Margin="20, 10, 0, 50" HorizontalAlignment="Left" VerticalAlignment="Center"
+                Height="39" Foreground="#FF576C81" BorderThickness="1" BorderBrush="#FF576C81"
+                Width="120" IsDefault="True" Click="Create_Board">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="White" Offset="0.145"/>
+                    <GradientStop Color="WhiteSmoke" Offset="0.391"/>
+                    <GradientStop Color="#FF928F87" Offset="1"/>
+                    <GradientStop Color="#FFFBFBFA" Offset="0.258"/>
+                </LinearGradientBrush>
+            </Button.Background>
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="8">
+                        <TextBlock Text="Add Board"
+                                   TextWrapping="Wrap"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="15"
+                                   TextAlignment="Center"
+                                   Padding="10,5,10,5"
+                                   FontWeight="ExtraBlack" />
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+        <Button Name="button" Grid.Row="2" Grid.Column="2" Margin="0, 10, 20, 50" HorizontalAlignment="Right" VerticalAlignment="Center"
+        Height="39" Foreground="#FF576C81" BorderThickness="1" BorderBrush="#FF576C81"
+        Width="120" IsDefault="True" Click="Delete_Board">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="White" Offset="0.145"/>
+                    <GradientStop Color="WhiteSmoke" Offset="0.391"/>
+                    <GradientStop Color="#FF928F87" Offset="1"/>
+                    <GradientStop Color="#FFFBFBFA" Offset="0.258"/>
+                </LinearGradientBrush>  
+            </Button.Background>
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="8">
+                        <TextBlock Text="Delete board"
+                           TextWrapping="Wrap"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontSize="15"
+                           TextAlignment="Center"
+                           Padding="0"
+                           FontWeight="ExtraBlack" />
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
     </Grid>
 </Window>
