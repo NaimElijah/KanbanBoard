@@ -1,6 +1,4 @@
 ﻿using Frontend.Model;
-using Frontend.Utilities;
-using Frontend.View;
 using Frontend.ViewModel;
 using System;
 using System.Collections.Generic;
