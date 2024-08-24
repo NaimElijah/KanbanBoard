@@ -1,9 +1,11 @@
 ﻿
 using System.Collections.ObjectModel;
+using System.Reflection;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using Frontend.Model;
+using Frontend.Utilities;
 using Frontend.ViewModel;
 using IntroSE.Kanban.Backend.ServiceLayer;
 
@@ -65,7 +67,6 @@ namespace Frontend.View
             }
 
             MessageBox.Show("You Logout successfully");
-
             LoginView loginWindow = new LoginView(model.Controller);
             loginWindow.Show();
             Close();
@@ -82,7 +83,22 @@ namespace Frontend.View
                 MessageBox.Show("No input was given");
                 return;
             }
-
+            BoardModel boardToAdd;
+            try
+            {
+                boardToAdd = vm.Controller.GetUserBoards(model.Email).First(x => x.BoardName == userInput);
+                throw new AmbiguousMatchException($"A board named '{userInput}' already exist for this user!");
+            }
+            catch (AmbiguousMatchException ex)
+            {
+                //board already exist
+                MessageBox.Show(ex.Message);
+                return;
+            }
+            catch (Exception ex)
+            {
+                // do nothing
+            }
             vm.UserBoards.Add(new BoardModel(model.Controller, model.Email, userInput, model.Email, new List<string> { model.Email }));
             MessageBox.Show($"The board '{userInput}' was created!");
         }
@@ -98,7 +114,18 @@ namespace Frontend.View
                 MessageBox.Show("No input was given");
                 return;
             }
-            BoardModel boardToDelete = vm.Controller.GetUserBoards(model.Email).First(x => x.BoardName == userInput);
+            BoardModel boardToDelete;
+            try
+            {
+                boardToDelete = vm.Controller.GetUserBoards(model.Email).First(x => x.BoardName == userInput);
+            }
+            catch (Exception ex)
+            {
+                //board doesnt exist
+                MessageBox.Show($"A board named '{userInput}' doesn't exist for this user!");
+                return;
+            }
+
             vm.UserBoards.Remove(vm.UserBoards.Where(x => x.BoardName == userInput).Single());
             MessageBox.Show($"The board '{userInput}' was Deleted!");
         }

@@ -3,6 +3,7 @@ using Frontend.Model;
 using Frontend.View;
 using System.Windows.Controls;
 using Frontend.ViewModel;
+using Frontend.Utilities;
 
 namespace Frontend.View
 {
@@ -36,7 +37,6 @@ namespace Frontend.View
                 MessageBox.Show(vm.ErrorMessage);
                 return;
             }
-
             MessageBox.Show("Registered successfully");
             UserView uv = new UserView(user);
             uv.Show();
