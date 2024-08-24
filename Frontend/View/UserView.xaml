@@ -136,8 +136,6 @@
                 </TextBlock>
             </StackPanel>
         </Border>
-
-
         <ItemsControl x:Name="BoardItemsControl" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,100,0,0">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -163,10 +161,10 @@
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border Background="{TemplateBinding Background}"
-                                BorderThickness="1"
-                                BorderBrush="#FF576C81"
-                                CornerRadius="15"
-                                Margin="5">
+                                        BorderThickness="1"
+                                        BorderBrush="#FF576C81"
+                                        CornerRadius="15"
+                                        Margin="5">
                                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                                         <TextBlock Text="Add Board" Foreground="#FF576C81" HorizontalAlignment="Center" FontWeight="Bold"/>
                                         <Viewbox Width="30" Height="30" Margin="5">
