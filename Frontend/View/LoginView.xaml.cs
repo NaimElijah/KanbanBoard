@@ -2,6 +2,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using Frontend.Model;
+using Frontend.Utilities;
 using Frontend.View;
 using Frontend.ViewModel;
 
@@ -42,7 +43,6 @@ public partial class LoginView : Window
             MessageBox.Show(vm.ErrorMessage);
             return;
         }
-
         UserView uv = new UserView(user);
         uv.Show();
         Close();

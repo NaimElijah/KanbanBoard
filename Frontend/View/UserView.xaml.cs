@@ -5,6 +5,7 @@ using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using Frontend.Model;
+using Frontend.Utilities;
 using Frontend.ViewModel;
 using IntroSE.Kanban.Backend.ServiceLayer;
 
@@ -68,9 +69,8 @@ namespace Frontend.View
             {
                 MessageBox.Show(vm.ErrorMessage);    
             }
-                       
+            
             MessageBox.Show("You Logout successfully");
-
             LoginView loginWindow = new LoginView(model.Controller);
             loginWindow.Show();
             Close();

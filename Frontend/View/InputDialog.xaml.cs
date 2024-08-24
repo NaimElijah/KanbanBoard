@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Frontend.Utilities;
+using System.Windows;
 
 
 namespace Frontend.View
