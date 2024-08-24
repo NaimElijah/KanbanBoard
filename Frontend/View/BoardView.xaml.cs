@@ -1,6 +1,9 @@
 ﻿using Frontend.Model;
+<<<<<<< HEAD
 using Frontend.Utilities;
 using Frontend.View;
+=======
+>>>>>>> UserView2
 using Frontend.ViewModel;
 using System;
 using System.Collections.Generic;

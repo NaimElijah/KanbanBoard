@@ -10,161 +10,178 @@
 
     <!-- Window.Resources should go directly under the Window tag -->
     <Window.Resources>
-        <!-- Example of a StringSplitConverter (assuming you have this converter defined) -->
+        <!-- Example of a StringSplitConverter (assuming you have this converter defined)
         <local:StringSplitConverter x:Key="IdConverter" PartIndex="0" />
         <local:StringSplitConverter x:Key="NameConverter" PartIndex="1" />
-        <local:StringSplitConverter x:Key="OwnerConverter" PartIndex="2" />
+        <local:StringSplitConverter x:Key="OwnerConverter" PartIndex="2" /> -->
 
         <!-- Any other resources like styles, brushes, etc. can be added here -->
+
+        <!-- Delete Button Style -->
+        <Style x:Key="DeleteButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <!-- Background Ellipse -->
+                            <Ellipse x:Name="ellipse" 
+                               Fill="{TemplateBinding Background}"
+                               Stroke="White"
+                               StrokeThickness="1" />
+                            <!-- 'X' TextBlock Overlayed on the Ellipse -->
+                            <TextBlock Text="X"
+                                  HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                  Foreground="{TemplateBinding Foreground}"
+                                  FontSize="{TemplateBinding FontSize}" />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <!-- Trigger to change the background on mouse over -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ellipse" Property="Fill" Value="#664A44"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+        <!-- Button Style with Rounded Corners -->
+        <Style x:Key="BoardsButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <!-- Delete Button -->
+                            <Button x:Name="DeleteButton"
+                                    Width="20"
+                                    Height="20"
+                                    Background="#FF43553E"
+                                    Foreground="#FFF6F6E9"
+                                    FontSize="10"
+                                    Content="X"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Margin="15,15,5,5"
+                                    Click="Delete_Board"
+                                    Style="{StaticResource DeleteButtonStyle}"
+                                    Panel.ZIndex="1"/>
+
+                            <Border Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="1"
+                                    CornerRadius="15"
+                                    Margin="5">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+
+
+        <!-- Log Out Button Style -->
+        <Style x:Key="LogOutButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border   
+                       BorderBrush="#AEBDCA"
+                        BorderThickness="1"
+                        CornerRadius="5"
+                        Margin="5">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="White" Offset="0.145"/>
+                                    <GradientStop Color="WhiteSmoke" Offset="0.391"/>
+                                    <GradientStop Color="#FF928F87" Offset="1"/>
+                                    <GradientStop Color="#FFFBFBFA" Offset="0.258"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
     </Window.Resources>
 
-    <Grid Margin="0,0,0,-36">
+
+    <Grid>
         <Grid.Background>
             <SolidColorBrush Color="#FFF5F5F5"  Opacity="1"/>
         </Grid.Background>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-            <RowDefinition Height="Auto" MinHeight="90" />
-        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Background="#FF758A70" Margin="10">
+            <Button Style="{StaticResource LogOutButtonStyle}" Content="Log Out" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,6,0,0" Width="74" Height="30" Background="#FFF6F6E9" FontSize="14" FontWeight="Bold" Foreground="#FF557DA3" BorderThickness="1" BorderBrush="#AEBDCA" Click="LogoutButton_Click"/>
+            <TextBlock x:Name="greetingTextBlock" Text="Hello User!" Foreground="#FFF6F6E9" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,10,0,0"/>
+        </StackPanel>
 
-        <TextBlock Text="My Boards" Grid.Row="0"  Margin="0,10,0,0" FontSize="28" Foreground="#FF6B8FB4"   HorizontalAlignment="Center" FontWeight="ExtraBlack" FontStyle="Italic" Opacity="0.99" Width="153" >
-            <TextBlock.Effect>
-                <DropShadowEffect BlurRadius="4" Color="#FFE2E0E0" Direction="315" ShadowDepth="5"  />
-            </TextBlock.Effect>
-        </TextBlock>
-        <ListView x:Name="BoardListView" ItemsSource="{Binding Path=UserBoards}" Margin="10,10,10,10" Grid.Row="1" Foreground="White" FontSize="16" HorizontalContentAlignment="Center" SelectionChanged ="BoardListView_SelectionChanged" FontWeight="DemiBold" BorderThickness="2" Background="#FFE0DDD6">
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="IsSelected" Value="{Binding IsSelected,Mode=TwoWay}"/>
-                </Style>
-            </ListView.ItemContainerStyle>
+        <!-- My Boards Label -->
+        <Border Background="#F6F6E9"
+            BorderBrush="#AEBDCA" 
+            BorderThickness="1"
+            CornerRadius="10"
+            HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,65,0,0" Height="50" Width="500">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="My Boards" FontSize="25"  Foreground="#FF6B8FB4" HorizontalAlignment="Left" Margin="0,10,0,0" RenderTransformOrigin="0.499,1.07" Height="46" FontWeight="ExtraBlack" FontStyle="Italic" Opacity="0.99" Width="153" >
+                    <TextBlock.Effect>
+                        <DropShadowEffect BlurRadius="4" Color="#FFE2E0E0" Direction="315" ShadowDepth="5"  />
+                    </TextBlock.Effect>
+                </TextBlock>
+            </StackPanel>
+        </Border>
 
 
-            <!--Ensure items stretch horizontally
-            <ListView.ItemTemplate>
+        <ItemsControl x:Name="BoardItemsControl" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,100,0,0">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="3"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+
+            <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Border BorderBrush="#FF6B8FB4" BorderThickness="1" Margin="5" HorizontalAlignment="Stretch" Padding="4">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
-                            <TextBlock Text="{Binding Path=., Converter={StaticResource NameConverter}}" FontWeight="Bold" FontSize="20" VerticalAlignment="Center" Foreground="#FF6B8FB4"/>
-
-                            <TextBlock Text=" " Width="20" />
-
-                            <TextBlock Text="{Binding Path=., Converter={StaticResource OwnerConverter}}" FontWeight="Normal" FontSize="14" VerticalAlignment="Center" Foreground="#FF6B8FB4"/>
+                    <Button Style="{StaticResource BoardsButtonStyle}" Background="#FF43553E" Foreground="Pink" Width="150" Height="150" Click="Selcted_Board_Button_Click">
+                        <StackPanel>
+                            <TextBlock Text="{Binding Path=BoardName}" HorizontalAlignment="Center" Foreground="#FFF6F6E9"/>
+                            <TextBlock Text="{Binding Path=Owner}" HorizontalAlignment="Center" Foreground="#FFF6F6E9"/>
                         </StackPanel>
-                    </Border>
+                    </Button>
                 </DataTemplate>
-            </ListView.ItemTemplate>-->
+            </ItemsControl.ItemTemplate>
 
-
-
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Border Background="#5D4037" CornerRadius="3" Margin="5" Padding="15" BorderBrush="#FF6B8FB4" BorderThickness="1">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <TextBlock Text="{Binding Path= BoardName}" FontSize="16" FontWeight="Bold" Foreground="#F48FB1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            <TextBlock Text="     " FontSize="16" FontWeight="Bold" Foreground="#F48FB1" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            <TextBlock Text="{Binding Path= Owner}" FontSize="12" FontWeight="Normal" Foreground="#F48FB1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            <TextBlock Text="     " FontSize="16" FontWeight="Bold" Foreground="#F48FB1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            <TextBlock Text="{Binding Path= MemberString}" TextWrapping="WrapWithOverflow" FontSize="12"  VerticalAlignment="Center" FontWeight="Normal" Foreground="#F48FB1" HorizontalAlignment="Center"/>
-                        </StackPanel>
-                    </Border>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-
-
-
-        </ListView>
-        <!-- Right Aligned Button -->
-        <Button Name="Logout" Grid.Row="0" Grid.Column="2" Margin="0, 10, 20, 0" HorizontalAlignment="Right" VerticalAlignment="Center"
-                Height="39" Foreground="#FF557DA3" BorderThickness="1" BorderBrush="#AEBDCA"
-                Width="100" Click="LogoutButton_Click">
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="White" Offset="0.145"/>
-                    <GradientStop Color="WhiteSmoke" Offset="0.391"/>
-                    <GradientStop Color="#FF928F87" Offset="1"/>
-                    <GradientStop Color="#FFFBFBFA" Offset="0.258"/>
-                </LinearGradientBrush>
-            </Button.Background>
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Border Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="8">
-                        <TextBlock Text="Logout"
-                                   TextWrapping="Wrap"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   FontSize="15"
-                                   TextAlignment="Center"
-                                   Padding="10,5,10,5"
-                                   FontWeight="ExtraBlack" />
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
-
-        <Button Name="Create" Grid.Row="2" Grid.Column="0" Margin="20, 10, 0, 50" HorizontalAlignment="Left" VerticalAlignment="Center"
-                Height="39" Foreground="#FF576C81" BorderThickness="1" BorderBrush="#FF576C81"
-                Width="120" IsDefault="True" Click="Create_Board">
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="White" Offset="0.145"/>
-                    <GradientStop Color="WhiteSmoke" Offset="0.391"/>
-                    <GradientStop Color="#FF928F87" Offset="1"/>
-                    <GradientStop Color="#FFFBFBFA" Offset="0.258"/>
-                </LinearGradientBrush>
-            </Button.Background>
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Border Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="8">
-                        <TextBlock Text="Add Board"
-                                   TextWrapping="Wrap"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   FontSize="15"
-                                   TextAlignment="Center"
-                                   Padding="10,5,10,5"
-                                   FontWeight="ExtraBlack" />
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
-
-        <Button Name="button" Grid.Row="2" Grid.Column="2" Margin="0, 10, 20, 50" HorizontalAlignment="Right" VerticalAlignment="Center"
-        Height="39" Foreground="#FF576C81" BorderThickness="1" BorderBrush="#FF576C81"
-        Width="120" IsDefault="True" Click="Delete_Board">
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="White" Offset="0.145"/>
-                    <GradientStop Color="WhiteSmoke" Offset="0.391"/>
-                    <GradientStop Color="#FF928F87" Offset="1"/>
-                    <GradientStop Color="#FFFBFBFA" Offset="0.258"/>
-                </LinearGradientBrush>  
-            </Button.Background>
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Border Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        CornerRadius="8">
-                        <TextBlock Text="Delete board"
-                           TextWrapping="Wrap"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           FontSize="15"
-                           TextAlignment="Center"
-                           Padding="0"
-                           FontWeight="ExtraBlack" />
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
-
+            <ItemsControl.ItemsSource>
+                <CompositeCollection>
+                    <CollectionContainer Collection="{Binding Path=UserBoards}" />
+                    <Button Background="#FFCBDDD1" Foreground="#FFCBDDD1" Width="150" Height="150" IsDefault="True" Click="Create_Board">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                BorderThickness="1"
+                                BorderBrush="#FF576C81"
+                                CornerRadius="15"
+                                Margin="5">
+                                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <TextBlock Text="Add Board" Foreground="#FF576C81" HorizontalAlignment="Center" FontWeight="Bold"/>
+                                        <Viewbox Width="30" Height="30" Margin="5">
+                                            <Grid>
+                                                <Ellipse Width="30" Height="30" Fill="#FFCBDDD1" Stroke="#FF576C81" StrokeThickness="3"/>
+                                                <TextBlock Text="+" FontSize="25" Foreground="#FF576C81" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,5.5" FontWeight="Bold"/>
+                                            </Grid>
+                                        </Viewbox>
+                                    </StackPanel>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </CompositeCollection>
+            </ItemsControl.ItemsSource>
+        </ItemsControl>
     </Grid>
 </Window>
