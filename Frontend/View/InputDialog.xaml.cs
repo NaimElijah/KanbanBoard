@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Frontend.Utilities;
+using System.Windows;
 
 
 namespace Frontend.View
@@ -16,10 +17,12 @@ namespace Frontend.View
             InitializeComponent();
             this.Title = title;
             this.PromptTextBlock.Text = message;
+            SoundManager.PlaySound(SoundManager.SoundEffect.Click);
         }
 
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
+            SoundManager.PlaySound(SoundManager.SoundEffect.Click);
             UserInput = InputTextBox.Text;
             this.DialogResult = true;
             this.Close();
@@ -27,9 +30,11 @@ namespace Frontend.View
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
+            SoundManager.PlaySound(SoundManager.SoundEffect.Click);
             this.DialogResult = false;
             MessageBox.Show("Operation canceled.");
             ClosedByUser = true;
+            SoundManager.PlaySound(SoundManager.SoundEffect.Click);
             this.Close();
         }
     }

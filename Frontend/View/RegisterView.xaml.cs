@@ -3,6 +3,7 @@ using Frontend.Model;
 using Frontend.View;
 using System.Windows.Controls;
 using Frontend.ViewModel;
+using Frontend.Utilities;
 
 namespace Frontend.View
 {
@@ -21,6 +22,7 @@ namespace Frontend.View
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
+            SoundManager.PlaySound(SoundManager.SoundEffect.Click);
             vm.Email = "";
             vm.Password = "";
             LoginView loginWindow = new LoginView(vm);
@@ -30,13 +32,15 @@ namespace Frontend.View
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
+            SoundManager.PlaySound(SoundManager.SoundEffect.Click);
             UserModel? user = vm.Register();
             if (user == null)
             {
+                SoundManager.PlaySound(SoundManager.SoundEffect.Error);
                 MessageBox.Show(vm.ErrorMessage);
+                SoundManager.PlaySound(SoundManager.SoundEffect.Click);
                 return;
             }
-
             MessageBox.Show("Registered successfully");
             UserView uv = new UserView(user);
             uv.Show();
