@@ -67,15 +67,6 @@ namespace Frontend.View
             {
                 MessageBox.Show(vm.ErrorMessage);
             }
-<<<<<<< HEAD
-<<<<<<< HEAD
-            
-=======
-
->>>>>>> UserView2
-=======
-
->>>>>>> UserView2
             MessageBox.Show("You Logout successfully");
             LoginView loginWindow = new LoginView(model.Controller);
             loginWindow.Show();
@@ -95,12 +86,7 @@ namespace Frontend.View
                 MessageBox.Show("No input was given");
                 return;
             }
-<<<<<<< HEAD
-<<<<<<< HEAD
             BoardModel boardToAdd;
-=======
-
->>>>>>> UserView2
             try
             {
                 // Check if the board already exists
@@ -121,14 +107,6 @@ namespace Frontend.View
             {
                 MessageBox.Show(ex.Message);
             }
-<<<<<<< HEAD
-=======
->>>>>>> UserView2
-
-            vm.UserBoards.Add(new BoardModel(model.Controller, model.Email, userInput, model.Email, new List<string> { model.Email }));
-            MessageBox.Show($"The board '{userInput}' was created!");
-=======
->>>>>>> UserView2
         }
 
         private void Delete_Board(object sender, RoutedEventArgs e)
