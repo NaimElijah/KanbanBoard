@@ -18,21 +18,16 @@ namespace Frontend.View
     {
         public UserVM vm;
         public UserModel model;
-     
+
         public UserView(UserModel user)
         {
             InitializeComponent();
             vm = new UserVM(user);
-            
-            //DataContext =vm;
-            //Title = $"Welcome '{user.Email.Split("@")[0]}'!";
-            //BoardListView.ItemsSource = user.Boards;
-
             DataContext = vm;
-            Title = user.Email;
-            BoardListView.ItemsSource = vm.UserBoards;
-
+            Title = $"Welcome '{user.Email.Split('@')[0]}'!";
             model = user;
+
+            //BoardListView.ItemsSource = vm.UserBoards;
         }
 
         public UserView(BoardModel board)
@@ -41,33 +36,34 @@ namespace Frontend.View
             vm = new UserVM(board);
             model = new UserModel(board.Controller, board.UserModelEmail, board.Controller.GetUserBoards(board.UserModelEmail));
             Title = board.UserModelEmail;
-            BoardListView.ItemsSource = vm.UserBoards;
-            DataContext =vm;
+            DataContext = vm;
+            //BoardListView.ItemsSource = vm.UserBoards;
         }
 
-        private void BoardListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (BoardListView.SelectedItem != null)
-            { 
-                //BoardModel board = vm.GetBoard(model, "" + BoardListView.SelectedItem.ToString().Split(":")[1]);
 
-                //BoardModel board = vm.GetBoard(model.Email,""+BoardListView.SelectedItem.ToString());
-                BoardModel board = vm.GetBoard(model, "" + BoardListView.SelectedItem);
+        /*    private void BoardListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+            {
+                if (BoardListView.SelectedItem != null)
+                { 
+                    //BoardModel board = vm.GetBoard(model, "" + BoardListView.SelectedItem.ToString().Split(":")[1]);
 
-                BoardView boardView = new BoardView(board);
-                boardView.Show();
-                Close();
-            }
-        }
+                    //BoardModel board = vm.GetBoard(model.Email,""+BoardListView.SelectedItem.ToString());
+                    BoardModel board = vm.GetBoard(model, "" + BoardListView.SelectedItem);
+
+                    BoardView boardView = new BoardView(board);
+                    boardView.Show();
+                    Close();
+                }
+            }*/
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
             vm.LogoutUser(model.Email);
             if (vm.ErrorMessage != string.Empty)
             {
-                MessageBox.Show(vm.ErrorMessage);    
+                MessageBox.Show(vm.ErrorMessage);
             }
-                       
+
             MessageBox.Show("You Logout successfully");
 
             LoginView loginWindow = new LoginView(model.Controller);
@@ -86,7 +82,7 @@ namespace Frontend.View
                 MessageBox.Show("No input was given");
                 return;
             }
-            
+
             vm.UserBoards.Add(new BoardModel(model.Controller, model.Email, userInput, model.Email, new List<string> { model.Email }));
             MessageBox.Show($"The board '{userInput}' was created!");
         }
@@ -105,6 +101,19 @@ namespace Frontend.View
             BoardModel boardToDelete = vm.Controller.GetUserBoards(model.Email).First(x => x.BoardName == userInput);
             vm.UserBoards.Remove(vm.UserBoards.Where(x => x.BoardName == userInput).Single());
             MessageBox.Show($"The board '{userInput}' was Deleted!");
+        }
+        private void Selcted_Board_Button_Click(object sender, RoutedEventArgs e)
+        {
+            // Assuming this is the click handler for the Board button
+            Button boardButton = sender as Button;
+            BoardModel selectedBoard = boardButton.DataContext as BoardModel;
+
+            if (selectedBoard != null)
+            {
+                BoardView boardView = new BoardView(selectedBoard);
+                boardView.Show();
+                Close();
+            }
         }
     }
 }
