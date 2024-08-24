@@ -1,8 +1,13 @@
 ﻿using Frontend.Model;
 <<<<<<< HEAD
+<<<<<<< HEAD
 using Frontend.Utilities;
 using Frontend.View;
 =======
+>>>>>>> UserView2
+=======
+using Frontend.Utilities;
+using Frontend.View;
 >>>>>>> UserView2
 using Frontend.ViewModel;
 using System;
