@@ -179,7 +179,7 @@ namespace Frontend.View
                 Style = (Style)FindResource("BoardsButtonStyle"),
                 //Background = new SolidColorBrush(ColorConverter.ConvertFromString("{ TemplateBinding Background }")),
                 //Foreground = new SolidColorBrush(Colors.Pink),
-                //Width = 150, // Use consistent width and height
+                Width = 150, // Use consistent width and height
                 Height = 150,
                 DataContext = board, // Bind DataContext to the board
          
@@ -209,10 +209,10 @@ namespace Frontend.View
             var addButton = new Button
             {
                 Style = (Style)FindResource("AddBoardButtonStyle"),
-                Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF7A8374")),
+               /* Background = (Color)FindResource(),
                 Foreground = new SolidColorBrush(Colors.Pink),
                 Width = 150,
-                Height = 150
+                Height = 150*/
             };
 
             // Hook up the click event for "Add Board" button
