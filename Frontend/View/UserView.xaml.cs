@@ -102,6 +102,7 @@ namespace Frontend.View
                 LoadBoards(); // Refresh the boards
                 MessageBox.Show($"The board '{userInput}' was created!");
                 
+                
             }
             catch (Exception ex)
             {
