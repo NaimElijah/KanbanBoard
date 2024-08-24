@@ -1,4 +1,5 @@
 ﻿using Frontend.Model;
+using Frontend.Utilities;
 using Frontend.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,7 @@ namespace Frontend.View
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
+            SoundManager.PlaySound(SoundManager.SoundEffect.Click);
             UserView userWindow = new UserView(model);
             userWindow.Show();
             this.Close();

@@ -2,6 +2,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using Frontend.Model;
+using Frontend.Resources;
 using Frontend.Utilities;
 using Frontend.View;
 using Frontend.ViewModel;
@@ -19,6 +20,7 @@ public partial class LoginView : Window
         vm = new LoginVM();
         Title = "Login menu";
         DataContext = vm;
+        SoundManager.PlaySound(SoundManager.SoundEffect.Welcome);
     }
 
     public LoginView(BackendController controller)
@@ -37,10 +39,11 @@ public partial class LoginView : Window
 
     private void LoginButton_Click(object sender, RoutedEventArgs e)
     {
+        SoundManager.PlaySound(SoundManager.SoundEffect.Click);
         UserModel? user = vm.Login();
         if (user == null)
         {
-            MessageBox.Show(vm.ErrorMessage);
+            MessageDisplayer.DisplayError(vm.ErrorMessage);
             return;
         }
         UserView uv = new UserView(user);
@@ -50,6 +53,7 @@ public partial class LoginView : Window
 
     private void RegisterButton_Click(object sender, RoutedEventArgs e)
     {
+        SoundManager.PlaySound(SoundManager.SoundEffect.Click);
         vm.Email = "";
         vm.Password = "";
         RegisterView registerView = new RegisterView(vm);

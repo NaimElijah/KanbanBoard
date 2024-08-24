@@ -123,8 +123,8 @@
                         Margin="5">
                             <Grid>
                                 <Ellipse x:Name="PlusCircle"
-                                 Width="50"
-                                 Height="50"
+                                 Width="40"
+                                 Height="40"
                                  Fill="{TemplateBinding Background}"
                                  Stroke="Pink"
                                  StrokeThickness="2"/>
@@ -132,6 +132,7 @@
                                    Text="+"
                                    FontSize="40"
                                    Foreground="Pink"
+                                   Margin="0,0,0,8"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center"/>
                                 <TextBlock Text="Add Board"

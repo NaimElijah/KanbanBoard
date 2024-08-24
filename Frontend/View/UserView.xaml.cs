@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using Frontend.Model;
+using Frontend.Resources;
 using Frontend.Utilities;
 using Frontend.ViewModel;
 using IntroSE.Kanban.Backend.ServiceLayer;
@@ -66,12 +67,10 @@ namespace Frontend.View
             vm.LogoutUser(model.Email);
             if (vm.ErrorMessage != string.Empty)
             {
-                SoundManager.PlaySound(SoundManager.SoundEffect.Error);
-                MessageBox.Show(vm.ErrorMessage);
-                SoundManager.PlaySound(SoundManager.SoundEffect.Click);
+                MessageDisplayer.DisplayError(vm.ErrorMessage);
             }
             SoundManager.PlaySound(SoundManager.SoundEffect.Logout);
-            MessageBox.Show("You Logout successfully");
+            MessageDisplayer.DisplayMessage("You Logout successfully");
             LoginView loginWindow = new LoginView(model.Controller);
             loginWindow.Show();
             Close();
@@ -80,18 +79,14 @@ namespace Frontend.View
 
         private void Create_Board(object sender, RoutedEventArgs e)
         {
-            SoundManager.PlaySound(SoundManager.SoundEffect.Click);
             InputDialog newBoardName = new InputDialog("Creating a new board", "Please enter the name of the new board");
-            SoundManager.PlaySound(SoundManager.SoundEffect.Click);
             newBoardName.ShowDialog();
             if (newBoardName.ClosedByUser) return;
 
             string userInput = newBoardName.UserInput;
             if (string.IsNullOrWhiteSpace(userInput))
             {
-                SoundManager.PlaySound(SoundManager.SoundEffect.Error);
-                MessageBox.Show("No input was given");
-                SoundManager.PlaySound(SoundManager.SoundEffect.Click);
+                MessageDisplayer.DisplayError("No input was given");
                 return;
             }
             BoardModel boardToAdd;
@@ -107,21 +102,18 @@ namespace Frontend.View
                 // Create and add the new board
                 var newBoard = new BoardModel(model.Controller, model.Email, userInput, model.Email, new List<string> { model.Email });
                 vm.UserBoards.Add(newBoard);
-
-                MessageBox.Show($"The board '{userInput}' was created!");
                 LoadBoards(); // Refresh the boards
+                MessageDisplayer.DisplayMessage($"The board '{userInput}' was created!");
+               
             }
             catch (Exception ex)
             {
-                SoundManager.PlaySound(SoundManager.SoundEffect.Error);
-                MessageBox.Show(ex.Message);
-                SoundManager.PlaySound(SoundManager.SoundEffect.Click);
+                MessageDisplayer.DisplayError(ex.Message);
             }
         }
 
         private void Delete_Board(object sender, RoutedEventArgs e)
         {
-            SoundManager.PlaySound(SoundManager.SoundEffect.Click);
             e.Handled = true;
             // Get the button that was clicked
             Button deleteButton = sender as Button;
@@ -135,15 +127,13 @@ namespace Frontend.View
             BoardModel boardToDelete = boardButton.DataContext as BoardModel;
             if (boardToDelete == null)
             {
-                SoundManager.PlaySound(SoundManager.SoundEffect.Error);
-                MessageBox.Show("Unable to identify the board to delete.");
-                SoundManager.PlaySound(SoundManager.SoundEffect.Click);
+                MessageDisplayer.DisplayError("Unable to identify the board to delete.");
                 return;
             }
 
             // Confirm deletion with the user
             MessageBoxResult result = MessageBox.Show($"Are you sure you want to delete the board '{boardToDelete.BoardName}'?", "Confirm Deletion", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-
+            SoundManager.PlaySound(SoundManager.SoundEffect.Click);
             if (result == MessageBoxResult.Yes)
             {
                 try
@@ -152,16 +142,12 @@ namespace Frontend.View
                     vm.UserBoards.Remove(boardToDelete);
 
                     LoadBoards();
-                    SoundManager.PlaySound(SoundManager.SoundEffect.Notification);
-                    MessageBox.Show($"The board '{boardToDelete.BoardName}' was deleted successfully.");
-                    SoundManager.PlaySound(SoundManager.SoundEffect.Click);
+                    MessageDisplayer.DisplayMessage($"The board '{boardToDelete.BoardName}' was deleted successfully.");
 
                 }
                 catch (Exception ex)
                 {
-                    SoundManager.PlaySound(SoundManager.SoundEffect.Error);
-                    MessageBox.Show($"An error occurred while deleting the board: {ex.Message}");
-                    SoundManager.PlaySound(SoundManager.SoundEffect.Click);
+                    MessageDisplayer.DisplayError($"An error occurred while deleting the board: {ex.Message}");
                 }
             }
         }
