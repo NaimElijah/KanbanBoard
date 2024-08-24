@@ -13,7 +13,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock x:Name="PromptTextBlock" Text="Please enter your input:" Grid.Row="0" Margin="0,0,0,10" FontWeight="Bold" FontFamily=""/>
+        <TextBlock x:Name="PromptTextBlock" Text="Please enter your input:" Grid.Row="0" Margin="0,0,0,10" FontWeight="Bold" />
 
         <TextBox x:Name="InputTextBox" Grid.Row="1" Width="280" HorizontalAlignment="Center" Margin="0,12,0,6"/>
 

@@ -67,7 +67,6 @@ namespace Frontend.View
             {
                 MessageBox.Show(vm.ErrorMessage);
             }
-
             MessageBox.Show("You Logout successfully");
             LoginView loginWindow = new LoginView(model.Controller);
             loginWindow.Show();
@@ -87,7 +86,7 @@ namespace Frontend.View
                 MessageBox.Show("No input was given");
                 return;
             }
-
+            BoardModel boardToAdd;
             try
             {
                 // Check if the board already exists
@@ -100,9 +99,9 @@ namespace Frontend.View
                 // Create and add the new board
                 var newBoard = new BoardModel(model.Controller, model.Email, userInput, model.Email, new List<string> { model.Email });
                 vm.UserBoards.Add(newBoard);
-
-                MessageBox.Show($"The board '{userInput}' was created!");
                 LoadBoards(); // Refresh the boards
+                MessageBox.Show($"The board '{userInput}' was created!");
+                
             }
             catch (Exception ex)
             {
@@ -112,6 +111,9 @@ namespace Frontend.View
 
         private void Delete_Board(object sender, RoutedEventArgs e)
         {
+
+            e.Handled = true;
+
             // Get the button that was clicked
             Button deleteButton = sender as Button;
             if (deleteButton == null) return;
@@ -124,7 +126,6 @@ namespace Frontend.View
             BoardModel boardToDelete = boardButton.DataContext as BoardModel;
             if (boardToDelete == null)
             {
-           
                 MessageBox.Show("Unable to identify the board to delete.");
                 return;
             }
@@ -138,10 +139,8 @@ namespace Frontend.View
                 {
                     // Remove the board from the ViewModel's collection
                     vm.UserBoards.Remove(boardToDelete);
-
-                    // You might also want to call a method on your controller to delete the board from the backend
-                    // vm.Controller.DeleteBoard(model.Email, boardToDelete.BoardName);
                     LoadBoards() ;
+
                     MessageBox.Show($"The board '{boardToDelete.BoardName}' was deleted successfully.");
                 }
                 catch (Exception ex)
@@ -149,7 +148,7 @@ namespace Frontend.View
                     MessageBox.Show($"An error occurred while deleting the board: {ex.Message}");
                 }
             }
-            
+
         }
         private void Selcted_Board_Button_Click(object sender, RoutedEventArgs e)
         {
@@ -177,9 +176,9 @@ namespace Frontend.View
             var boardButtons = boards.Select(board => new Button
             {
                 Style = (Style)FindResource("BoardsButtonStyle"),
-                Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#33100D")),
-                Foreground = new SolidColorBrush(Colors.Pink),
-                Width = 150, // Use consistent width and height
+                //Background = new SolidColorBrush(ColorConverter.ConvertFromString("{ TemplateBinding Background }")),
+                //Foreground = new SolidColorBrush(Colors.Pink),
+                //Width = 150, // Use consistent width and height
                 Height = 150,
                 DataContext = board, // Bind DataContext to the board
          
@@ -203,54 +202,16 @@ namespace Frontend.View
                 }
             }).ToList();
 
+            foreach (var button in boardButtons) button.Click += Selcted_Board_Button_Click;
+
             // Add "Add Board" button
             var addButton = new Button
             {
-                Style = (Style)FindResource("BoardsButtonStyle"),
-                Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#664A44")),
+                Style = (Style)FindResource("AddBoardButtonStyle"),
+                Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF7A8374")),
                 Foreground = new SolidColorBrush(Colors.Pink),
                 Width = 150,
-                Height = 150,
-                Content = new StackPanel
-                {
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                    VerticalAlignment = VerticalAlignment.Center,
-                    Children =
-            {
-                new TextBlock
-                {
-                    Text = "Add Board",
-                    HorizontalAlignment = HorizontalAlignment.Center
-                },
-                new Viewbox
-                {
-                    Width = 30,
-                    Height = 30,
-                    Child = new Grid
-                    {
-                        Children =
-                        {
-                            new Ellipse
-                            {
-                                Width = 30,
-                                Height = 30,
-                                Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#664A44")),
-                                Stroke = new SolidColorBrush(Colors.Pink),
-                                StrokeThickness = 2
-                            },
-                            new TextBlock
-                            {
-                                Text = "+",
-                                FontSize = 20,
-                                Foreground = new SolidColorBrush(Colors.Pink),
-                                HorizontalAlignment = HorizontalAlignment.Center,
-                                VerticalAlignment = VerticalAlignment.Center
-                            }
-                        }
-                    }
-                }
-            }
-                }
+                Height = 150
             };
 
             // Hook up the click event for "Add Board" button
