@@ -110,8 +110,50 @@
             <Setter Property="Padding" Value="10,5"/>
             <Setter Property="FontSize" Value="16"/>
         </Style>
-    </Window.Resources>
 
+        <Style x:Key="AddBoardButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="MainBorder"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="15"
+                        Margin="5">
+                            <Grid>
+                                <Ellipse x:Name="PlusCircle"
+                                 Width="50"
+                                 Height="50"
+                                 Fill="{TemplateBinding Background}"
+                                 Stroke="Pink"
+                                 StrokeThickness="2"/>
+                                <TextBlock x:Name="PlusSymbol"
+                                   Text="+"
+                                   FontSize="40"
+                                   Foreground="Pink"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+                                <TextBlock Text="Add Board"
+                                   Foreground="White"
+                                   FontSize="16"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Bottom"
+                                   Margin="0,0,0,10"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="PlusCircle" Property="Fill" Value="#FF7A8374"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    
+    
 
     <Grid>
         <Grid.Background>
