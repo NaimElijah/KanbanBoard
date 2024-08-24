@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Frontend.View"
         mc:Ignorable="d"
-        Title="UserView" Height="450" Width="600"
-        MinHeight="300" MinWidth="450">
+        Title="UserView" Height="550" Width="600"
+        MinHeight="550" MinWidth="550">
 
     <!-- Window.Resources should go directly under the Window tag -->
     <Window.Resources>
@@ -51,7 +51,8 @@
         <Style x:Key="BoardsButtonStyle" TargetType="Button">
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="Button">
+                    <ControlTemplate TargetType="Button" >
+                        <Grid>
                         <Grid>
                             <!-- Delete Button -->
                             <Button x:Name="DeleteButton"
@@ -72,9 +73,11 @@
                                     BorderBrush="{TemplateBinding BorderBrush}"
                                     BorderThickness="1"
                                     CornerRadius="15"
-                                    Margin="5">
+                                    Margin="5" >
+
                                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
+                        </Grid>
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
@@ -145,9 +148,9 @@
 
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Button Style="{StaticResource BoardsButtonStyle}" Background="#FF43553E" Foreground="Pink" Width="150" Height="150" Click="Selcted_Board_Button_Click">
+                    <Button Style="{StaticResource BoardsButtonStyle}"  Background="#FF43553E" Foreground="Pink" Width="150" Height="150" Click="Selcted_Board_Button_Click">
                         <StackPanel>
-                            <TextBlock Text="{Binding Path=BoardName}" HorizontalAlignment="Center" Foreground="#FFF6F6E9"/>
+                            <TextBlock Text="{Binding Path= BoardName}" HorizontalAlignment="Center" Foreground="#FFF6F6E9"/>
                             <TextBlock Text="{Binding Path=Owner}" HorizontalAlignment="Center" Foreground="#FFF6F6E9"/>
                         </StackPanel>
                     </Button>
@@ -178,6 +181,7 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
+          
                 </CompositeCollection>
             </ItemsControl.ItemsSource>
         </ItemsControl>

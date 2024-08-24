@@ -112,30 +112,44 @@ namespace Frontend.View
 
         private void Delete_Board(object sender, RoutedEventArgs e)
         {
-            InputDialog newBoardName = new InputDialog("Deleting a new board", "Please enter the name of the board you want to delete");
-            newBoardName.ShowDialog();
-            if (newBoardName.ClosedByUser) return;
-            string userInput = newBoardName.UserInput;
-            if (userInput == null || userInput == "")
+            // Get the button that was clicked
+            Button deleteButton = sender as Button;
+            if (deleteButton == null) return;
+
+            // Get the parent button (the main board button)
+            Button boardButton = deleteButton.TemplatedParent as Button;
+            if (boardButton == null) return;
+
+            // Get the BoardModel from the DataContext of the board button
+            BoardModel boardToDelete = boardButton.DataContext as BoardModel;
+            if (boardToDelete == null)
             {
-                MessageBox.Show("No input was given");
-                return;
-            }
-            BoardModel boardToDelete;
-            try
-            {
-                boardToDelete = vm.Controller.GetUserBoards(model.Email).First(x => x.BoardName == userInput);
-            }
-            catch (Exception ex)
-            {
-                //board doesnt exist
-                MessageBox.Show($"A board named '{userInput}' doesn't exist for this user!");
+           
+                MessageBox.Show("Unable to identify the board to delete.");
                 return;
             }
 
-            vm.UserBoards.Remove(vm.UserBoards.Where(x => x.BoardName == userInput).Single());
-            MessageBox.Show($"The board '{userInput}' was Deleted!");
-            LoadBoards();
+            // Confirm deletion with the user
+            MessageBoxResult result = MessageBox.Show($"Are you sure you want to delete the board '{boardToDelete.BoardName}'?", "Confirm Deletion", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    // Remove the board from the ViewModel's collection
+                    vm.UserBoards.Remove(boardToDelete);
+
+                    // You might also want to call a method on your controller to delete the board from the backend
+                    // vm.Controller.DeleteBoard(model.Email, boardToDelete.BoardName);
+                    LoadBoards() ;
+                    MessageBox.Show($"The board '{boardToDelete.BoardName}' was deleted successfully.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An error occurred while deleting the board: {ex.Message}");
+                }
+            }
+            
         }
         private void Selcted_Board_Button_Click(object sender, RoutedEventArgs e)
         {
@@ -168,6 +182,7 @@ namespace Frontend.View
                 Width = 150, // Use consistent width and height
                 Height = 150,
                 DataContext = board, // Bind DataContext to the board
+         
                 Content = new StackPanel
                 {
                     Children =
