@@ -5,21 +5,88 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Frontend.View"
         mc:Ignorable="d"
-        Title="Input Dialog" Height="150" Width="300" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
-    <Grid Margin="10">
+        Title="Input Dialog" Height="160" Width="310" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
+    <Grid Margin="5,5,5,5" RenderTransformOrigin="0.5,0.5" Background="#FFD7CBDF">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="95*"/>
+            <ColumnDefinition Width="86*"/>
+            <ColumnDefinition Width="118*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RenderTransform>
+            <TransformGroup>
+                <ScaleTransform/>
+                <SkewTransform/>
+                <RotateTransform Angle="-0.009"/>
+                <TranslateTransform/>
+            </TransformGroup>
+        </Grid.RenderTransform>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock x:Name="PromptTextBlock" Text="Please enter your input:" Grid.Row="0" Margin="0,0,0,10" FontWeight="Bold" />
+        <TextBlock x:Name="PromptTextBlock" Text="Please enter your input:" Grid.Row="0" Margin="11,8,-11,5" FontWeight="ExtraBlack" Grid.ColumnSpan="3" Foreground="#FF6B587C" />
 
-        <TextBox x:Name="InputTextBox" Grid.Row="1" Width="280" HorizontalAlignment="Center" Margin="0,12,0,6"/>
+        <TextBox x:Name="InputTextBox" Grid.Row="1" Width="270"  VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,10,0,8" Grid.ColumnSpan="3" FontStyle="Oblique"  FontWeight="DemiBold" Foreground="#FF6B587C" SelectionBrush="#FFD0BFFF" />
 
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
-            <Button Content="OK" Width="75" Margin="5" Click="OkButton_Click"/>
-            <Button Content="Cancel" Width="75" Margin="5" Click="CancelButton_Click"/>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,8,10,2" Grid.Column="1" Grid.ColumnSpan="2">
+            <Button Content="Ok" Width="75" Margin="5" Click="OkButton_Click" Height="23" Foreground="#FF684686" BorderBrush="#FFCCC3CE" >
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="White" Offset="0.145"/>
+                        <GradientStop Color="WhiteSmoke" Offset="0.391"/>
+                        <GradientStop Color="#FF806787" Offset="1"/>
+                        <GradientStop Color="#FFFBFBFA" Offset="0.258"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                 BorderThickness="{TemplateBinding BorderThickness}"
+                                 CornerRadius="8">
+                            <TextBlock Text="Ok"
+                             TextWrapping="Wrap"
+                              FontSize="12"
+                              TextAlignment="Center"
+                              Padding="10,5,10,5"
+                              FontWeight="DemiBold" 
+                             Height="36" 
+                             Width="100" Margin="-14,-4,-13,-11" RenderTransformOrigin="0.961,0.654"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Content="Cancel" Width="75" Margin="5" Click="CancelButton_Click" Height="23" Foreground="#FF684686" BorderBrush="#FFCCC3CE" >
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="White" Offset="0.145"/>
+                        <GradientStop Color="WhiteSmoke" Offset="0.391"/>
+                        <GradientStop Color="#FF806787" Offset="1"/>
+                        <GradientStop Color="#FFFBFBFA" Offset="0.258"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                         CornerRadius="8">
+                            <TextBlock Text="Cancel"
+                                         TextWrapping="Wrap"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Top"
+                                          FontSize="12"
+                                          TextAlignment="Center"
+                                          Padding="10,5,10,5"
+                                          FontWeight="DemiBold" 
+                                         Height="36" 
+                                         Width="100" Margin="0,-4,0,0" RenderTransformOrigin="0.961,0.654"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
         </StackPanel>
     </Grid>
 </Window>

@@ -40,7 +40,18 @@ namespace Frontend.ViewModel
         public string BoardName { get => boardName; set => boardName = value; }
 
         private string owner;
-        public string Owner { get => owner; set => owner = value; }
+        public string Owner
+        {
+            get => owner;
+            set
+            {
+                if (owner != value)
+                {
+                    owner = value;
+                    RaisePropertyChanged(nameof(Owner));
+                }
+            }
+        }
 
         public BoardVM(BoardModel board)
         {
@@ -52,4 +63,5 @@ namespace Frontend.ViewModel
             owner = board.Owner;
         }
     }
+
 }

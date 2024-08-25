@@ -99,10 +99,7 @@ namespace Frontend.View
                 // Create and add the new board
                 var newBoard = new BoardModel(model.Controller, model.Email, userInput, model.Email, new List<string> { model.Email });
                 vm.UserBoards.Add(newBoard);
-                LoadBoards(); // Refresh the boards
-                MessageBox.Show($"The board '{userInput}' was created!");
-                
-                
+                LoadBoards(); // Refresh the boards              
             }
             catch (Exception ex)
             {
@@ -141,8 +138,6 @@ namespace Frontend.View
                     // Remove the board from the ViewModel's collection
                     vm.UserBoards.Remove(boardToDelete);
                     LoadBoards() ;
-
-                    MessageBox.Show($"The board '{boardToDelete.BoardName}' was deleted successfully.");
                 }
                 catch (Exception ex)
                 {

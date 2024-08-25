@@ -12,11 +12,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Window1.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Resources\email.png" />
     <None Remove="Resources\envelope.png" />
     <None Remove="Resources\information.png" />
     <None Remove="Resources\padlock.png" />
     <None Remove="Resources\password.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="Window1.xaml" />
   </ItemGroup>
 
   <ItemGroup>
