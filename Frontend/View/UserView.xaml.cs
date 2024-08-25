@@ -1,5 +1,4 @@
-﻿
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Reflection;
 using System.Text.Json;
 using System.Windows;
@@ -7,6 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using Frontend.Model;
+using Frontend.Resources;
 using Frontend.Utilities;
 using Frontend.ViewModel;
 using IntroSE.Kanban.Backend.ServiceLayer;
@@ -31,6 +31,7 @@ namespace Frontend.View
             Title = $"Welcome '{user.Email.Split('@')[0]}'!";
             model = user;
             LoadBoards();
+            SoundManager.PlaySound(SoundManager.SoundEffect.Login);
         }
 
         public UserView(BoardModel board)
@@ -44,30 +45,16 @@ namespace Frontend.View
         }
 
 
-        /*    private void BoardListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-            {
-                if (BoardListView.SelectedItem != null)
-                { 
-                    //BoardModel board = vm.GetBoard(model, "" + BoardListView.SelectedItem.ToString().Split(":")[1]);
-
-                    //BoardModel board = vm.GetBoard(model.Email,""+BoardListView.SelectedItem.ToString());
-                    BoardModel board = vm.GetBoard(model, "" + BoardListView.SelectedItem);
-
-                    BoardView boardView = new BoardView(board);
-                    boardView.Show();
-                    Close();
-                }
-            }*/
-
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
+            SoundManager.PlaySound(SoundManager.SoundEffect.Click);
             vm.LogoutUser(model.Email);
             if (vm.ErrorMessage != string.Empty)
             {
-                MessageBox.Show(vm.ErrorMessage);
+                MessageDisplayer.DisplayError(vm.ErrorMessage);
             }
-            MessageBox.Show("You Logout successfully");
+            SoundManager.PlaySound(SoundManager.SoundEffect.Logout);
             LoginView loginWindow = new LoginView(model.Controller);
             loginWindow.Show();
             Close();
@@ -83,7 +70,7 @@ namespace Frontend.View
             string userInput = newBoardName.UserInput;
             if (string.IsNullOrWhiteSpace(userInput))
             {
-                MessageBox.Show("No input was given");
+                MessageDisplayer.DisplayError("No input was given");
                 return;
             }
             BoardModel boardToAdd;
@@ -97,21 +84,23 @@ namespace Frontend.View
                 }
 
                 // Create and add the new board
-                var newBoard = new BoardModel(model.Controller, model.Email, userInput, model.Email, new List<string> { model.Email });
+                var newBoard = new BoardModel(model.Controller, model.Email, userInput, model.Email, new ObservableCollection<string> { model.Email });
                 vm.UserBoards.Add(newBoard);
-
-                MessageBox.Show($"The board '{userInput}' was created!");
                 LoadBoards(); // Refresh the boards
+                MessageDisplayer.DisplayMessage($"The board '{userInput}' was created!");
+              
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageDisplayer.DisplayError(ex.Message);
             }
         }
 
         private void Delete_Board(object sender, RoutedEventArgs e)
         {
+
             e.Handled = true;
+
             // Get the button that was clicked
             Button deleteButton = sender as Button;
             if (deleteButton == null) return;
@@ -124,13 +113,13 @@ namespace Frontend.View
             BoardModel boardToDelete = boardButton.DataContext as BoardModel;
             if (boardToDelete == null)
             {
-                MessageBox.Show("Unable to identify the board to delete.");
+                MessageDisplayer.DisplayError("Unable to identify the board to delete.");
                 return;
             }
 
             // Confirm deletion with the user
             MessageBoxResult result = MessageBox.Show($"Are you sure you want to delete the board '{boardToDelete.BoardName}'?", "Confirm Deletion", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-
+            SoundManager.PlaySound(SoundManager.SoundEffect.Click);
             if (result == MessageBoxResult.Yes)
             {
                 try
@@ -139,16 +128,20 @@ namespace Frontend.View
                     vm.UserBoards.Remove(boardToDelete);
 
                     LoadBoards();
-                    MessageBox.Show($"The board '{boardToDelete.BoardName}' was deleted successfully.");
+                    MessageDisplayer.DisplayMessage($"The board '{boardToDelete.BoardName}' was deleted successfully.");
+
+
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"An error occurred while deleting the board: {ex.Message}");
+                    MessageDisplayer.DisplayError($"An error occurred while deleting the board: {ex.Message}");
                 }
             }
+
         }
         private void Selcted_Board_Button_Click(object sender, RoutedEventArgs e)
         {
+            SoundManager.PlaySound(SoundManager.SoundEffect.Click);
             var boardButton = sender as Button;
             var selectedBoard = boardButton?.DataContext as BoardModel;
 
@@ -173,11 +166,12 @@ namespace Frontend.View
             var boardButtons = boards.Select(board => new Button
             {
                 Style = (Style)FindResource("BoardsButtonStyle"),
-                Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#33100D")),
-                Foreground = new SolidColorBrush(Colors.Pink),
+                //Background = new SolidColorBrush(ColorConverter.ConvertFromString("{ TemplateBinding Background }")),
+                //Foreground = new SolidColorBrush(Colors.Pink),
                 Width = 150, // Use consistent width and height
                 Height = 150,
                 DataContext = board, // Bind DataContext to the board
+         
                 Content = new StackPanel
                 {
                     Children =
@@ -204,8 +198,6 @@ namespace Frontend.View
             var addButton = new Button
             {
                 Style = (Style)FindResource("AddBoardButtonStyle"),
-                Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#664A44")),
-                Foreground = new SolidColorBrush(Colors.Pink),
                 Width = 150,
                 Height = 150
             };
