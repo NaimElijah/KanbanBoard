@@ -94,8 +94,8 @@
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                     <GradientStop Color="White" Offset="0.145"/>
                                     <GradientStop Color="#EEF7FF" Offset="0.245"/>
-                                    <GradientStop Color="#CDE8E5" Offset="0.491"/>
-                                    <GradientStop Color="#FF4D869C" Offset="1.2"/>
+                                    <GradientStop Color="#CDE8E5" Offset="0.591"/>
+                                    <GradientStop Color="#FF4D869C" Offset="1.62"/>
                                 </LinearGradientBrush>
                             </Border.Background>
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
