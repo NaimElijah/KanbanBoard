@@ -40,7 +40,6 @@ namespace Frontend.View
                 MessageDisplayer.DisplayError(vm.ErrorMessage);
                 return;
             }
-            MessageDisplayer.DisplayMessage("Registered successfully");
             UserView uv = new UserView(user);
             uv.Show();
             Close();

@@ -55,7 +55,6 @@ namespace Frontend.View
                 MessageDisplayer.DisplayError(vm.ErrorMessage);
             }
             SoundManager.PlaySound(SoundManager.SoundEffect.Logout);
-            MessageDisplayer.DisplayMessage("You Logout successfully");
             LoginView loginWindow = new LoginView(model.Controller);
             loginWindow.Show();
             Close();
@@ -199,10 +198,8 @@ namespace Frontend.View
             var addButton = new Button
             {
                 Style = (Style)FindResource("AddBoardButtonStyle"),
-               /* Background = (Color)FindResource(),
-                Foreground = new SolidColorBrush(Colors.Pink),
                 Width = 150,
-                Height = 150*/
+                Height = 150
             };
 
             // Hook up the click event for "Add Board" button

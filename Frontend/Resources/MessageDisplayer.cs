@@ -1,4 +1,5 @@
 ﻿using Frontend.Utilities;
+using Frontend.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,14 +13,14 @@ namespace Frontend.Resources
     {
         public static void DisplayMessage(string message)
         {
-            MessageBox.Show(message);
+            CustomMessageBox.Show(message, "", false);
             SoundManager.PlaySound(SoundManager.SoundEffect.Click);
         }
 
         public static void DisplayError(string message)
         {
             SoundManager.PlaySound(SoundManager.SoundEffect.Error);
-            MessageBox.Show(message);
+            CustomMessageBox.Show(message);
             SoundManager.PlaySound(SoundManager.SoundEffect.Click);
         }
     }

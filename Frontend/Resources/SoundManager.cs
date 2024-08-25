@@ -32,7 +32,7 @@ namespace Frontend.Utilities
             AddSound(SoundEffect.Startup, @"C:\Windows\Media\Windows Shutdown.wav");
             AddSound(SoundEffect.Login, @"C:\Windows\Media\Speech On.wav");
             AddSound(SoundEffect.Logout, @"C:\Windows\Media\Speech Off.wav");
-            AddSound(SoundEffect.Welcome, @"C:\Windows\Media\Windows Print complete.wav");
+            AddSound(SoundEffect.Welcome, @"C:\Windows\Media\Windows Notify Calendar.wav");
             AddSound(SoundEffect.Error, @"C:\Windows\Media\Windows Critical Stop.wav");
             AddSound(SoundEffect.Notification, @"C:\Windows\Media\Windows Message Nudge.wav");
             AddSound(SoundEffect.Click, @"C:\Windows\Media\Windows Navigation Start.wav");
