@@ -9,7 +9,7 @@
 
     <Window.Resources>
         <Style x:Key="TaskLabelStyle" TargetType="Border">
-            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderBrush" Value="#FF3C3C3C"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="CornerRadius" Value="5"/>
             <Setter Property="Padding" Value="0"/>
@@ -48,7 +48,7 @@
 
         <Style x:Key="TaskStyle" TargetType="Border">
             <Setter Property="Background" Value= "#FFEEF7FF"/>
-            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderBrush" Value="#FF3C3C3C"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="CornerRadius" Value="5"/>
             <Setter Property="Padding" Value="5"/>
@@ -103,7 +103,7 @@
                     Width="74" 
                     Height="30" 
                     Background="#FFEEF7FF"
-                    BorderBrush="#FF7B648F" 
+                    BorderBrush="#FF3C3C3C" 
                     Foreground="#FF185E79" 
                     FontSize="14" 
                     FontWeight="Bold" 
@@ -126,12 +126,15 @@
                         Margin="0,10,0,10" 
                         BorderBrush="#FF3C3C3C">
                     <TextBlock x:Name="BoardName" 
-                   Text="{Binding Path=BoardName}" 
-                   FontSize="20" 
-                   HorizontalAlignment="Center" 
-                   Margin="0,5,0,10" 
-                   FontWeight="Bold" 
-                   Foreground="#FF185E79"/>
+                               Text="{Binding Path=BoardName}" 
+                               FontSize="20" 
+                               HorizontalAlignment="Center" 
+                               VerticalAlignment="Center"
+                               Margin="0,-7,0,0" 
+                               FontWeight="Bold" 
+                               Foreground="#FF185E79"
+                               Height="Auto"
+                               Width="Auto"/>
                 </Border>
 
                 <Grid>
@@ -149,7 +152,7 @@
 
                     <!-- Task Columns -->
                     <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,181,0">
-                        <Border Style="{StaticResource TaskLabelStyle}" Background="#FFCDE8E5" Height="30">
+                        <Border Style="{StaticResource TaskLabelStyle}" Background="#FFCDE8E5" Height="30" BorderBrush="#FF3C3C3C">
                             <TextBlock Text="Back Log" 
                            FontSize="16" 
                            Foreground="#FF185E79" 
@@ -168,7 +171,7 @@
 
                     <!--- In rogres Task column-->
                     <StackPanel Grid.Column="1" Grid.ColumnSpan="1">
-                        <Border Style="{StaticResource TaskLabelStyle}" Background="#FFCDE8E5" Height="30">
+                        <Border Style="{StaticResource TaskLabelStyle}" Background="#FFCDE8E5" Height="30" BorderBrush="#FF3C3C3C">
                             <TextBlock Text="In Progress" 
                                FontSize="16" 
                                Foreground="#FF185E79" 
@@ -187,7 +190,7 @@
 
                     <!-- Done Task column -->
                     <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Margin="181,0,0,0" >
-                        <Border Style="{StaticResource TaskLabelStyle}" Background="#FFCDE8E5" Height="30">
+                        <Border Style="{StaticResource TaskLabelStyle}" Background="#FFCDE8E5" Height="30" BorderBrush="#FF3C3C3C">
                             <TextBlock Text="Done" 
                                FontSize="16" 
                                Foreground="#FF185E79" 
@@ -214,7 +217,7 @@
                         Background="#FFEEF7FF" 
                         Width="205" 
                         Height="40" 
-                        Margin="0,10,0,10">
+                        Margin="0,10,0,10" BorderBrush="#FF3C3C3C">
 
                     <TextBlock Text="Members" 
                        FontSize="20" 
@@ -245,7 +248,7 @@
                         Background="#FFEEF7FF" 
                         Width="Auto" 
                         Height="Auto" 
-                        Margin="10,10,10,10">
+                        Margin="10,10,10,10" BorderBrush="#FF3C3C3C">
 
                         <TextBlock x:Name="Owner" 
                                    FontSize="13" 
