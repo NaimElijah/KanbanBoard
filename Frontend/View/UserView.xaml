@@ -10,8 +10,6 @@
 
     <!-- Window.Resources should go directly under the Window tag -->
     <Window.Resources>
-    
-
 
         <!-- Delete Button Style -->
         <Style x:Key="DeleteButtonStyle" TargetType="Button">
@@ -19,32 +17,32 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Grid>
-                            <!-- Background Ellipse -->
-                            <Ellipse x:Name="Del_ellipse" 
-                             Fill="#FF6B587C"
-                             Stroke="#FFD7CBDF" 
+                    
+                            <Ellipse x:Name="ellipse" 
+                             Fill="#4D869C"
+                             Stroke="#EEF7FF" 
                              StrokeThickness="1" />
-                            <!-- 'X' TextBlock Overlayed on the Ellipse -->
+                           
                             <TextBlock Text="X"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"
-                               Foreground="#FFD7CBDF" 
+                               Foreground="#EEF7FF"
+                           
                                FontSize="18"
                                Margin="4,0,4.5,4"/>
                         </Grid>
                         <ControlTemplate.Triggers>
-                            <!-- Trigger to change the background on mouse over -->
+
                             <Trigger Property="IsMouseOver" Value="True">
-                                <!-- Changing both the Ellipse and the TextBlock color on hover -->
-                                <Setter TargetName="Del_ellipse" Property="Fill" Value="#FFD7CBDF"/>
-                                <Setter TargetName="Del_ellipse" Property="Stroke" Value="#FFD7CBDF"/>
+                                <Setter TargetName="ellipse" Property="Fill" Value="#FFD7CBDF"/>
+                               
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
-        <!-- Button Style with Rounded Corners -->
+      
         <Style x:Key="BoardsButtonStyle" TargetType="Button">
             <Setter Property="Template">
                 <Setter.Value>
@@ -52,7 +50,7 @@
                         <Grid>
                             <Grid>
                                 <!-- Delete Button -->
-                                    <Button x:Name="DeleteButton"
+                                <Button x:Name="DeleteButton"
                                     Style="{StaticResource DeleteButtonStyle}"
                                     Width="20"
                                     Height="20"
@@ -60,10 +58,11 @@
                                     VerticalAlignment="Top"
                                     Margin="15,15,5,5"
                                     Click="Delete_Board"
-                                    Panel.ZIndex="1"/>
-                               
+                                    Panel.ZIndex="1"
+                                    Background="#4D869C"/>
+
                                 <Border 
-                                    Background="#FF6B587C"
+                                    Background="#4D869C"
                                     BorderBrush="{TemplateBinding BorderBrush}"
                                     BorderThickness="1"
                                     CornerRadius="15"
@@ -94,9 +93,9 @@
                             <Border.Background>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                     <GradientStop Color="White" Offset="0.145"/>
-                                    <GradientStop Color="WhiteSmoke" Offset="0.391"/>
-                                    <GradientStop Color="#FF806787" Offset="1"/>
-                                    <GradientStop Color="#FFFBFBFA" Offset="0.258"/>
+                                    <GradientStop Color="#EEF7FF" Offset="0.245"/>
+                                    <GradientStop Color="#CDE8E5" Offset="0.491"/>
+                                    <GradientStop Color="#FF4D869C" Offset="1.2"/>
                                 </LinearGradientBrush>
                             </Border.Background>
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -114,8 +113,8 @@
                     <ControlTemplate TargetType="Button">
                         <Border x:Name="MainBorder"
                          
-                        Background="#FFD7CBDF"
-                        BorderBrush="#FF6B587C"
+                        Background="#CDE8E5"
+                        BorderBrush="#4D869C"
                         BorderThickness="1"
                         CornerRadius="15"
                         Margin="5">
@@ -124,8 +123,8 @@
                                 <Ellipse x:Name="PlusCircle"
                                  Width="30"
                                  Height="30"
-                                 Fill="#FFD7CBDF" 
-                                 Stroke="#FF6B587C"
+                                 Fill="#FFCDE8E5" 
+                                 Stroke="#FF4D869C"
                                  StrokeThickness="3"
                                  HorizontalAlignment="Center"
                                 VerticalAlignment="Center" 
@@ -135,14 +134,14 @@
                                 <TextBlock x:Name="PlusSymbol"
                                    Text="+"
                                    FontSize="25"
-                                   Foreground ="#FF6B587C"
+                                   Foreground ="#FF4D869C"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center" 
                                    Margin="0,12,0,10" 
-                                   FontWeight="Bold"/>
+                                   FontWeight="Bold" />
 
                                 <TextBlock Text="Add Board"
-                                   Foreground="#FF6B587C"
+                                   Foreground="#FF4D869C"
                                    FontSize="16"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Top"
@@ -152,8 +151,8 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="PlusCircle" Property="Fill" Value="#FF3D1759"/>
-                               
+                                <Setter TargetName="PlusCircle" Property="Fill" Value="#FF153F50"/>
+
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -165,28 +164,23 @@
 
 
     <Grid>
+
         <Grid.Background>
-            <SolidColorBrush Color="#FFF5EEE6"  Opacity="1"/>
+            <SolidColorBrush Color="#FFEEF7FF"  Opacity="1"/>
         </Grid.Background>
-        <StackPanel Orientation="Horizontal" Background="#FFEAEAEA" Margin="10">
-            <Button Style="{StaticResource LogOutButtonStyle}" Content="Log Out" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,6,0,0" Width="64" Height="30" FontSize="11" FontWeight="Bold" BorderThickness="1" BorderBrush="#FFE5E0ED" Click="LogoutButton_Click" Foreground="#FF674188">
-                <Button.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="Black"/>
-                        <GradientStop Color="White" Offset="1"/>
-                    </LinearGradientBrush>
-                </Button.Background>
+        <StackPanel Orientation="Horizontal" Background="#FFEEF7FF" Margin="10">
+            <Button Style="{StaticResource LogOutButtonStyle}" Content="Log Out" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,6,0,0" Width="64" Height="30" FontSize="11" FontWeight="Bold" BorderThickness="1" BorderBrush="#FFE5E0ED" Click="LogoutButton_Click" Foreground="#FF4D869C">
             </Button>
-            <TextBlock x:Name="greetingTextBlock" Text=" Hello!" Foreground="#FF674188" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,20,25,10"/>
+            <TextBlock x:Name="greetingTextBlock" Text=" Hello!" Foreground="#FF4D869C" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,20,25,10"/>
         </StackPanel>
 
         <!-- My Boards Label -->
-        <Border Background="#FFD9C8E3" 
+        <Border Background="#FFCDE8E5" 
             BorderThickness="1"
             CornerRadius="0"
             HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,65,0,0" Height="47" Width="600">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <TextBlock Text="My Boards" FontSize="25"  Foreground="#FF674188" HorizontalAlignment="Center" Margin="10,20,10,10" RenderTransformOrigin="0.499,1.07" Height="47" FontWeight="ExtraBlack" FontStyle="Italic" Opacity="0.99" Width="150" >
+                <TextBlock Text="My Boards" FontSize="25"  Foreground="#FF4D869C" HorizontalAlignment="Center" Margin="10,20,10,10" RenderTransformOrigin="0.499,1.07" Height="47" FontWeight="ExtraBlack" FontStyle="Italic" Opacity="0.99" Width="150" >
                 </TextBlock>
             </StackPanel>
         </Border>
@@ -199,13 +193,13 @@
 
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Button Style="{StaticResource BoardsButtonStyle}"  Background="#FFD7CBDF" Foreground="#FF6B587C" Width="150" Height="150" Click="Selcted_Board_Button_Click">
+                    <Button Style="{StaticResource BoardsButtonStyle}"  Background="#FFD7CBDF" Foreground="#4D869C" Width="150" Height="150" Click="Selcted_Board_Button_Click">
                         <StackPanel>
                             <TextBlock Text="{Binding Path= BoardName}" HorizontalAlignment="Center" Foreground="#FFF6F6E9"/>
                             <TextBlock Text="{Binding Path=Owner}" HorizontalAlignment="Center" Foreground="#FFF6F6E9"/>
                             <Viewbox Width="30" Height="30" Margin="5">
                                 <Grid>
-                                    <Ellipse Width="30" Height="30" Fill="#FFD7CBDF" Stroke="#FF6B587C" StrokeThickness="3"/>
+                                    <Ellipse Width="30" Height="30" Fill="#FFD7CBDF" Stroke="#4D869C" StrokeThickness="3"/>
                                     <TextBlock Text="+" FontSize="25" Foreground="#FF6B587C" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,5.5" FontWeight="Bold"/>
                                 </Grid>
                             </Viewbox>
@@ -217,20 +211,20 @@
             <ItemsControl.ItemsSource>
                 <CompositeCollection>
                     <CollectionContainer Collection="{Binding Path=UserBoards}" />
-                    <Button Background="#FFD7CBDF" Foreground="#FF707070" Width="150" Height="150" IsDefault="True" Click="Create_Board">
+                    <Button Background="#FFCDE8E5" Foreground="#FF707070" Width="150" Height="150" IsDefault="True" Click="Create_Board" BorderBrush="#FF4D869C">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border Background="{TemplateBinding Background}"
                                         BorderThickness="1"
-                                        BorderBrush="#FF74697E"
+                                        BorderBrush="#FF4D869C"
                                         CornerRadius="15"
                                         Margin="5">
                                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                        <TextBlock Text="Add Board" Foreground="#FF6B587C" HorizontalAlignment="Center" FontWeight="Bold"/>
+                                        <TextBlock Text="Add Board" Foreground="#FF4D869C" HorizontalAlignment="Center" FontWeight="Bold"/>
                                         <Viewbox Width="30" Height="30" Margin="5">
                                             <Grid>
-                                                <Ellipse Width="30" Height="30" Fill="#FFD7CBDF" Stroke="#FF6B587C" StrokeThickness="3"/>
-                                                <TextBlock Text="+" FontSize="25" Foreground="#FF6B587C" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,5.5" FontWeight="Bold"/>
+                                                <Ellipse Width="30" Height="30" Fill="#FFCDE8E5" Stroke="#FF4D869C" StrokeThickness="3"/>
+                                                <TextBlock Text="+" FontSize="25" Foreground="#FF4D869C" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,5.5" FontWeight="Bold"/>
                                             </Grid>
                                         </Viewbox>
                                     </StackPanel>

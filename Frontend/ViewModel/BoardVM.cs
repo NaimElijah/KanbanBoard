@@ -53,14 +53,30 @@ namespace Frontend.ViewModel
             }
         }
 
+        private ObservableCollection<string> members;
+
+        public ObservableCollection<string> Members
+        {
+            get => members;
+            set
+            {
+                if (members != value)
+                {
+                    members = value;
+                    RaisePropertyChanged(nameof(Members));
+
+                }
+            }
+        }
         public BoardVM(BoardModel board)
         {
             controller = board.Controller;
-            backlog = board.BacklogTasks;
-            inProgress = board.InProgressTasks;
-            done = board.DoneTasks;
-            boardName = board.BoardName;
-            owner = board.Owner;
+            Backlog = board.BacklogTasks;
+            InProgress = board.InProgressTasks;
+            Done = board.DoneTasks;
+            BoardName = board.BoardName;
+            Owner = board.Owner;
+            Members = board.Members;
         }
     }
 

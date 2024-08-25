@@ -26,7 +26,7 @@ namespace Frontend.View
             //Title = $"This is '{board.User.Email}'s board named: '{board.Name}'. Number of tasks: {totalTaskNum}";
 
             Title = board.BoardName;
-            MembersBorder.ItemsSource = model.Members;
+            MembersBorder.ItemsSource = vm.Members;
             BacklogTasks.ItemsSource = vm.Backlog;
             InProgressTasks.ItemsSource = vm.InProgress;
             DoneTasks.ItemsSource = vm.Done;

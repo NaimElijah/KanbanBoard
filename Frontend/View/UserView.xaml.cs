@@ -44,21 +44,6 @@ namespace Frontend.View
         }
 
 
-        /*    private void BoardListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-            {
-                if (BoardListView.SelectedItem != null)
-                { 
-                    //BoardModel board = vm.GetBoard(model, "" + BoardListView.SelectedItem.ToString().Split(":")[1]);
-
-                    //BoardModel board = vm.GetBoard(model.Email,""+BoardListView.SelectedItem.ToString());
-                    BoardModel board = vm.GetBoard(model, "" + BoardListView.SelectedItem);
-
-                    BoardView boardView = new BoardView(board);
-                    boardView.Show();
-                    Close();
-                }
-            }*/
-
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
@@ -97,7 +82,7 @@ namespace Frontend.View
                 }
 
                 // Create and add the new board
-                var newBoard = new BoardModel(model.Controller, model.Email, userInput, model.Email, new List<string> { model.Email });
+                var newBoard = new BoardModel(model.Controller, model.Email, userInput, model.Email, new ObservableCollection<string> { model.Email });
                 vm.UserBoards.Add(newBoard);
                 LoadBoards(); // Refresh the boards              
             }
