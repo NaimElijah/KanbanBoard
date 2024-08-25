@@ -9,7 +9,7 @@
         xmlns:helpers="clr-namespace:Frontend.View.Helpers"
         mc:Ignorable="d"
         Title="LoginView" Height="400" Width="400" ResizeMode="NoResize">
-    <Grid Background="#FFDFDBD3">
+    <Grid Background="#FFEEF7FF">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -21,42 +21,40 @@
 
 
         <TextBlock Text="Welcome!" Grid.Row="0" Margin="0,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Center"
-                   Foreground="#FF6B8FB4" FontSize="32" FontWeight="ExtraBlack" />
-
-        <Label Content="Email" Margin="16,16" Grid.Row="1" VerticalAlignment="Center" Foreground="#FF6695C6" FontSize="24"  FontWeight="ExtraBlack"/>
+                   Foreground="#FF4D869C" FontSize="32" FontWeight="ExtraBlack" />
+        <Label Content="Email" Margin="16,16" Grid.Row="1" VerticalAlignment="Center" Foreground="#FF4D869C" FontSize="24"  FontWeight="ExtraBlack"/>
         <Grid Grid.Row="2" Margin="16,0" Height="28" >
             <Image Source="{StaticResource EnvelopeIcon}" Panel.ZIndex="2" Width="24" Height="24" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="8,3,0,0" Opacity="0.6">
                 <Image.Effect>
                     <DropShadowEffect ShadowDepth="0" Color="Gray" Opacity="0.3" />
                 </Image.Effect>
             </Image>
-
-            <!-- Placeholder TextBlock -->
             <TextBlock x:Name="EmailPlaceholder" 
-                Foreground="#FF777879" 
-                VerticalAlignment="Top" 
-                HorizontalAlignment="Left" 
-                Margin="40,3,0,0" 
-                FontSize="16" 
-                IsHitTestVisible="False" 
-                Visibility="Visible"
-                Panel.ZIndex="1" 
-                Text="Enter your email"/>
+Foreground="#FF777879" 
+VerticalAlignment="Top" 
+HorizontalAlignment="Left" 
+Margin="40,3,0,0" 
+FontSize="16" 
+IsHitTestVisible="False" 
+Visibility="Visible"
+Panel.ZIndex="1" 
+Text="Enter your email"/>
 
-            <TextBox x:Name="EmailTextBox" Margin="0,3,0,0" Height="30" BorderBrush="#757575" 
-                 BorderThickness="1" Background="WhiteSmoke" Foreground="#FF557DA3" FontSize="16" 
-                 SelectionBrush="Gray" SelectionTextBrush="#FF557DA3" 
-                 Text="{Binding Path=Email}"
-                 Padding="35,0,0,0"
-                 GotFocus="EmailBox_GotFocus" 
-                 LostFocus="EmailBox_LostFocus"
-                 Visibility="Visible"
-                 Panel.ZIndex="0"/>
+
+            <TextBox x:Name="EmailTextBox" Margin="0,-1,0,-1" Height="30" BorderBrush="#757575" 
+             BorderThickness="1" Background="White" Foreground="#FF4D869C" FontSize="16" 
+             SelectionBrush="Gray" SelectionTextBrush="#FF4D869C" 
+             Text="{Binding Path=Email}"
+             Padding="35,2,0,0"
+             GotFocus="EmailBox_GotFocus" 
+             LostFocus="EmailBox_LostFocus"
+             Visibility="Visible"
+             Panel.ZIndex="0"/>
         </Grid>
 
 
 
-        <Label Content="Password" Grid.Row="3" Margin="16,16" VerticalAlignment="Center" Foreground="#FF6695C6" FontSize="24"  FontWeight="ExtraBlack" />
+        <Label Content="Password" Grid.Row="3" Margin="16,16" VerticalAlignment="Center" Foreground="#FF4D869C" FontSize="24"  FontWeight="ExtraBlack" />
         <Grid Grid.Row="4" Margin="16, 0" Height="28">
             <Image Source="{StaticResource PasswordIcon}" Panel.ZIndex="2" Width="24" Height="24" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="8,0,0,0" Opacity="0.6">
                 <Image.Effect>
@@ -65,25 +63,25 @@
             </Image>
             <!-- This TextBlock will act as the placeholder text -->
             <TextBlock x:Name="PasswordPlaceholder" 
-                   Text="Enter your password" 
-                   Foreground="Gray" 
-                   VerticalAlignment="Center" 
-                   HorizontalAlignment="Left" 
-                   Margin="40,0,0,0" 
-                   FontSize="16" 
-                   IsHitTestVisible="False" 
-                   Visibility="Visible"
-                   Panel.ZIndex="1"/>
+   Text="Enter your password" 
+   Foreground="Gray" 
+   VerticalAlignment="Center" 
+   HorizontalAlignment="Left" 
+   Margin="40,0,0,0" 
+   FontSize="16" 
+   IsHitTestVisible="False" 
+   Visibility="Visible"
+   Panel.ZIndex="1"/>
 
 
-            <PasswordBox x:Name="PasswordBox" Margin="0,0,0,0" Height="30" BorderBrush="#757575"
-                            BorderThickness="1" Background="WhiteSmoke" Foreground="#FF557DA3" FontSize="16" 
-                            SelectionBrush="#757575" SelectionTextBrush="#FF557DA3" 
-                            PasswordChanged="PasswordBox_OnPasswordChanged"
-                            Padding="35,2,0,0"
-                            GotFocus="PasswordBox_GotFocus" 
-                            LostFocus="PasswordBox_LostFocus"
-                            Panel.ZIndex="0"/>
+            <PasswordBox x:Name="PasswordBox" Margin="0,-2,0,0" Height="30" BorderBrush="#757575"
+            BorderThickness="1" Background="White" Foreground="#FF557DA3" FontSize="16" 
+            SelectionBrush="#757575" SelectionTextBrush="#FF557DA3" 
+            PasswordChanged="PasswordBox_OnPasswordChanged"
+            Padding="35,2,0,0"
+            GotFocus="PasswordBox_GotFocus" 
+            LostFocus="PasswordBox_LostFocus"
+            Panel.ZIndex="0"/>
 
         </Grid>
 
@@ -96,20 +94,20 @@
                 FontWeight="ExtraBlack" 
                 HorizontalAlignment="Left" 
                 Width="120" 
-                BorderThickness="0" 
                 Click="LoginButton_Click"
                 IsDefault="True"
-                Foreground="#FF557DA3"
+                Foreground="#FF266D88"
                 SnapsToDevicePixels="True"
-                BorderBrush="#AEBDCA">
+                BorderBrush="#FFAEBDCA"
+                BorderThickness="1">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="White" Offset="0.145"/>
-                    <GradientStop Color="WhiteSmoke" Offset="0.391"/>
-                    <GradientStop Color="#FF928F87" Offset="1"/>
-                    <GradientStop Color="#FFFBFBFA" Offset="0.258"/>
+                    <GradientStop Color="White" Offset="0.0002"/>
+                    <GradientStop Color="#EEF7FF" Offset="0.4"/>
+                    <GradientStop Color="#FF4D869C" Offset="1.632"/>
                 </LinearGradientBrush>
             </Button.Background>
+
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}"
@@ -146,7 +144,7 @@
             Grid.Row="5" 
             Margin="48,40"
             Height="40" 
-            Foreground="#FF557DA3"
+            Foreground="#FF266D88"
             FontSize="16" 
             FontWeight="ExtraBlack" 
             HorizontalAlignment="Right" 
@@ -157,10 +155,9 @@
             ClipToBounds="True">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="White" Offset="0.145"/>
-                    <GradientStop Color="WhiteSmoke" Offset="0.391"/>
-                    <GradientStop Color="#FF928F87" Offset="1"/>
-                    <GradientStop Color="#FFFBFBFA" Offset="0.258"/>
+                    <GradientStop Color="White" Offset="0.0002"/>
+                    <GradientStop Color="#EEF7FF" Offset="0.4"/>
+                    <GradientStop Color="#FF4D869C" Offset="1.632"/>
                 </LinearGradientBrush>
             </Button.Background>
             <Button.Template>
@@ -172,7 +169,7 @@
                         <TextBlock Text= "Register"
                                    TextWrapping="Wrap"
                                    HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
+                                   VerticalAlignment="Top"
                                    FontSize="16"
                                    TextAlignment="Center"
                                    Padding="10,5,10,5"

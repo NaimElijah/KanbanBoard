@@ -5,150 +5,267 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Frontend.View"
         mc:Ignorable="d"
-        Title="BoardView" Height="400" Width="800"
-        ResizeMode="NoResize">
-    <Grid Background="#FFF5F5F5">
+        Title="BoardView" Height="450" Width="800" Background="#FFBEA6C3">
+
+    <Window.Resources>
+        <Style x:Key="TaskLabelStyle" TargetType="Border">
+            <Setter Property="BorderBrush" Value="#FF3C3C3C"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="5"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="170"/>
+            <Setter Property="Height" Value="40"/>
+        </Style>
+
+        <Style x:Key="BackButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border
+                                BorderBrush="#4D869C"
+                                BorderThickness="1"
+                                CornerRadius="5"
+                                Margin="5">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="White" Offset="0.145"/>
+                                    <GradientStop Color="#EEF7FF" Offset="0.245"/>
+                                    <GradientStop Color="#CDE8E5" Offset="0.491"/>
+                                    <GradientStop Color="#FF4D869C" Offset="1.52"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+
+        <Style x:Key="TaskStyle" TargetType="Border">
+            <Setter Property="Background" Value= "#FFEEF7FF"/>
+            <Setter Property="BorderBrush" Value="#FF3C3C3C"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="5"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="Auto"/>
+            <Setter Property="Height" Value="Auto"/>
+            <Setter Property="MinWidth" Value="160"/>
+        </Style>
+
+        <!-- Task DataTemplate -->
+        <DataTemplate x:Key="TaskDataTemplate">
+            <Border Style="{StaticResource TaskStyle}">
+                <StackPanel>
+                    <!-- Task Title -->
+                    <TextBlock Text="{Binding Title}"
+                               Foreground="#FF4D869C"
+                               Margin="10,3,0,0"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontSize="14.5"
+                               FontWeight="DemiBold"
+                               FontFamily="Calibiri"/>
+                    <!-- Task Description -->
+                    <TextBlock Text="{Binding Description}"
+                               Foreground="#FF09688F"
+                               Margin="10,0,0,5"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               FontSize="13"
+                               TextWrapping="Wrap"
+                               FontWeight="Medium"/>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+    </Window.Resources>
+
+    <Grid Background="#FFA1C2C2">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" MinHeight="56"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
+        <!-- Header with Back Button -->
+        <StackPanel Orientation="Horizontal" Background="#FFA1C2C2" Margin="10,10,10,10" Opacity="1.5">
+            <Button Style="{StaticResource BackButtonStyle}" 
+                    Content="Back" 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Top" 
+                    Margin="10,6,0,0" 
+                    Width="74" 
+                    Height="30" 
+                    Background="#FFEEF7FF"
+                    BorderBrush="#FF3C3C3C" 
+                    Foreground="#FF185E79" 
+                    FontSize="14" 
+                    FontWeight="Bold" 
+                    Click="BackButton_Click"/>
+        </StackPanel>
+
+        <!-- Main Content -->
+        <Grid Grid.Row="1" Margin="10,10,10,10">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="109*"/>
+                <ColumnDefinition Width="47*"/>
             </Grid.ColumnDefinitions>
 
-            <Grid Grid.Column="0" Margin="10">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
+            <!-- Task Board Section -->
+                <StackPanel Grid.Column="0" Background="#FF6D9EB2" Opacity="100" >
+                <Border Style="{StaticResource TaskLabelStyle}" 
+                        Background="#FFEEF7FF" 
+                        Width="530" 
+                        Height="38" 
+                        Margin="0,10,0,10" 
+                        BorderBrush="#FF3C3C3C">
+                    <TextBlock x:Name="BoardName" 
+                               Text="{Binding Path=BoardName}" 
+                               FontSize="20" 
+                               HorizontalAlignment="Center" 
+                               VerticalAlignment="Center"
+                               Margin="0,-7,0,0" 
+                               FontWeight="Bold" 
+                               Foreground="#FF185E79"
+                               Height="Auto"
+                               Width="Auto"/>
+                </Border>
 
-                <Label Content="Backlog" Foreground="#FF6B8FB4" HorizontalAlignment="Center" FontSize="20"
-                       FontWeight="Bold" Margin="0,0,0,5" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
 
-                <ListView Name="BacklogList" Background="#FFE0DDD6" Grid.Row="1" ItemsSource="{Binding Path=BacklogTasks}" Foreground="White" Focusable="False"
-          HorizontalContentAlignment="Stretch">
-                    <!-- Ensure items stretch horizontally -->
-                    <ListView.ItemTemplate>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="260"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Task Columns -->
+                    <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,181,0">
+                        <Border Style="{StaticResource TaskLabelStyle}" Background="#FFCDE8E5" Height="30" BorderBrush="#FF3C3C3C">
+                            <TextBlock Text="Back Log" 
+                           FontSize="16" 
+                           Foreground="#FF185E79" 
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Padding="2,2,2,2" 
+                           FontWeight="Bold"
+                                        />
+                        </Border>
+                        <ItemsControl x:Name="BacklogTasks" ItemsSource="{Binding Path=BacklogTasks}">
+                            <ItemsControl.ItemTemplate>
+                                <StaticResource ResourceKey="TaskDataTemplate"/>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+
+                    <!--- In rogres Task column-->
+                    <StackPanel Grid.Column="1" Grid.ColumnSpan="1">
+                        <Border Style="{StaticResource TaskLabelStyle}" Background="#FFCDE8E5" Height="30" BorderBrush="#FF3C3C3C">
+                            <TextBlock Text="In Progress" 
+                               FontSize="16" 
+                               Foreground="#FF185E79" 
+                               HorizontalAlignment="Center" 
+                               VerticalAlignment="Center"
+                               Padding="2,2,2,2" 
+                               FontWeight="Bold"/>
+                        </Border>
+                        <ItemsControl x:Name="InProgressTasks" 
+                                  ItemsSource="{Binding Path=InProgressTasks}">
+                            <ItemsControl.ItemTemplate>
+                                <StaticResource ResourceKey="TaskDataTemplate"/>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+
+                    <!-- Done Task column -->
+                    <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Margin="181,0,0,0" >
+                        <Border Style="{StaticResource TaskLabelStyle}" Background="#FFCDE8E5" Height="30" BorderBrush="#FF3C3C3C">
+                            <TextBlock Text="Done" 
+                               FontSize="16" 
+                               Foreground="#FF185E79" 
+                               HorizontalAlignment="Center" 
+                                VerticalAlignment="Center"
+                               Padding="5" 
+                               FontWeight="Bold"/>
+                        </Border>
+                        <ItemsControl x:Name="DoneTasks" 
+                                  ItemsSource="{Binding Path=DoneTasks}">
+                            <ItemsControl.ItemTemplate>
+                                <StaticResource ResourceKey="TaskDataTemplate"/>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+       
+                    <!-- Members Section -->
+           
+            
+                <StackPanel Grid.Column="1" Background="#FF6D9EB2" Margin="10,0,0,0" Opacity="100" >
+                <Border Style="{StaticResource TaskLabelStyle}" 
+                        Background="#FFEEF7FF" 
+                        Width="205" 
+                        Height="40" 
+                        Margin="0,10,0,10" BorderBrush="#FF3C3C3C">
+
+                    <TextBlock Text="Members" 
+                       FontSize="20" 
+                       HorizontalAlignment="Center" 
+                       Margin="0,5,0,10" 
+                       FontWeight="Bold" 
+                       Foreground="#FF185E79"/>
+                </Border>
+                <ItemsControl x:Name="MembersBorder" ItemsSource="{Binding Path=Members}">
+                    <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Border BorderBrush="#FF6B8FB4" BorderThickness="3" Margin="5" HorizontalAlignment="Stretch" Padding="1">
-                                <StackPanel Background="#FF6B8FB4" Orientation="Vertical" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                                    <!-- Task Title -->
-                                    <TextBlock Text="{Binding Path=Title, Mode=OneWay}" FontSize="16" HorizontalAlignment="Center"
-											   TextWrapping="Wrap" FontWeight="Bold" TextDecorations="{x:Static TextDecorations.Underline}" Foreground="#03346E" />
-                                    <!-- Task Description -->
-                                    <TextBlock Text="{Binding Path=Description, Mode=OneWay}" FontSize="14" MaxHeight="300" MaxWidth="450" HorizontalAlignment="Center"
-											   TextWrapping="Wrap" Padding="5" Margin="0,0,0,0" Foreground="#03346E" />
-                                </StackPanel>
+                            <Border Background="#FFEEF7FF" Style="{StaticResource TaskStyle}">
+                                <TextBlock Text="{Binding }" 
+                                           Foreground="#4D869C" 
+                                           Margin="10,2,0,2" 
+                                           HorizontalAlignment="Center" 
+                                           VerticalAlignment="Center"
+                                           FontWeight="Medium"
+                                           FontSize="13"/>
                             </Border>
                         </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </Grid>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
 
-            <Grid Grid.Column="1" Margin="10">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
+                <!-- Owner Section -->
+                <StackPanel >
+                    <Border Style="{StaticResource TaskLabelStyle}" 
+                        Background="#FFEEF7FF" 
+                        Width="Auto" 
+                        Height="Auto" 
+                        Margin="10,10,10,10" BorderBrush="#FF3C3C3C">
 
-                <Label Content="In Progress" Foreground="#FF6B8FB4" HorizontalAlignment="Center" FontSize="20"
-                       FontWeight="Bold" Margin="0,0,0,5" />
-
-                <ListView Name="InProgressList" Background="#FFE0DDD6" Grid.Row="1" ItemsSource="{Binding}" Foreground="White" HorizontalContentAlignment="Stretch">
-                    <!-- Ensure items stretch horizontally -->
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Border BorderBrush="#FF6B8FB4" BorderThickness="3" Margin="5" HorizontalAlignment="Stretch" Padding="1">
-                                <StackPanel Background="#FF6B8FB4" Orientation="Vertical" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                                    <!-- Task Title -->
-                                    <TextBlock Text="{Binding Path=Title, Mode=OneWay}" FontSize="16" HorizontalAlignment="Center"
-										   TextWrapping="Wrap" FontWeight="Bold" TextDecorations="{x:Static TextDecorations.Underline}" Foreground="#03346E" />
-                                    <!-- Task Description -->
-                                    <TextBlock Text="{Binding Path=Description, Mode=OneWay}" FontSize="14" MaxHeight="300" MaxWidth="450" HorizontalAlignment="Center"
-										   TextWrapping="Wrap" Padding="5" Margin="0,0,0,0" Foreground="#03346E" />
-                                </StackPanel>
-                            </Border>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </Grid>
-
-            <Grid Grid.Column="2" Margin="10">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-
-                <Label Content="Done" Foreground="#FF6B8FB4" HorizontalAlignment="Center" FontSize="20"
-                       FontWeight="Bold" Margin="0,0,0,5" />
-
-                <ListView Name="DoneList" Background="#FFE0DDD6" Grid.Row="1" ItemsSource="{Binding}" Foreground="White" HorizontalContentAlignment="Stretch">
-                    <!-- Ensure items stretch horizontally -->
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Border BorderBrush="#FF6B8FB4" BorderThickness="3" Margin="5" HorizontalAlignment="Stretch" Padding="1">
-                                <StackPanel Background="#FF6B8FB4" Orientation="Vertical" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                                    <!-- Task Title -->
-                                    <TextBlock Text="{Binding Path=Title, Mode=OneWay}" FontSize="16" HorizontalAlignment="Center"
-										   TextWrapping="Wrap" FontWeight="Bold" TextDecorations="{x:Static TextDecorations.Underline}" Foreground="#03346E" />
-                                    <!-- Task Description -->
-                                    <TextBlock Text="{Binding Path=Description, Mode=OneWay}" FontSize="14" MaxHeight="300" MaxWidth="450" HorizontalAlignment="Center"
-										   TextWrapping="Wrap" Padding="5" Margin="0,0,0,0" Foreground="#03346E" />
-                                </StackPanel>
-                            </Border>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </Grid>
-        </Grid>
-        <Button x:Name="BackButton" Content="Back" HorizontalAlignment="Center" VerticalAlignment="Top"
-                Margin="0,5,0,10" Height="40" Width="120" Foreground="#FF576C81" 
-                FontSize="16" FontWeight="Bold" BorderThickness="0" Click="BackButton_Click" Grid.Row="1" >
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="White" Offset="0.145"/>
-                    <GradientStop Color="WhiteSmoke" Offset="0.391"/>
-                    <GradientStop Color="#FF928F87" Offset="1"/>
-                    <GradientStop Color="#FFFBFBFA" Offset="0.258"/>
-                </LinearGradientBrush>
-            </Button.Background>
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Border Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        CornerRadius="8">
-                        <TextBlock Text="Back"
-                   TextWrapping="Wrap"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   FontSize="15"
-                   TextAlignment="Center"
-                   Padding="0"
-                   FontWeight="ExtraBlack" />
+                        <TextBlock x:Name="Owner" 
+                                   FontSize="13" 
+                                   FontWeight="SemiBold"    
+                                   Width="Auto" 
+                                   Height="Auto" 
+                                   Margin="10,5,10,5" 
+                                   Foreground="#FF185E79"
+                                   >
+                            <TextBlock.Inlines>
+                                <Run Text="Owner: "/>
+                                <Run Text="{Binding Path=Owner}"/>
+                            </TextBlock.Inlines>
+                        </TextBlock>
                     </Border>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
-        <ListBox x:Name="MembersListBox" 
-                 ItemsSource="{Binding}" 
-                 Margin="10,307,0,0" 
-                 Width="266" 
-                 Height="47" 
-                 HorizontalAlignment="Left" 
-                 VerticalAlignment="Top"
-                 Background="#FFE0DDD6"
-                 BorderThickness="1"
-                 BorderBrush="#FF6B8FB4" Grid.RowSpan="2">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding}" FontSize="12" Foreground="#FF557DA3" Focusable="False" HorizontalAlignment="Center" TextAlignment="Center"/>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

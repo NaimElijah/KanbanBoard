@@ -45,21 +45,6 @@ namespace Frontend.View
         }
 
 
-        /*    private void BoardListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-            {
-                if (BoardListView.SelectedItem != null)
-                { 
-                    //BoardModel board = vm.GetBoard(model, "" + BoardListView.SelectedItem.ToString().Split(":")[1]);
-
-                    //BoardModel board = vm.GetBoard(model.Email,""+BoardListView.SelectedItem.ToString());
-                    BoardModel board = vm.GetBoard(model, "" + BoardListView.SelectedItem);
-
-                    BoardView boardView = new BoardView(board);
-                    boardView.Show();
-                    Close();
-                }
-            }*/
-
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
@@ -100,11 +85,11 @@ namespace Frontend.View
                 }
 
                 // Create and add the new board
-                var newBoard = new BoardModel(model.Controller, model.Email, userInput, model.Email, new List<string> { model.Email });
+                var newBoard = new BoardModel(model.Controller, model.Email, userInput, model.Email, new ObservableCollection<string> { model.Email });
                 vm.UserBoards.Add(newBoard);
                 LoadBoards(); // Refresh the boards
                 MessageDisplayer.DisplayMessage($"The board '{userInput}' was created!");
-               
+              
             }
             catch (Exception ex)
             {
@@ -114,7 +99,9 @@ namespace Frontend.View
 
         private void Delete_Board(object sender, RoutedEventArgs e)
         {
+
             e.Handled = true;
+
             // Get the button that was clicked
             Button deleteButton = sender as Button;
             if (deleteButton == null) return;
@@ -144,12 +131,14 @@ namespace Frontend.View
                     LoadBoards();
                     MessageDisplayer.DisplayMessage($"The board '{boardToDelete.BoardName}' was deleted successfully.");
 
+
                 }
                 catch (Exception ex)
                 {
                     MessageDisplayer.DisplayError($"An error occurred while deleting the board: {ex.Message}");
                 }
             }
+
         }
         private void Selcted_Board_Button_Click(object sender, RoutedEventArgs e)
         {
@@ -178,11 +167,12 @@ namespace Frontend.View
             var boardButtons = boards.Select(board => new Button
             {
                 Style = (Style)FindResource("BoardsButtonStyle"),
-                Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#33100D")),
-                Foreground = new SolidColorBrush(Colors.Pink),
+                //Background = new SolidColorBrush(ColorConverter.ConvertFromString("{ TemplateBinding Background }")),
+                //Foreground = new SolidColorBrush(Colors.Pink),
                 Width = 150, // Use consistent width and height
                 Height = 150,
                 DataContext = board, // Bind DataContext to the board
+         
                 Content = new StackPanel
                 {
                     Children =
@@ -209,10 +199,10 @@ namespace Frontend.View
             var addButton = new Button
             {
                 Style = (Style)FindResource("AddBoardButtonStyle"),
-                Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#664A44")),
+               /* Background = (Color)FindResource(),
                 Foreground = new SolidColorBrush(Colors.Pink),
                 Width = 150,
-                Height = 150
+                Height = 150*/
             };
 
             // Hook up the click event for "Add Board" button

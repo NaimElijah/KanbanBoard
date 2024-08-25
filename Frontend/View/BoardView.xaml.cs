@@ -27,10 +27,10 @@ namespace Frontend.View
             //Title = $"This is '{board.User.Email}'s board named: '{board.Name}'. Number of tasks: {totalTaskNum}";
 
             Title = board.BoardName;
-            MembersListBox.ItemsSource = model.Members;
-            BacklogList.ItemsSource = vm.Backlog;
-            InProgressList.ItemsSource = vm.InProgress;
-            DoneList.ItemsSource = vm.Done;
+            MembersBorder.ItemsSource = vm.Members;
+            BacklogTasks.ItemsSource = vm.Backlog;
+            InProgressTasks.ItemsSource = vm.InProgress;
+            DoneTasks.ItemsSource = vm.Done;
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
