@@ -1,0 +1,47 @@
+﻿<Window x:Class="Frontend.View.CustomMessageBox"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Frontend.View"
+        mc:Ignorable="d"
+        Title="Message" Height="160" Width="310" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" Background="#FFEEF7FF">
+    <Grid Margin="5,5,5,5" RenderTransformOrigin="0.5,0.5" Background="#FFCDE8E5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" MinHeight="44.08"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="MessageTextBlock" Text="Message goes here" Grid.Row="0" Margin="10,10,10,4" FontSize="14" HorizontalAlignment="Center" FontWeight="ExtraBlack" Foreground="#FF4D869C" TextWrapping="Wrap" VerticalAlignment="Center" />
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,8,10,2" Width="85">
+            <Button x:Name="OkButton" Content="Ok" Width="75" Margin="5" Click="OkButton_Click" Height="24" Foreground="#FF4F879D" BorderBrush="#FFB3C7C6" FontWeight="DemiBold" Visibility="Collapsed">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="White" Offset="0.145"/>
+                        <GradientStop Color="#EEF7FF" Offset="0.245"/>
+                        <GradientStop Color="#CDE8E5" Offset="0.591"/>
+                        <GradientStop Color="#FF4D869C" Offset="1.62"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8">
+                            <TextBlock Text="Ok"
+                                       TextWrapping="Wrap"
+                                       FontSize="12"
+                                       TextAlignment="Center"
+                                       Padding="10,5,10,5"
+                                       FontWeight="DemiBold" 
+                                       Height="36" 
+                                       Width="100" Margin="-14,-4,-13,-11" RenderTransformOrigin="0.961,0.654"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

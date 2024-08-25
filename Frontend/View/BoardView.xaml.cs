@@ -1,5 +1,5 @@
 ﻿using Frontend.Model;
-using Frontend.View;
+using Frontend.Utilities;
 using Frontend.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -27,14 +27,15 @@ namespace Frontend.View
             //Title = $"This is '{board.User.Email}'s board named: '{board.Name}'. Number of tasks: {totalTaskNum}";
 
             Title = board.BoardName;
-            MembersListBox.ItemsSource = model.Members;
-            BacklogList.ItemsSource = vm.Backlog;
-            InProgressList.ItemsSource = vm.InProgress;
-            DoneList.ItemsSource = vm.Done;
+            MembersBorder.ItemsSource = vm.Members;
+            BacklogTasks.ItemsSource = vm.Backlog;
+            InProgressTasks.ItemsSource = vm.InProgress;
+            DoneTasks.ItemsSource = vm.Done;
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
+            SoundManager.PlaySound(SoundManager.SoundEffect.Click);
             UserView userWindow = new UserView(model);
             userWindow.Show();
             this.Close();

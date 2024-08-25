@@ -14,7 +14,7 @@ namespace Frontend.Model
     public class BackendController
     {
 
-        private GradingService Service {get; set;}
+        private GradingService Service { get; set; }
 
         public BackendController(GradingService service)
         {
@@ -29,15 +29,15 @@ namespace Frontend.Model
                 throw new Exception(response.ErrorMessage);
         }
 
-       /*public Tuple<UserModel?,string> Login(string email, string password)
-        {  
-            Response response = JsonSerializer.Deserialize<Response>(Service.Login(email, password));
-            if (response.ErrorMessage!= null)
-                return Tuple.Create<UserModel?,string>(null, response.ErrorMessage);
-            return Tuple.Create<UserModel?, string>(new UserModel(this, email, GetUserBoards(email)), response.ErrorMessage);
+        /*public Tuple<UserModel?,string> Login(string email, string password)
+         {  
+             Response response = JsonSerializer.Deserialize<Response>(Service.Login(email, password));
+             if (response.ErrorMessage!= null)
+                 return Tuple.Create<UserModel?,string>(null, response.ErrorMessage);
+             return Tuple.Create<UserModel?, string>(new UserModel(this, email, GetUserBoards(email)), response.ErrorMessage);
 
-        
-        }*/
+
+         }*/
         public UserModel Login(string email, string password)
         {
             Response? response = JsonSerializer.Deserialize<Response>(Service.Login(email, password));
@@ -45,7 +45,7 @@ namespace Frontend.Model
             {
                 throw new Exception(response.ErrorMessage);
             }
-             return new UserModel(this,email, GetUserBoards(email));
+            return new UserModel(this, email, GetUserBoards(email));
 
         }
 
@@ -100,10 +100,10 @@ namespace Frontend.Model
 
                 Response r0 = JsonSerializer.Deserialize<Response>(Service.GetBoardMembers(i));
 
-                List<string> members = JsonSerializer.Deserialize<List<string>>((JsonElement)r0.ReturnValue);
+                ObservableCollection<string> members =new ObservableCollection<string>( JsonSerializer.Deserialize<List<string>>((JsonElement)r0.ReturnValue));
 
                 BoardModel boardModel = GetBoard(userEmail, name, owner, members);
-                
+
                 boards.Add(boardModel);  // omg doron. omg.
             }
 
@@ -124,16 +124,16 @@ namespace Frontend.Model
         }
 
 
-        public BoardModel GetBoard(string userEmail, string boardName ,string emailOwner , List<string> members)
+        public BoardModel GetBoard(string userEmail, string boardName, string emailOwner, ObservableCollection<string> members)
         {
             Response res0 = JsonSerializer.Deserialize<Response>(Service.GetColumn(userEmail, boardName, 0));
             Response res1 = JsonSerializer.Deserialize<Response>(Service.GetColumn(userEmail, boardName, 1));
             Response res2 = JsonSerializer.Deserialize<Response>(Service.GetColumn(userEmail, boardName, 2));
-            
 
-            BoardModel board = new BoardModel(this, userEmail, boardName ,emailOwner , members);
-            List<TaskSL> t0 = JsonSerializer.Deserialize<List<TaskSL>>((JsonElement)res0.ReturnValue);
+
+            BoardModel board = new BoardModel(this, userEmail, boardName, emailOwner, members);
             List<TaskModel> n0 = new List<TaskModel>(), n1 = new List<TaskModel>(), n2 = new List<TaskModel>();
+            List<TaskSL> t0 = JsonSerializer.Deserialize<List<TaskSL>>((JsonElement)res0.ReturnValue);
             List<TaskSL> t1 = JsonSerializer.Deserialize<List<TaskSL>>((JsonElement)res1.ReturnValue);
             List<TaskSL> t2 = JsonSerializer.Deserialize<List<TaskSL>>((JsonElement)res2.ReturnValue);
 
@@ -150,7 +150,7 @@ namespace Frontend.Model
             {
                 board.DoneTasks.Add(new TaskModel(task));
             }
-            
+
 
             return board;
         }
@@ -166,6 +166,11 @@ namespace Frontend.Model
             Response res = JsonSerializer.Deserialize<Response>(Service.DeleteBoard(email, userInput));
             return JsonSerializer.Deserialize<string>(res.ErrorMessage == null ? "null" : res.ErrorMessage);
         }
+
+        /*private ObservableCollection<String> ConvertMembersList(List<String> members)
+        {
+        }*/
     }
+
 }
 

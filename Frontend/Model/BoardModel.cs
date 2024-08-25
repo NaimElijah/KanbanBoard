@@ -32,8 +32,8 @@ namespace Frontend.Model
             }
         }
 
-        private List<string> members;
-        public List<string> Members
+        private ObservableCollection<string> members;
+        public ObservableCollection<string> Members
         {
             get => members;
             set
@@ -53,10 +53,7 @@ namespace Frontend.Model
                 {
                     res += $"{member.ToString()}\n";
                 }
-                //if (res.Length >= 20)
-                //{
-                //    return res.Substring(0,18) + "...";
-                //}
+             
                 return res.Substring(0, res.Length - 1);
             }
         }
@@ -122,7 +119,7 @@ namespace Frontend.Model
             doneTasks = new ObservableCollection<TaskModel>();
         }*/
 
-        public BoardModel(BackendController controller, string userEmail, string name, string ownerName, List<string> boardMembers) : base(controller)
+        public BoardModel(BackendController controller, string userEmail, string name, string ownerName, ObservableCollection<string> boardMembers) : base(controller)
         {
             BoardName = name;
             this.userModelEmail = userEmail;

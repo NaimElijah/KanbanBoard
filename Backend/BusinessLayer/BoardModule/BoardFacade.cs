@@ -176,8 +176,9 @@ namespace IntroSE.Kanban.Backend.BusinessLayer.BoardModule
                     Logger.GetLog().Info($"DeleteBoard: {userEmail} was removed from the ExistingBoards because it has 0 boards after a board Deletion");
                 }
             }
-
+            BoardIdCounter = FindLargestID();
             Logger.GetLog().Info($"DeleteBoard: {email} successfully deleted the board named: {boardName}");
+
 
         }
 
@@ -1062,7 +1063,7 @@ namespace IntroSE.Kanban.Backend.BusinessLayer.BoardModule
 
             }  // Loaded ExisitingBoards Dictionary
 
-            BoardIdCounter = BoardIdToBoardBL.Count; 
+            BoardIdCounter = FindLargestID(); 
 
             // Loading Done.
 
@@ -1121,6 +1122,11 @@ namespace IntroSE.Kanban.Backend.BusinessLayer.BoardModule
 
             Logger.GetLog().Info($"GetBoardName: returning board name of board with id {boardId}");
             return BoardIdToBoardBL[boardId].Members;
+        }
+
+        private int FindLargestID()
+        {
+            return (int)BoardIdToBoardBL.Keys.Max(x => x) + 1;
         }
     }
 }
