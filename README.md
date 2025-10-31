@@ -57,7 +57,7 @@ This project is a Kanban board application designed to help users manage tasks a
    
    Open the folder you want to clone to in the terminal/git bash and enter:
    
-    `git clone https://github.com/BGU-SE-Courses/kanban-2024-m3-2024-a.git`
+    `git clone https://github.com/NaimElijah/KanbanBoard.git`
 
 3. Open the solution file Kanban.sln in Visual Studio.
 
